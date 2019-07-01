@@ -11,14 +11,17 @@ public class BulletScript : MonoBehaviour
     public float Damage { get => damage; set => damage = value; }
     public GameObject Parent { get => parent; set => parent = value; }
 
-    public void OnTriggerEnter2D(Collider2D collider2D)
+    void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if ((collider2D.gameObject.GetComponent<Entity>() == null || collider2D.gameObject.GetComponent<Entity>().fraction != parent.GetComponent<Entity>().fraction)
-            && collider2D.gameObject.GetComponent<Entity>().Bullet == false)
+        if (collider2D.isTrigger || collider2D.gameObject == null)
+            return;
+        if (collider2D.gameObject.GetComponent<Entity>() == null || (collider2D.gameObject.GetComponent<Entity>().fraction != Parent.GetComponent<Entity>().fraction
+            && collider2D.gameObject.GetComponent<Entity>().Bullet == false))
         {
             if (collider2D.gameObject.GetComponent<HpScript>() != null) {
                 collider2D.gameObject.GetComponent<HpScript>().Damaged(damage);
             }
+            Debug.Log(collider2D.gameObject);
             Destroy(gameObject);//уничтожаем объект со скриптом
         }
     }

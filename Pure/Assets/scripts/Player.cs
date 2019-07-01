@@ -17,13 +17,11 @@ public class Player : MonoBehaviour
     GameObject gun;
 
     Rigidbody2D rigidbody2D;
-    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         gunTransform = transform.Find("plasmgun");
         gun = transform.Find("plasmgun").gameObject;
     }
@@ -73,18 +71,6 @@ public class Player : MonoBehaviour
         }
 
         rigidbody2D.velocity = playerVelocity;
-
-        bool playerIsRunningX = Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
-        bool playerIsRunningY = Mathf.Abs(rigidbody2D.velocity.y) > Mathf.Epsilon;
-
-        if (playerIsRunningX || playerIsRunningY)
-        {
-            animator.SetBool("Running", true);
-        }
-        else
-        {
-            animator.SetBool("Running", false);
-        }
         
     }
     public void FlipSprite()

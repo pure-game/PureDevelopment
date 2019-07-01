@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: 019fc0197e00d9c4888e6d9514cec0bd
+guid: ea151e2d5ce58324fb03ef857d2eaec1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4723107735738678597
-    second: Idle_0
+      213: 394137526496911077
+    second: police_run_0
   - first:
-      213: -7385789195546760866
-    second: Idle_1
+      213: -4228779590398064873
+    second: police_run_1
   - first:
-      213: 3234629978573100161
-    second: Idle_2
+      213: 1332854530219798200
+    second: police_run_2
   - first:
-      213: 6373048116405451881
-    second: Idle_3
+      213: -6555851233799899261
+    second: police_run_3
+  - first:
+      213: -4014423552155944516
+    second: police_run_4
+  - first:
+      213: 5836132578747801221
+    second: police_run_5
+  - first:
+      213: 3323789522781972410
+    second: police_run_6
+  - first:
+      213: -3626713863864401675
+    second: police_run_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -92,22 +104,74 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_0
+      name: police_run_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4d94af8641cf844cb00bf49d022986d
+      internalID: 394137526496911077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: police_run_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c952543735b51146b8ecdc53b62bf13
+      internalID: -4228779590398064873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: police_run_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 892a1092c6cdb6349a1096fbcf46393b
+      internalID: 1332854530219798200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: police_run_3
       rect:
         serializedVersion: 2
         x: 0
@@ -115,20 +179,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9705ab464dbbc7c4b93e1ef749a71d07
-      internalID: 4723107735738678597
+      spriteID: f519b2aa6da2797469430f8ba0350e7c
+      internalID: -6555851233799899261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_1
+      name: police_run_4
       rect:
         serializedVersion: 2
         x: 128
@@ -136,20 +200,41 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8849df677faab4a44922bbb8b938fc99
-      internalID: -7385789195546760866
+      spriteID: 9452351d5a128b84488de89d44d401e8
+      internalID: -4014423552155944516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_2
+      name: police_run_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa54a102763564e42a6ec42ed10e6a9a
+      internalID: 5836132578747801221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: police_run_6
       rect:
         serializedVersion: 2
         x: 0
@@ -157,35 +242,35 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b004e4523d8ca8438975b7cb21b6f38
-      internalID: 3234629978573100161
+      spriteID: 881bdc4011b7abb458867b33a6adbb9f
+      internalID: 3323789522781972410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_3
+      name: police_run_7
       rect:
         serializedVersion: 2
-        x: 128
+        x: 129
         y: 0
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ebf2530d8ff1754d970297534e94a5a
-      internalID: 6373048116405451881
+      spriteID: 098f3df492497f04ab996cf8fd70a536
+      internalID: -3626713863864401675
       vertices: []
       indices: 
       edges: []
@@ -193,7 +278,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 80168646f7ef931469f64c06ff426b0f
+    spriteID: c43b8ef9aec0186489156f0e1c3c904d
     internalID: 0
     vertices: []
     indices: 

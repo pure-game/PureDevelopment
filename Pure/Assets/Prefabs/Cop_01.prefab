@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7829464445030778679}
   - component: {fileID: 4511723310587789486}
+  - component: {fileID: -7132606073649912786}
   - component: {fileID: -7644344631021344102}
   - component: {fileID: -9006539869201933063}
   - component: {fileID: 56194046343466846}
@@ -17,6 +18,7 @@ GameObject:
   - component: {fileID: 1233173406673851924}
   - component: {fileID: 1752635883966244575}
   - component: {fileID: 7533066943766142568}
+  - component: {fileID: -4549339899129852086}
   m_Layer: 8
   m_Name: Cop_01
   m_TagString: Untagged
@@ -76,7 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 88f7af77365e4024eba77ca838db518f, type: 3}
+  m_Sprite: {fileID: -4431925172566141234, guid: 9fdf55340b2ac054ca5c718469794678,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,6 +90,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &-7132606073649912786
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5190575207994677821}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6491e1d6418078c4f9e6fde6d71f80bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!70 &-7644344631021344102
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 736ce03110e7eb7479bb2d0f3123154a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heathPoint: 1000000
+  heathPoint: 100
 --- !u!58 &-4673004104277629433
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -210,6 +232,18 @@ MonoBehaviour:
   Bullet: 0
   Enemy: 0
   fraction: 1
+--- !u!114 &-4549339899129852086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5190575207994677821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd6e36799236484e9f8f6f51babaadc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4982463355753059940
 PrefabInstance:
   m_ObjectHideFlags: 0

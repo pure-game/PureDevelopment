@@ -41,6 +41,8 @@ public class ChasePlayer : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider2D)
     {
+        if (collider2D.gameObject.GetComponent<Entity>() == null)
+            return;
         if (collider2D.gameObject.GetComponent<Entity>().Player)
         {
             playerInCollidersCount++;
@@ -50,6 +52,8 @@ public class ChasePlayer : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collider2D)
     {
+        if (collider2D.gameObject.GetComponent<Entity>() == null)
+            return;
         if (collider2D.gameObject.GetComponent<Entity>().Player)
         {
             playerInCollidersCount--;
