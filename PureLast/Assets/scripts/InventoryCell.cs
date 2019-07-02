@@ -22,14 +22,13 @@ public class InventoryCell : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Right)
+        /*if (eventData.button == PointerEventData.InputButton.Right)
         {
-            print(items[index].prefabPath);
             GameObject droped = Instantiate(Resources.Load<GameObject>(items[index].prefabPath)) as GameObject;
             if (items[index].countItem > 1)
             {
@@ -42,7 +41,29 @@ public class InventoryCell : MonoBehaviour, IPointerClickHandler
                 inventory.Display();
             }
             droped.transform.position = player.transform.position;
+        } */
+
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            inventory.DisplayMenu(index);
         }
+
+    }
+
+    public void Drop(int index)
+    {       
+            GameObject droped = Instantiate(Resources.Load<GameObject>(items[index].prefabPath)) as GameObject;
+            if (items[index].countItem > 1)
+            {
+                items[index].countItem--;
+                inventory.Display();
+            }
+            else
+            {
+                items.Remove(items[index]);
+                inventory.Display();
+            }
+            droped.transform.position = player.transform.position;       
     }
 
 }

@@ -53,6 +53,8 @@ public class InventoryController : MonoBehaviour
             Transform cell = cellContainer.transform.GetChild(i);
             Transform icon = cell.GetChild(0);
             Transform transformText = icon.GetChild(0);
+            Transform panel = transformText.GetChild(0);
+            GameObject menu = panel.gameObject;
             Image img = icon.GetComponent<Image>();
             Text text = transformText.GetComponent<Text>();
 
@@ -69,10 +71,32 @@ public class InventoryController : MonoBehaviour
             }
             else
             {
+                panel.gameObject.SetActive(false);
                 img.enabled = false;
                 text.enabled = false;
             }
         }
+    }
+
+    // Отображает менюху дропа/эквипа
+    public void DisplayMenu(int index)
+    {
+        Transform cell = cellContainer.transform.GetChild(index);
+        Transform icon = cell.GetChild(0);
+        Transform transformText = icon.GetChild(0);
+        Transform panel = transformText.GetChild(0);
+        GameObject menu = panel.gameObject;
+
+        if (panel.gameObject.activeSelf)
+        {
+            panel.gameObject.SetActive(false);
+        }
+        else
+        {
+            if(items[index].id != 0)
+            panel.gameObject.SetActive(true);
+        }
+        
     }
 
     public List<Item> get_items() { return items; }
