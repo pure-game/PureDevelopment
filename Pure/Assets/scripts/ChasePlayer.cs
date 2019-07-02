@@ -10,7 +10,7 @@ public class ChasePlayer : MonoBehaviour
     [SerializeField] float idlePerimeter = 5f;
 
     Rigidbody2D rigidbody2D;
-    GameObject gun;
+    Transform gunTransform;
     GameObject player = null;
     Vector3 lastPlayerPosition;
     bool playerVisibility = false;
@@ -23,7 +23,14 @@ public class ChasePlayer : MonoBehaviour
     private void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        gun = transform.Find("plasmgun").gameObject;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            gunTransform = transform.GetChild(i);
+            if (gunTransform.GetComponent<Entity>() != null && gunTransform.GetComponent<Entity>().Gun && gunTransform.gameObject.activeSelf)
+                break;
+            else
+                gunTransform = null;
+        }
     }
 
     private void Update()
@@ -92,15 +99,15 @@ public class ChasePlayer : MonoBehaviour
 
     public void Shooting()
     {
-        Animator animation = gun.GetComponent<Animator>();
+        Animator animation = gunTransform.GetComponent<Animator>();
         animation.speed = 1.5f;
         if (playerVisibility)
         {
-            animation.Play("shoot");
+            animation.Play("Shoot");
         }
         else
         {
-            animation.Play("PlasmGunIdle");
+            animation.Play("Idle");
         }
     }
 
@@ -109,11 +116,11 @@ public class ChasePlayer : MonoBehaviour
         if (playerVisibility)
         {
             float swap = Mathf.Sign(transform.lossyScale.x);
-            gun.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, player.transform.position - transform.position);
+            gunTransform.rotation = Quaternion.FromToRotation(Vector3.right * swap, player.transform.position - transform.position);
         }
         else
         {
-            gun.transform.rotation = transform.rotation;
+            gunTransform.rotation = transform.rotation;
         }
     }
 

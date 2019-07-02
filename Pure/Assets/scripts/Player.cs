@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     public bl_Joystick get_Rotation_Joystick() { return rotationJoystick; }
 
     Transform gunTransform;
-    GameObject gun;
 
     Rigidbody2D rigidbody2D;
 
@@ -22,8 +21,14 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        gunTransform = transform.Find("plasmgun");
-        gun = transform.Find("plasmgun").gameObject;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            gunTransform = transform.GetChild(i);
+            if (gunTransform.GetComponent<Entity>() != null && gunTransform.GetComponent<Entity>().Gun && gunTransform.gameObject.activeSelf)
+                break;
+            else
+                gunTransform = null;
+        }
     }
 
     // Update is called once per frame
@@ -37,15 +42,15 @@ public class Player : MonoBehaviour
 
     public void Shooting()
     {
-        Animator animation = gun.GetComponent<Animator>();
+        Animator animation = gunTransform.GetComponent<Animator>();
         animation.speed = 1.5f;
         if (rotationJoystick.Horizontal != 0 || rotationJoystick.Vertical != 0)
         {
-            animation.Play("shoot");
+            animation.Play("Shoot");
         }
         else
         {
-            animation.Play("PlasmGunIdle");
+            animation.Play("Idle");
         }
     }
 
