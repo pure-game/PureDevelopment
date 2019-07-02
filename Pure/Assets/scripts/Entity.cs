@@ -9,5 +9,6 @@ public class Entity : MonoBehaviour
     public bool Bullet = false;
     public bool Enemy = false;
     public bool takeable = false;
+    public bool Gun = false;
     public int fraction = 0;
 }

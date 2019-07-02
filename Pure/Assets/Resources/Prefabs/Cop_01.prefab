@@ -231,6 +231,8 @@ MonoBehaviour:
   Player: 0
   Bullet: 0
   Enemy: 0
+  takeable: 0
+  Gun: 0
   fraction: 1
 --- !u!114 &-4549339899129852086
 MonoBehaviour:
@@ -259,12 +261,12 @@ PrefabInstance:
     - target: {fileID: 689163663755872984, guid: 442f99e5cefbcda45a229ee6f0024ba8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.203
+      value: -0.089
       objectReference: {fileID: 0}
     - target: {fileID: 689163663755872984, guid: 442f99e5cefbcda45a229ee6f0024ba8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.339
+      value: -0.553
       objectReference: {fileID: 0}
     - target: {fileID: 689163663755872984, guid: 442f99e5cefbcda45a229ee6f0024ba8,
         type: 3}

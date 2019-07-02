@@ -29,6 +29,14 @@ public class Player : MonoBehaviour
         gunTransform = transform.Find("plasmgun");
         gun = transform.Find("plasmgun").gameObject;
         takeButton.SetActive(false);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            gunTransform = transform.GetChild(i);
+            if (gunTransform.GetComponent<Entity>() != null && gunTransform.GetComponent<Entity>().Gun && gunTransform.gameObject.activeSelf)
+                break;
+            else
+                gunTransform = null;
+        }
     }
 
     // Update is called once per frame
@@ -42,15 +50,15 @@ public class Player : MonoBehaviour
 
     public void Shooting()
     {
-        Animator animation = gun.GetComponent<Animator>();
+        Animator animation = gunTransform.GetComponent<Animator>();
         animation.speed = 1.5f;
         if (rotationJoystick.Horizontal != 0 || rotationJoystick.Vertical != 0)
         {
-            animation.Play("shoot");
+            animation.Play("Shoot");
         }
         else
         {
-            animation.Play("PlasmGunIdle");
+            animation.Play("Idle");
         }
     }
 
@@ -76,7 +84,7 @@ public class Player : MonoBehaviour
         }
 
         rigidbody2D.velocity = playerVelocity;
-        
+
     }
     public void FlipSprite()
     {

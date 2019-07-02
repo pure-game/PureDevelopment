@@ -8,12 +8,14 @@ public class PlasmGun : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField] GameObject bullet_prefab;
-    [SerializeField] GameObject barrel;
     [SerializeField] float plasmSpeed = 10f;
+
+    Transform barrel;
 
     void Start()
     {
         Player parent = gameObject.GetComponentInParent<Player>();
+        barrel = transform.Find("Barrel");
     }
 
     public void Shoot()
