@@ -20,8 +20,7 @@ public class BulletScript : MonoBehaviour
         {
             if (collider2D.gameObject.GetComponent<HpScript>() != null) {
                 collider2D.gameObject.GetComponent<HpScript>().Damaged(damage);
-            }
-            Debug.Log(collider2D.gameObject);
+            }          
             Destroy(gameObject);//уничтожаем объект со скриптом
         }
     }

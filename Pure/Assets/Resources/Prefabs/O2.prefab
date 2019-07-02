@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 918897198693445904}
   - component: {fileID: -2424357994406359835}
   - component: {fileID: 4528991517072068354}
+  - component: {fileID: 9160390311315154767}
   m_Layer: 0
   m_Name: O2
   m_TagString: Untagged
@@ -111,6 +112,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
+  countItem: 0
   prefabPath: Prefabs/O2
   iconPath: Icons/O2
   stackable: 1
+--- !u!70 &9160390311315154767
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4560020404387457042}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.45, y: 1.28}
+  m_Direction: 0

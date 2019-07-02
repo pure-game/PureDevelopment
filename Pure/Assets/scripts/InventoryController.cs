@@ -48,6 +48,7 @@ public class InventoryController : MonoBehaviour
 
     public void Display()
     {
+        print("DISPLAY");
         for (int i = 0; i < items.Count; i++)
         {
             Transform cell = cellContainer.transform.GetChild(i);
@@ -60,6 +61,7 @@ public class InventoryController : MonoBehaviour
             {
                 img.enabled = true;
                 img.sprite = Resources.Load<Sprite>(items[i].iconPath);
+                print("ICON" + items[i].iconPath);
 
                 if (items[i].countItem >= 1 && items[i].stackable == true)
                 {
