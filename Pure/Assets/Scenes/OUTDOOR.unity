@@ -548,7 +548,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -572,7 +572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266571300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.69, y: -1.36, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 133529233}
@@ -14237,12 +14237,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9e1dc4326a70434d9dbc915a862e1ab, type: 3}
---- !u!1 &2398806232379302859 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2398806232379302859, guid: aadb1cd29a5336646ac96361ef22b5b6,
-    type: 3}
-  m_PrefabInstance: {fileID: 3140347751900659509}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3140347751900659509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14253,11 +14247,6 @@ PrefabInstance:
     - target: {fileID: 3140347752077598022, guid: aadb1cd29a5336646ac96361ef22b5b6,
         type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3140347752077598022, guid: aadb1cd29a5336646ac96361ef22b5b6,
-        type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3140347752077598019, guid: aadb1cd29a5336646ac96361ef22b5b6,
@@ -14315,11 +14304,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2398806232379302859, guid: aadb1cd29a5336646ac96361ef22b5b6,
-        type: 3}
-      propertyPath: m_Name
-      value: Barrel
-      objectReference: {fileID: 0}
     - target: {fileID: 921969268, guid: aadb1cd29a5336646ac96361ef22b5b6, type: 3}
       propertyPath: moveJoystick
       value: 
@@ -14328,15 +14312,10 @@ PrefabInstance:
       propertyPath: rotationJoystick
       value: 
       objectReference: {fileID: 1777519603}
-    - target: {fileID: 921969268, guid: aadb1cd29a5336646ac96361ef22b5b6, type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 2398806232379302859}
-    - target: {fileID: 1348902297059380846, guid: aadb1cd29a5336646ac96361ef22b5b6,
+    - target: {fileID: 1348902297059380842, guid: aadb1cd29a5336646ac96361ef22b5b6,
         type: 3}
-      propertyPath: bullet_prefab
-      value: 
-      objectReference: {fileID: 4344203414170746043, guid: 8461f790e0ec8cb4b8e9a3817dddfc89,
-        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aadb1cd29a5336646ac96361ef22b5b6, type: 3}
