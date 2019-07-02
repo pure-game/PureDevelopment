@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: c36b0032f870f3f47bd5dd7a7b4c38ff
+guid: d7d6dd50dad80084ca174debf07415fa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8049747008765077080
-    second: PurpleBullet_0
+      213: 6750785089491555306
+    second: PurpleGun_0
   - first:
-      213: 3347375030015170617
-    second: PurpleBullet_1
+      213: -8351867486374534125
+    second: PurpleGun_1
   - first:
-      213: 6382800606122608358
-    second: PurpleBullet_2
+      213: 8529299983620351888
+    second: PurpleGun_2
   - first:
-      213: 6177612163752690675
-    second: PurpleBullet_3
+      213: -4304182542847091781
+    second: PurpleGun_3
   - first:
-      213: 6101835158034262832
-    second: PurpleBullet_4
+      213: 6629123787405480832
+    second: PurpleGun_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -99,7 +99,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PurpleBullet_0
+      name: PurpleGun_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,14 +113,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ad3eda89a732ec4ab12b3135b52dcf7
-      internalID: 8049747008765077080
+      spriteID: 701f78e9959ab904e8f8961f7deec948
+      internalID: 6750785089491555306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleBullet_1
+      name: PurpleGun_1
       rect:
         serializedVersion: 2
         x: 128
@@ -134,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19714367e7686a54083e4e42f2344164
-      internalID: 3347375030015170617
+      spriteID: ddd82fec266619b4e8faf2efdaa67a11
+      internalID: -8351867486374534125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleBullet_2
+      name: PurpleGun_2
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4d6fb78017dccc4888d365129c817c1
-      internalID: 6382800606122608358
+      spriteID: e3ef9b3dfdc2f3c4496ad60aae4840fa
+      internalID: 8529299983620351888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleBullet_3
+      name: PurpleGun_3
       rect:
         serializedVersion: 2
         x: 128
@@ -176,14 +176,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9833d6d76f2c0c74081409b0e9cdd957
-      internalID: 6177612163752690675
+      spriteID: 6a3594469378e8c479044bd7519178a2
+      internalID: -4304182542847091781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleBullet_4
+      name: PurpleGun_4
       rect:
         serializedVersion: 2
         x: 0
@@ -197,8 +197,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: baf7af32de4e2c14ebf75caf1fca1258
-      internalID: 6101835158034262832
+      spriteID: 60e5b4a78d06c624f97f0bf785c406ac
+      internalID: 6629123787405480832
       vertices: []
       indices: 
       edges: []
@@ -206,7 +206,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cb4ab6b6ac7453a44a6be08aa963b67c
+    spriteID: 2a4c71cb93fbb6f44b99971f518b1464
     internalID: 0
     vertices: []
     indices: 
