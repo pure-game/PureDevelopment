@@ -9,4 +9,9 @@ public class Item : MonoBehaviour
     public string prefabPath;
     public string iconPath;
     public bool stackable;
+
+    public object Clone()
+    {
+        return this.MemberwiseClone();
+    }
 }

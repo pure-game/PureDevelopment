@@ -7,6 +7,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
     [SerializeField] float runSpeed = 5f;
+    [SerializeField] GameObject takeButton;
     [SerializeField] private bl_Joystick moveJoystick;
     [SerializeField] private bl_Joystick rotationJoystick;
 
@@ -16,6 +17,9 @@ public class Player : MonoBehaviour
     Transform gunTransform;
 
     Rigidbody2D rigidbody2D;
+    public static GameObject takeableItem;
+    public InventoryController inventory;
+    List<Item> items;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +33,7 @@ public class Player : MonoBehaviour
             else
                 gunTransform = null;
         }
+        takeButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -88,6 +93,46 @@ public class Player : MonoBehaviour
         if (rotationJoystick.Horizontal != 0) {
             transform.localScale = new Vector2(Mathf.Sign(rotationJoystick.Horizontal), 1f);
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<Entity>().takeable == true)
+        {
+            takeButton.SetActive(true); // показываем кнопку взятия
+            takeableItem = other.gameObject; // записываем в takeableItem объект с которым столкнулись
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<Entity>().takeable == true)
+        {
+            takeButton.SetActive(false);
+        }
+    }
+
+    public void TakeItem()
+    {
+        inventory = GameObject.Find("InventoryManager").GetComponent<InventoryController>(); // получаем инвентарь со сцены
+        items = inventory.get_items();
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] == null)
+            {
+                items[i] = (Item)takeableItem.GetComponent<Item>().Clone();
+                items[i].countItem++;//стакаем
+                inventory.Display(); // отрисовываем элементы инвентаря
+                break;
+            }
+            if (items[i].id == takeableItem.GetComponent<Item>().id && items[i].stackable == true)
+            {
+                items[i].countItem++; //стакаем
+                inventory.Display();
+                break;
+            }
+        }
+        Destroy(takeableItem);
     }
 
 }
