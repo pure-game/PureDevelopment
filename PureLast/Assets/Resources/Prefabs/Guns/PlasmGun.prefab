@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 139836824274786427}
   - component: {fileID: 139836824274786430}
   - component: {fileID: -256392653427970826}
+  - component: {fileID: 5736484199885080610}
   m_Layer: 0
   m_Name: PlasmGun
   m_TagString: Untagged
@@ -136,6 +137,23 @@ MonoBehaviour:
   takeable: 0
   Gun: 1
   fraction: 0
+--- !u!114 &5736484199885080610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139836824274786426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786c84e934e92bc43b5aa781c5655a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
+  countItem: 0
+  prefabPath: Prefabs/Guns/PlasmGun
+  iconPath: Icons/plasmgun 1/plasmgun_0
+  stackable: 0
 --- !u!1 &3603664928561575387
 GameObject:
   m_ObjectHideFlags: 0

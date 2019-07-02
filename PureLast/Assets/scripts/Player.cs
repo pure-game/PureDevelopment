@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public bl_Joystick get_Move_Joystick() { return moveJoystick; }
     public bl_Joystick get_Rotation_Joystick() { return rotationJoystick; }
 
-    Transform gunTransform;
+    Transform gunTransform = null;
 
     Rigidbody2D rigidbody2D;
     public static GameObject takeableItem;
@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
                 gunTransform = null;
         }
         takeButton.SetActive(false);
+        inventory = GameObject.Find("InventoryManager").GetComponent<InventoryController>(); // получаем инвентарь со сцены
     }
 
     // Update is called once per frame
@@ -47,6 +48,9 @@ public class Player : MonoBehaviour
 
     public void Shooting()
     {
+        if (gunTransform == null)
+            return;
+
         Animator animation = gunTransform.GetComponent<Animator>();
         animation.speed = 1.5f;
         if (rotationJoystick.Horizontal != 0 || rotationJoystick.Vertical != 0)
@@ -61,6 +65,9 @@ public class Player : MonoBehaviour
 
     public void RotateGun()
     {
+        if (gunTransform == null)
+            return;
+
         float v = rotationJoystick.Vertical;
         float h = rotationJoystick.Horizontal;
 
@@ -114,24 +121,56 @@ public class Player : MonoBehaviour
 
     public void TakeItem()
     {
-        inventory = GameObject.Find("InventoryManager").GetComponent<InventoryController>(); // получаем инвентарь со сцены
-        items = inventory.get_items();
-        for (int i = 0; i < items.Count; i++)
+        if (takeableItem.GetComponent<Entity>() != null && takeableItem.GetComponent<Entity>().Gun)
         {
-            if (items[i] == null)
+            items = GunControl.Items;
+            bool itemTaked = false;
+            for (int i = 0; i < items.Count; i++)
             {
-                items[i] = (Item)takeableItem.GetComponent<Item>().Clone();
-                items[i].countItem++;//стакаем
-                inventory.Display(); // отрисовываем элементы инвентаря
-                break;
+                if (items[i] == null)
+                {
+                    items[i] = (Item)takeableItem.GetComponent<Item>().Clone();
+                    items[i].countItem++;//стакаем
+                    inventory.Display(); // отрисовываем элементы инвентаря
+                    itemTaked = true;
+                    break;
+                }
+                if (items[i].id == takeableItem.GetComponent<Item>().id && items[i].stackable == true)
+                {
+                    items[i].countItem++; //стакаем
+                    inventory.Display();
+                    itemTaked = true;
+                    break;
+                }
             }
-            if (items[i].id == takeableItem.GetComponent<Item>().id && items[i].stackable == true)
+            if (!itemTaked)
             {
-                items[i].countItem++; //стакаем
-                inventory.Display();
-                break;
+                items[items.Count - 1] = (Item)takeableItem.GetComponent<Item>().Clone();
+                items[items.Count - 1].countItem = 1;//стакаем
+                inventory.Display(); // отрисовываем элементы инвентаря
             }
         }
+        else
+        {
+            items = InventoryController.Items;
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i] == null)
+                {
+                    items[i] = (Item)takeableItem.GetComponent<Item>().Clone();
+                    items[i].countItem++;//стакаем
+                    inventory.Display(); // отрисовываем элементы инвентаря
+                    break;
+                }
+                if (items[i].id == takeableItem.GetComponent<Item>().id && items[i].stackable == true)
+                {
+                    items[i].countItem++; //стакаем
+                    inventory.Display();
+                    break;
+                }
+            }
+        }
+
         Destroy(takeableItem);
     }
 

@@ -16,7 +16,7 @@ public class InventoryCell : MonoBehaviour, IPointerClickHandler
     {
         inventory = GameObject.Find("InventoryManager").GetComponent<InventoryController>();
         player = GameObject.Find("Player");
-        items = inventory.get_items();
+        items = InventoryController.Items;
     }
 
     // Update is called once per frame

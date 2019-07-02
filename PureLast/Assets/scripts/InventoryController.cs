@@ -10,14 +10,16 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject cellContainer;
     [SerializeField] KeyCode showInventory;
 
+    public static List<Item> Items { get => items; set => items = value; }
+
     // Start is called before the first frame update
     void Start()
     {
         cellContainer.SetActive(false);
-        items = new List<Item>();
+        Items = new List<Item>();
         for (int i = 0; i < cellContainer.transform.childCount; i++)
         {
-            items.Add(new Item());
+            Items.Add(new Item());
         }
         for (int i = 0; i < cellContainer.transform.childCount; i++)
         {
@@ -48,25 +50,24 @@ public class InventoryController : MonoBehaviour
 
     public void Display()
     {
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < Items.Count; i++)
         {
             Transform cell = cellContainer.transform.GetChild(i);
             Transform icon = cell.GetChild(0);
             Transform transformText = icon.GetChild(0);
             Transform panel = transformText.GetChild(0);
-            GameObject menu = panel.gameObject;
             Image img = icon.GetComponent<Image>();
             Text text = transformText.GetComponent<Text>();
 
-            if (items[i].id != 0)
+            if (Items[i].id != 0)
             {
                 img.enabled = true;
-                img.sprite = Resources.Load<Sprite>(items[i].iconPath);
+                img.sprite = Resources.Load<Sprite>(Items[i].iconPath);
 
-                if (items[i].countItem >= 1 && items[i].stackable == true)
+                if (Items[i].countItem >= 1 && Items[i].stackable == true)
                 {
                     text.enabled = true;
-                    text.text = items[i].countItem.ToString();
+                    text.text = Items[i].countItem.ToString();
                 }
             }
             else
@@ -85,7 +86,6 @@ public class InventoryController : MonoBehaviour
         Transform icon = cell.GetChild(0);
         Transform transformText = icon.GetChild(0);
         Transform panel = transformText.GetChild(0);
-        GameObject menu = panel.gameObject;
 
         if (panel.gameObject.activeSelf)
         {
@@ -93,12 +93,10 @@ public class InventoryController : MonoBehaviour
         }
         else
         {
-            if(items[index].id != 0)
+            if(Items[index].id != 0)
             panel.gameObject.SetActive(true);
         }
         
     }
-
-    public List<Item> get_items() { return items; }
 
 }
