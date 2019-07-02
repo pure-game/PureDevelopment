@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UnBulletable
   - Bullet
+  - InventoryManager
   layers:
   - Default
   - TransparentFX
