@@ -8,5 +8,6 @@ public class Entity : MonoBehaviour
     public bool Player = false;
     public bool Bullet = false;
     public bool Enemy = false;
+    public bool takeable = false;
     public int fraction = 0;
 }
