@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
-{
-    
-    [SerializeField] int id;
-    [SerializeField] string prefabPath;
-    [SerializeField] string iconPath;
-    [SerializeField] bool stackable;
-
+{   
+    public int id;
+    public int countItem;
+    public string prefabPath;
+    public string iconPath;
+    public bool stackable;
 }
