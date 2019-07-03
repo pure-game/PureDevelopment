@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rigidbody2D;
     public static GameObject takeableItem;
     public InventoryController inventory;
+    public GunControl gunControl;
     List<Item> items;
 
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
         }
         takeButton.SetActive(false);
         inventory = GameObject.Find("InventoryManager").GetComponent<InventoryController>(); // получаем инвентарь со сцены
+        gunControl = GameObject.Find("Guns").GetComponent<GunControl>(); // получаем инвентарь со сцены
     }
 
     // Update is called once per frame
@@ -124,31 +126,54 @@ public class Player : MonoBehaviour
         if (takeableItem.GetComponent<Entity>() != null && takeableItem.GetComponent<Entity>().Gun)
         {
             items = GunControl.Items;
-            bool itemTaked = false;
-            for (int i = 0; i < items.Count; i++)
+            if(items[1].id == 0)
             {
-                if (items[i] == null)
+                items[1] = takeableItem.GetComponent<Item>();
+
+            }
+            else
+            {
+                if(items[0].id == 0)
                 {
-                    items[i] = (Item)takeableItem.GetComponent<Item>().Clone();
-                    items[i].countItem++;//стакаем
-                    inventory.Display(); // отрисовываем элементы инвентаря
-                    itemTaked = true;
-                    break;
+                    items[0] = takeableItem.GetComponent<Item>();
+
                 }
-                if (items[i].id == takeableItem.GetComponent<Item>().id && items[i].stackable == true)
+                else
                 {
-                    items[i].countItem++; //стакаем
-                    inventory.Display();
-                    itemTaked = true;
-                    break;
+                    GameObject droped = Instantiate(Resources.Load<GameObject>(items[1].prefabPath)) as GameObject;
+                    droped.transform.position = gameObject.transform.position;
+                    items[1] = takeableItem.GetComponent<Item>();
+
                 }
             }
-            if (!itemTaked)
-            {
-                items[items.Count - 1] = (Item)takeableItem.GetComponent<Item>().Clone();
-                items[items.Count - 1].countItem = 1;//стакаем
-                inventory.Display(); // отрисовываем элементы инвентаря
-            }
+
+            gunControl.Display();
+
+            /*  bool itemTaked = false;
+              for (int i = 0; i < items.Count; i++)
+              {
+                  if (items[i] == null)
+                  {
+                      items[i] = (Item)takeableItem.GetComponent<Item>().Clone();
+                      items[i].countItem++;//стакаем
+                      inventory.Display(); // отрисовываем элементы инвентаря
+                      itemTaked = true;
+                      break;
+                  }
+                  if (items[i].id == takeableItem.GetComponent<Item>().id && items[i].stackable == true)
+                  {
+                      items[i].countItem++; //стакаем
+                      inventory.Display();
+                      itemTaked = true;
+                      break;
+                  }
+              }
+              if (!itemTaked)
+              {
+                  items[items.Count - 1] = (Item)takeableItem.GetComponent<Item>().Clone();
+                  items[items.Count - 1].countItem = 1;//стакаем
+                  inventory.Display(); // отрисовываем элементы инвентаря
+              }*/
         }
         else
         {
@@ -170,7 +195,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
         Destroy(takeableItem);
     }
 

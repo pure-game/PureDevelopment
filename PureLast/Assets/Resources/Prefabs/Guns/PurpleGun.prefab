@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1345312762964923391}
   - component: {fileID: -7745289362202103556}
   - component: {fileID: -3116209906261949737}
+  - component: {fileID: -6120733849986822032}
   m_Layer: 0
   m_Name: PurpleGun
   m_TagString: Untagged
@@ -134,7 +135,7 @@ MonoBehaviour:
   Player: 0
   Bullet: 0
   Enemy: 0
-  takeable: 0
+  takeable: 1
   Gun: 1
   fraction: 0
 --- !u!114 &-3116209906261949737
@@ -152,8 +153,24 @@ MonoBehaviour:
   id: 3
   countItem: 0
   prefabPath: Prefabs/Guns/PurpleGun
-  iconPath: Icons/PurpleGun 1/PurpleGun_0
+  iconPath: Icons/purplegun
   stackable: 0
+--- !u!70 &-6120733849986822032
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315884484964187863}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5625, y: 0.25}
+  m_Size: {x: 2, y: 0.68}
+  m_Direction: 1
 --- !u!1 &5510253428136459906
 GameObject:
   m_ObjectHideFlags: 0

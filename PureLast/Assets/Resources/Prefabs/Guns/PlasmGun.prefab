@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 139836824274786430}
   - component: {fileID: -256392653427970826}
   - component: {fileID: 5736484199885080610}
+  - component: {fileID: -6373597745887241574}
   m_Layer: 0
   m_Name: PlasmGun
   m_TagString: Untagged
@@ -134,7 +135,7 @@ MonoBehaviour:
   Player: 0
   Bullet: 0
   Enemy: 0
-  takeable: 0
+  takeable: 1
   Gun: 1
   fraction: 0
 --- !u!114 &5736484199885080610
@@ -152,8 +153,24 @@ MonoBehaviour:
   id: 2
   countItem: 0
   prefabPath: Prefabs/Guns/PlasmGun
-  iconPath: Icons/plasmgun 1/plasmgun_0
+  iconPath: Icons/plasmgun
   stackable: 0
+--- !u!70 &-6373597745887241574
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139836824274786426}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.45312497, y: 0.14}
+  m_Size: {x: 2.02, y: 0.88}
+  m_Direction: 1
 --- !u!1 &3603664928561575387
 GameObject:
   m_ObjectHideFlags: 0

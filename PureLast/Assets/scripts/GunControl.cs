@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunControl : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class GunControl : MonoBehaviour
         }
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).GetComponent<InventoryCell>().index = i;
+            transform.GetChild(i).GetComponent<CurrentGun>().gunID = i;
         }
     }
 
@@ -29,6 +30,24 @@ public class GunControl : MonoBehaviour
         
     }
 
+    public void Display()
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            Transform Gun = transform.GetChild(i);
+            Image img = Gun.GetComponent<Image>();
 
+            if(items[i].id != 0)
+            {
+                img.enabled = true;
+                img.sprite = Resources.Load<Sprite>(Items[i].iconPath);
+            }
+            else
+            {
+                img.enabled = false;
+            }
+
+        }
+    }
 
 }
