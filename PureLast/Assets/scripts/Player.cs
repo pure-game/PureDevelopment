@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     Transform gunTransform = null;
 
     Rigidbody2D rigidbody2D;
+    Transform hand;
     public static GameObject takeableItem;
     public InventoryController inventory;
     public GunControl gunControl;
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         for (int i = 0; i < transform.childCount; i++)
         {
+            if (transform.GetChild(i).name == "Hand")
+                hand = transform.GetChild(i);
             gunTransform = transform.GetChild(i);
             if (gunTransform.GetComponent<Entity>() != null && gunTransform.GetComponent<Entity>().Gun && gunTransform.gameObject.activeSelf)
                 break;
@@ -37,12 +40,12 @@ public class Player : MonoBehaviour
         takeButton.SetActive(false);
         inventory = GameObject.Find("InventoryManager").GetComponent<InventoryController>(); // получаем инвентарь со сцены
         gunControl = GameObject.Find("Guns").GetComponent<GunControl>(); // получаем инвентарь со сцены
+        SwapGun();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SwapGun();
         Run();
         FlipSprite();
         RotateGun();
@@ -51,9 +54,12 @@ public class Player : MonoBehaviour
 
     public void SwapGun()
     {
-        if (GunControl.Items[0].id != 0)
+        if (GunControl.Items[0].id != 0 && (gunTransform == null || gunTransform.GetComponent<Item>().id != GunControl.Items[0].id))
         {
-
+            if (gunTransform != null)
+                Destroy(gunTransform.gameObject);
+            GameObject gun = Instantiate(Resources.Load<GameObject>(GunControl.Items[0].prefabPath), hand.position, hand.rotation, transform) as GameObject;
+            gunTransform = gun.transform;
         }
     }
 
@@ -115,7 +121,7 @@ public class Player : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<Entity>().takeable == true)
+        if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().takeable == true)
         {
             takeButton.SetActive(true); // показываем кнопку взятия
             takeableItem = other.gameObject; // записываем в takeableItem объект с которым столкнулись
@@ -124,7 +130,7 @@ public class Player : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<Entity>().takeable == true)
+        if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().takeable == true)
         {
             takeButton.SetActive(false);
         }
@@ -135,28 +141,29 @@ public class Player : MonoBehaviour
         if (takeableItem.GetComponent<Entity>() != null && takeableItem.GetComponent<Entity>().Gun)
         {
             items = GunControl.Items;
-            if(items[1].id == 0)
+            if(items[0].id == 0)
             {
-                items[1] = takeableItem.GetComponent<Item>();
+                items[0] = takeableItem.GetComponent<Item>();
 
             }
             else
             {
-                if(items[0].id == 0)
+                if(items[1].id == 0)
                 {
-                    items[0] = takeableItem.GetComponent<Item>();
+                    items[1] = takeableItem.GetComponent<Item>();
 
                 }
                 else
                 {
-                    GameObject droped = Instantiate(Resources.Load<GameObject>(items[1].prefabPath)) as GameObject;
+                    GameObject droped = Instantiate(Resources.Load<GameObject>(items[0].prefabPath)) as GameObject;
                     droped.transform.position = gameObject.transform.position;
-                    items[1] = takeableItem.GetComponent<Item>();
+                    items[0] = takeableItem.GetComponent<Item>();
 
                 }
             }
-
+            
             gunControl.Display();
+            SwapGun();
 
             /*  bool itemTaked = false;
               for (int i = 0; i < items.Count; i++)
@@ -184,7 +191,7 @@ public class Player : MonoBehaviour
                   inventory.Display(); // отрисовываем элементы инвентаря
               }*/
         }
-        else
+        else if(takeableItem.GetComponent<Entity>() != null && takeableItem.GetComponent<Entity>().takeable)
         {
             items = InventoryController.Items;
             for (int i = 0; i < items.Count; i++)

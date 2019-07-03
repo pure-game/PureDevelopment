@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GunControl : MonoBehaviour, IPointerClickHandler
 {
 
+    GameObject player;
     static List<Item> items;
 
     public static List<Item> Items { get => items; set => items = value; }
@@ -19,10 +20,7 @@ public class GunControl : MonoBehaviour, IPointerClickHandler
         {
             Items.Add(new Item());
         }
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).GetComponent<CurrentGun>().gunID = i;
-        }
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -65,7 +63,7 @@ public class GunControl : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Swap();
-        Debug.Log("Swap");
+        player.GetComponent<Player>().SwapGun();
     }
 
 }
