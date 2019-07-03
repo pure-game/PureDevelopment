@@ -22,6 +22,6 @@ public class CurrentGun : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        
+
     }
 }
