@@ -42,10 +42,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SwapGun();
         Run();
         FlipSprite();
         RotateGun();
         Shooting();
+    }
+
+    public void SwapGun()
+    {
+        if (GunControl.Items[0].id != 0)
+        {
+
+        }
     }
 
     public void Shooting()

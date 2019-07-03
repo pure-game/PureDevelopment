@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CurrentGun : MonoBehaviour, IPointerClickHandler
+public class CurrentGun : MonoBehaviour
 {
 
     public int gunID;
@@ -20,8 +20,5 @@ public class CurrentGun : MonoBehaviour, IPointerClickHandler
         
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        
-    }
+
 }
