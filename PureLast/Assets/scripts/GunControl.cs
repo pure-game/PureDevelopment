@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class GunControl : MonoBehaviour
+public class GunControl : MonoBehaviour, IPointerClickHandler
 {
 
     static List<Item> items;
@@ -34,7 +35,7 @@ public class GunControl : MonoBehaviour
     {
         for (int i = 0; i < Items.Count; i++)
         {
-            Transform Gun = transform.GetChild(i);
+            Transform Gun = transform.GetChild(i).GetChild(0);
             Image img = Gun.GetComponent<Image>();
 
             if(items[i].id != 0)
@@ -48,6 +49,23 @@ public class GunControl : MonoBehaviour
             }
 
         }
+    }
+
+    public void Swap()
+    {
+        Item pr = Items[0];
+        for (int i = 0; i < Items.Count - 1; i++)
+        {
+            Items[i] = Items[i + 1];
+        }
+        Items[Items.Count - 1] = pr;
+        Display();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Swap();
+        Debug.Log("Swap");
     }
 
 }

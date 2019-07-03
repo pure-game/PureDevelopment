@@ -10,6 +10,7 @@ public class Item : MonoBehaviour, ICloneable
     public string prefabPath;
     public string iconPath;
     public bool stackable;
+    public string itemName;
 
     public object Clone()
     {
