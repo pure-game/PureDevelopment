@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e9681c5196ea429fb1ef52e141156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet_prefab: {fileID: 1988104800849545902, guid: c88ce5bfaf9ef104b949997d39e47533,
+  bullet_prefab: {fileID: 2332747961598095080, guid: 4d0baaa0a575eb0438d305ceb6a41830,
     type: 3}
   plasmSpeed: 10
 --- !u!114 &-7745289362202103556
