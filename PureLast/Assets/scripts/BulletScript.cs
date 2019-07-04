@@ -21,7 +21,14 @@ public class BulletScript : MonoBehaviour
             if (collider2D.gameObject.GetComponent<HpScript>() != null) {
                 collider2D.gameObject.GetComponent<HpScript>().Damaged(damage);
             }
-            Destroy(gameObject);//уничтожаем объект со скриптом
-        }
+            if (gameObject.GetComponent<Rigidbody2D>().velocity.x < 0)
+                transform.Rotate(Vector3.up * 180);
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            gameObject.GetComponent<Animator>().Play("BulletDestroy");
+        }      
+    }
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }
