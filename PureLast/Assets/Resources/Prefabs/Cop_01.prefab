@@ -258,6 +258,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: plasmgun
       objectReference: {fileID: 0}
+    - target: {fileID: 139836824274786426, guid: 442f99e5cefbcda45a229ee6f0024ba8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 689163663755872984, guid: 442f99e5cefbcda45a229ee6f0024ba8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -312,6 +317,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6373597745887241574, guid: 442f99e5cefbcda45a229ee6f0024ba8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3603664928561575387, guid: 442f99e5cefbcda45a229ee6f0024ba8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 442f99e5cefbcda45a229ee6f0024ba8, type: 3}

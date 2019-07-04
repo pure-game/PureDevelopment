@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7745289362202103556}
   - component: {fileID: -3116209906261949737}
   - component: {fileID: -6120733849986822032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PurpleGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,6 +155,7 @@ MonoBehaviour:
   prefabPath: Prefabs/Guns/PurpleGun
   iconPath: Icons/purplegun
   stackable: 0
+  itemName: 
 --- !u!70 &-6120733849986822032
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1959829800794955285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

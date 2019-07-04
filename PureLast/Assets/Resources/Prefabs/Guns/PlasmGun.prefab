@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -256392653427970826}
   - component: {fileID: 5736484199885080610}
   - component: {fileID: -6373597745887241574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlasmGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,6 +155,7 @@ MonoBehaviour:
   prefabPath: Prefabs/Guns/PlasmGun
   iconPath: Icons/plasmgun
   stackable: 0
+  itemName: 
 --- !u!70 &-6373597745887241574
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6026670589460642923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
