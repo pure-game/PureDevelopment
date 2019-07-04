@@ -54,13 +54,17 @@ public class Player : MonoBehaviour
 
     public void SwapGun()
     {
-        if (GunControl.Items[0].id != 0 && (gunTransform == null || gunTransform.GetComponent<Item>().id != GunControl.Items[0].id))
-        {
+
             if (gunTransform != null)
                 Destroy(gunTransform.gameObject);
+            if (GunControl.Items[0].id == 0)
+            {
+                gunTransform = null;
+                return;
+            }
             GameObject gun = Instantiate(Resources.Load<GameObject>(GunControl.Items[0].prefabPath), hand.position, hand.rotation, transform) as GameObject;
             gunTransform = gun.transform;
-        }
+
     }
 
     public void Shooting()
