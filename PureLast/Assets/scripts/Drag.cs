@@ -28,10 +28,11 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         inventory.dragPrefab.SetActive(true);
         if (dragedObject.GetComponent<InventoryCell>() != null)
         {
-                int index = dragedObject.GetComponent<InventoryCell>().index;
-                inventory.dragPrefab.GetComponent<Image>().sprite = Resources.Load<Sprite>(InventoryController.Items[index].iconPath);
-                inventory.dragPrefab.transform.GetChild(0).GetComponent<Text>().text = InventoryController.Items[index].countItem.ToString();
-                inventory.dragPrefab.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            int index = dragedObject.GetComponent<InventoryCell>().index;
+            inventory.dragPrefab.GetComponent<Image>().sprite = Resources.Load<Sprite>(InventoryController.Items[index].iconPath);
+            inventory.dragPrefab.transform.GetChild(0).GetComponent<Text>().text = InventoryController.Items[index].countItem.ToString();
+            inventory.dragPrefab.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
             if (inventory.dragPrefab.GetComponent<Image>().sprite == null)
             {
                 dragedObject = null;
@@ -47,10 +48,11 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (dragedObject == null)
+            return;
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            int index = dragedObject.GetComponent<InventoryCell>().index;
-            dragedObject.GetComponent<InventoryCell>().Drop(index);
+            dragedObject.GetComponent<InventoryCell>().Drop();
         }
         dragedObject = null;
         inventory.dragPrefab.SetActive(false);

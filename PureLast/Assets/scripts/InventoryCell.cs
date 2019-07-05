@@ -7,7 +7,6 @@ public class InventoryCell : MonoBehaviour, IDropHandler
 {
 
     public int index;
-    List<Item> items;
     InventoryController inventory;
     GameObject player;
 
@@ -16,7 +15,6 @@ public class InventoryCell : MonoBehaviour, IDropHandler
     {
         inventory = GameObject.Find("InventoryManager").GetComponent<InventoryController>();
         player = GameObject.Find("Player");
-        items = InventoryController.Items;
     }
 
     // Update is called once per frame
@@ -36,17 +34,18 @@ public class InventoryCell : MonoBehaviour, IDropHandler
     }
     */
 
-    public void Drop(int index)
+    public void Drop()
     {       
-            GameObject droped = Instantiate(Resources.Load<GameObject>(items[index].prefabPath)) as GameObject;
-            if (items[index].countItem > 1)
+            print(InventoryController.Items[index].prefabPath);
+            GameObject droped = Instantiate(Resources.Load<GameObject>(InventoryController.Items[index].prefabPath)) as GameObject;
+            if (InventoryController.Items[index].countItem > 1)
             {
-                items[index].countItem--;
+                InventoryController.Items[index].countItem--;
                 inventory.Display();
             }
             else
             {
-                items.Remove(items[index]);
+                InventoryController.Items[index] = new Item();
                 inventory.Display();
             }
             droped.transform.position = player.transform.position;       
@@ -54,17 +53,19 @@ public class InventoryCell : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        GameObject dragedObject = Drag.dragedObject;
-        if(dragedObject == null)
+        GameObject dragedObject = Drag.dragedObject;       
+        if (dragedObject == null)
         {
             return;
         }
+
         InventoryCell currentDragedItem = dragedObject.GetComponent<InventoryCell>();
-        if (currentDragedItem != null)
+
+        if (currentDragedItem)
         {
             Item currentItem = InventoryController.Items[GetComponent<InventoryCell>().index];
             InventoryController.Items[GetComponent<InventoryCell>().index] = InventoryController.Items[currentDragedItem.index];
-            InventoryController.Items[currentDragedItem.index] = currentItem;         
+            InventoryController.Items[currentDragedItem.index] = currentItem;
             inventory.Display();
         }
     }

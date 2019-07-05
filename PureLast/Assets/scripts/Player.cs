@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigidbody2D;
     Transform hand;
-    public static GameObject takeableItem;
+    public static List<GameObject> takeableItem = new List<GameObject>();
     public InventoryController inventory;
     public GunControl gunControl;
     List<Item> items;
@@ -128,7 +129,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().takeable == true)
         {
             takeButton.SetActive(true); // показываем кнопку взятия
-            takeableItem = other.gameObject; // записываем в takeableItem объект с которым столкнулись
+            takeableItem.Add(other.gameObject); // записываем в takeableItem объект с которым столкнулись
         }
     }
 
@@ -136,32 +137,36 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().takeable == true)
         {
-            takeButton.SetActive(false);
+            takeableItem.Remove(other.gameObject);
+            if (takeableItem.Count == 0)
+            {
+                takeButton.SetActive(false);
+            }
         }
     }
 
     public void TakeItem()
     {
-        if (takeableItem.GetComponent<Entity>() != null && takeableItem.GetComponent<Entity>().Gun)
+        if (takeableItem[0].GetComponent<Entity>() != null && takeableItem[0].GetComponent<Entity>().Gun)
         {
             items = GunControl.Items;
             if(items[0].id == 0)
             {
-                items[0] = takeableItem.GetComponent<Item>();
+                items[0] = takeableItem[0].GetComponent<Item>();
 
             }
             else
             {
                 if(items[1].id == 0)
                 {
-                    items[1] = takeableItem.GetComponent<Item>();
+                    items[1] = takeableItem[0].GetComponent<Item>();
 
                 }
                 else
                 {
                     GameObject droped = Instantiate(Resources.Load<GameObject>(items[0].prefabPath)) as GameObject;
                     droped.transform.position = gameObject.transform.position;
-                    items[0] = takeableItem.GetComponent<Item>();
+                    items[0] = takeableItem[0].GetComponent<Item>();
 
                 }
             }
@@ -195,27 +200,33 @@ public class Player : MonoBehaviour
                   inventory.Display(); // отрисовываем элементы инвентаря
               }*/
         }
-        else if(takeableItem.GetComponent<Entity>() != null && takeableItem.GetComponent<Entity>().takeable)
+        else if(takeableItem[0].GetComponent<Entity>() != null && takeableItem[0].GetComponent<Entity>().takeable)
         {
             items = InventoryController.Items;
+            bool taked = false;
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i] == null)
-                {
-                    items[i] = (Item)takeableItem.GetComponent<Item>().Clone();
-                    items[i].countItem++;//стакаем
-                    inventory.Display(); // отрисовываем элементы инвентаря
-                    break;
-                }
-                if (items[i].id == takeableItem.GetComponent<Item>().id && items[i].stackable == true)
+                if (items[i].id == takeableItem[0].GetComponent<Item>().id && items[i].stackable == true)
                 {
                     items[i].countItem++; //стакаем
                     inventory.Display();
+                    taked = true;
                     break;
                 }
             }
+            if (!taked)
+                for (int i = 0; i < items.Count; i++)
+                {
+                    if (items[i] == null)
+                    {
+                        items[i] = (Item)takeableItem[0].GetComponent<Item>().Clone();
+                        items[i].countItem++;//стакаем
+                        inventory.Display(); // отрисовываем элементы инвентаря
+                        break;
+                    }
+                }   
         }
-        Destroy(takeableItem);
+        Destroy(takeableItem[0]);
     }
 
 }
