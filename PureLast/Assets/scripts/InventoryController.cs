@@ -10,6 +10,8 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject cellContainer;
     [SerializeField] KeyCode showInventory;
 
+    public GameObject dragPrefab;
+
     public static List<Item> Items { get => items; set => items = value; }
 
     // Start is called before the first frame update
@@ -78,7 +80,7 @@ public class InventoryController : MonoBehaviour
             }
         }
     }
-
+    /*
     // Отображает менюху дропа/эквипа
     public void DisplayMenu(int index)
     {
@@ -98,5 +100,6 @@ public class InventoryController : MonoBehaviour
         }
         
     }
+    */
 
 }
