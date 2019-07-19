@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     Rigidbody2D rigidbody2D;
     Transform hand;
     public static List<GameObject> takeableItem = new List<GameObject>();
-    public InventoryController inventory;
     public GunControl gunControl;
     List<Item> items;
 
@@ -39,7 +38,6 @@ public class Player : MonoBehaviour
                 gunTransform = null;
         }
         takeButton.SetActive(false);
-        inventory = GameObject.Find("InventoryManager").GetComponent<InventoryController>(); // получаем инвентарь со сцены
         gunControl = GameObject.Find("Guns").GetComponent<GunControl>(); // получаем инвентарь со сцены
         SwapGun();
     }
@@ -199,33 +197,7 @@ public class Player : MonoBehaviour
                   items[items.Count - 1].countItem = 1;//стакаем
                   inventory.Display(); // отрисовываем элементы инвентаря
               }*/
-        }
-        else if(takeableItem[0].GetComponent<Entity>() != null && takeableItem[0].GetComponent<Entity>().takeable)
-        {
-            items = InventoryController.Items;
-            bool taked = false;
-            for (int i = 0; i < items.Count; i++)
-            {
-                if (items[i].id == takeableItem[0].GetComponent<Item>().id && items[i].stackable == true)
-                {
-                    items[i].countItem++; //стакаем
-                    inventory.Display();
-                    taked = true;
-                    break;
-                }
-            }
-            if (!taked)
-                for (int i = 0; i < items.Count; i++)
-                {
-                    if (items[i] == null)
-                    {
-                        items[i] = (Item)takeableItem[0].GetComponent<Item>().Clone();
-                        items[i].countItem++;//стакаем
-                        inventory.Display(); // отрисовываем элементы инвентаря
-                        break;
-                    }
-                }   
-        }
+        }        
         Destroy(takeableItem[0]);
     }
 
