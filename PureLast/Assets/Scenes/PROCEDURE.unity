@@ -1729,6 +1729,10 @@ PrefabInstance:
       propertyPath: takeButton
       value: 
       objectReference: {fileID: 1819720444}
+    - target: {fileID: 921969268, guid: aadb1cd29a5336646ac96361ef22b5b6, type: 3}
+      propertyPath: runSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3140347752077598019, guid: aadb1cd29a5336646ac96361ef22b5b6,
         type: 3}
       propertyPath: m_LocalPosition.x
