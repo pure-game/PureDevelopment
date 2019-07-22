@@ -7,7 +7,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float runSpeed = 5f;
+    [SerializeField] static float runSpeed = 5f;
     [SerializeField] GameObject takeButton;
     [SerializeField] private bl_Joystick moveJoystick;
     [SerializeField] private bl_Joystick rotationJoystick;
