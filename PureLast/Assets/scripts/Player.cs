@@ -7,7 +7,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] static float runSpeed = 5f;
+    [SerializeField] float runSpeed = 5f;
     [SerializeField] GameObject takeButton;
     [SerializeField] private bl_Joystick moveJoystick;
     [SerializeField] private bl_Joystick rotationJoystick;
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 
         Animator animation = gunTransform.GetComponent<Animator>();
         animation.speed = 1.5f;
-        if (rotationJoystick.Horizontal != 0 || rotationJoystick.Vertical != 0)
+        if (Mathf.Abs(rotationJoystick.Horizontal) > Mathf.Epsilon || Mathf.Abs(rotationJoystick.Vertical) > Mathf.Epsilon)
         {
             animation.Play("Shoot");
         }
@@ -100,11 +100,11 @@ public class Player : MonoBehaviour
         float controlThrowVertical = CrossPlatformInputManager.GetAxis("Vertical");
         Vector2 playerVelocity = new Vector2(controlThrowHorizontal * runSpeed, controlThrowVertical * runSpeed);
 
-        if(moveJoystick.Horizontal != 0 || moveJoystick.Vertical != 0)
+        if(Mathf.Abs(moveJoystick.Horizontal) > Mathf.Epsilon || Mathf.Abs(moveJoystick.Vertical) > Mathf.Epsilon)
         {
             float v = moveJoystick.Vertical;
             float h = moveJoystick.Horizontal;
-            playerVelocity = new Vector2(h, v) / Mathf.Sqrt(v * v + h * h) * runSpeed;
+            playerVelocity = new Vector2(h, v).normalized * runSpeed;
         }
 
         rigidbody2D.velocity = playerVelocity;
@@ -113,11 +113,11 @@ public class Player : MonoBehaviour
     public void FlipSprite()
     {
         bool playerHasHorisontalSpeed = Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
-        if (playerHasHorisontalSpeed && rotationJoystick.Horizontal == 0)
+        if (playerHasHorisontalSpeed && Mathf.Abs(rotationJoystick.Horizontal) < Mathf.Epsilon)
         {
             transform.localScale = new Vector2(Mathf.Sign(rigidbody2D.velocity.x), 1f);
         }
-        if (rotationJoystick.Horizontal != 0) {
+        if (Mathf.Abs(rotationJoystick.Horizontal) > Mathf.Epsilon) {
             transform.localScale = new Vector2(Mathf.Sign(rotationJoystick.Horizontal), 1f);
         }
     }
