@@ -10,9 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] float runSpeed = 5f;
     [SerializeField] GameObject takeButton;
     [SerializeField] private GameObject moveJoystick;
-    [SerializeField] private bl_Joystick rotationJoystick;
-
-    public bl_Joystick get_Rotation_Joystick() { return rotationJoystick; }
+    [SerializeField] private GameObject rotationJoystick;
 
     Transform gunTransform = null;
 
@@ -75,8 +73,8 @@ public class Player : MonoBehaviour
             return;
 
         Animator animation = gunTransform.GetComponent<Animator>();
-        animation.speed = 1.5f;
-        if (Mathf.Abs(rotationJoystick.Horizontal) > Mathf.Epsilon || Mathf.Abs(rotationJoystick.Vertical) > Mathf.Epsilon)
+        animation.speed = gunTransform.GetComponent<PlasmGun>().bulletPerSecond;
+        if (Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal) > Mathf.Epsilon || Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Vertical) > Mathf.Epsilon)
         {
             animation.Play("Shoot");
         }
@@ -91,8 +89,8 @@ public class Player : MonoBehaviour
         if (gunTransform == null)
             return;
 
-        float v = rotationJoystick.Vertical;
-        float h = rotationJoystick.Horizontal;
+        float v = rotationJoystick.GetComponent<FloatingJoystick>().Vertical;
+        float h = rotationJoystick.GetComponent<FloatingJoystick>().Horizontal;
 
         int swap = (int)transform.localScale.x;
         gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, new Vector3(h, v, 0));
@@ -116,12 +114,12 @@ public class Player : MonoBehaviour
     public void FlipSprite()
     {
         bool playerHasHorisontalSpeed = Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
-        if (playerHasHorisontalSpeed && Mathf.Abs(rotationJoystick.Horizontal) < Mathf.Epsilon)
+        if (playerHasHorisontalSpeed && Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal) < Mathf.Epsilon)
         {
             transform.localScale = new Vector2(Mathf.Sign(rigidbody2D.velocity.x), 1f);
         }
-        if (Mathf.Abs(rotationJoystick.Horizontal) > Mathf.Epsilon) {
-            transform.localScale = new Vector2(Mathf.Sign(rotationJoystick.Horizontal), 1f);
+        if (Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal) > Mathf.Epsilon) {
+            transform.localScale = new Vector2(Mathf.Sign(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal), 1f);
         }
     }
 

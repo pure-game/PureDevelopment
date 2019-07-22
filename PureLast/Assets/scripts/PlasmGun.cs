@@ -9,6 +9,7 @@ public class PlasmGun : MonoBehaviour
 
     [SerializeField] GameObject bullet_prefab;
     [SerializeField] float plasmSpeed = 10f;
+    [SerializeField] public float bulletPerSecond;
 
     Transform barrel;
 
