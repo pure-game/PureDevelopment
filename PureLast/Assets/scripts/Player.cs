@@ -9,10 +9,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float runSpeed = 5f;
     [SerializeField] GameObject takeButton;
-    [SerializeField] private bl_Joystick moveJoystick;
+    [SerializeField] private GameObject moveJoystick;
     [SerializeField] private bl_Joystick rotationJoystick;
 
-    public bl_Joystick get_Move_Joystick() { return moveJoystick; }
     public bl_Joystick get_Rotation_Joystick() { return rotationJoystick; }
 
     Transform gunTransform = null;
@@ -104,10 +103,10 @@ public class Player : MonoBehaviour
         float controlThrowVertical = CrossPlatformInputManager.GetAxis("Vertical");
         Vector2 playerVelocity = new Vector2(controlThrowHorizontal * runSpeed, controlThrowVertical * runSpeed);
 
-        if(Mathf.Abs(moveJoystick.Horizontal) > Mathf.Epsilon || Mathf.Abs(moveJoystick.Vertical) > Mathf.Epsilon)
+        if(Mathf.Abs(moveJoystick.GetComponent<FloatingJoystick>().Horizontal) > Mathf.Epsilon || Mathf.Abs(moveJoystick.GetComponent<FloatingJoystick>().Vertical) > Mathf.Epsilon)
         {
-            float v = moveJoystick.Vertical;
-            float h = moveJoystick.Horizontal;
+            float v = moveJoystick.GetComponent<FloatingJoystick>().Vertical;
+            float h = moveJoystick.GetComponent<FloatingJoystick>().Horizontal;
             playerVelocity = new Vector2(h, v).normalized * runSpeed;
         }
 
