@@ -31,6 +31,7 @@ public class ChasePlayer : MonoBehaviour
             else
                 gunTransform = null;
         }
+        StartCoroutine(SlowUpdate());
     }
 
     private void Update()
@@ -39,11 +40,20 @@ public class ChasePlayer : MonoBehaviour
             lastSeen -= Time.deltaTime;
         else
             lastSeen = 0;
-        CheckPlayerVisibility();
-        FollowPlayer();
         FlipSprite();
         RotateGun();
-        Shooting();
+    }
+
+    // slow update every 0.5 sec
+    IEnumerator SlowUpdate()
+    {
+        while (true)
+        {
+            CheckPlayerVisibility();
+            FollowPlayer();
+            Shooting();
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collider2D)

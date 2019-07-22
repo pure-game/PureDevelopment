@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 7533066943766142568}
   - component: {fileID: -4549339899129852086}
   m_Layer: 8
-  m_Name: Cop_01
+  m_Name: Cop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   m_LocalPosition: {x: 4.44, y: 3.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5527362280335432892}
+  - {fileID: 4982463355753059943}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -203,7 +203,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -214,7 +214,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20.59, y: 30}
+  m_Size: {x: 30, y: 30}
   m_EdgeRadius: 0
 --- !u!114 &7533066943766142568
 MonoBehaviour:
@@ -330,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 442f99e5cefbcda45a229ee6f0024ba8, type: 3}
---- !u!4 &5527362280335432892 stripped
+--- !u!4 &4982463355753059943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 689163663755872984, guid: 442f99e5cefbcda45a229ee6f0024ba8,
     type: 3}

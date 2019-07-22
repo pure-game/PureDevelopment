@@ -45,8 +45,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Run();
         FlipSprite();
+    }
+
+    private void FixedUpdate()
+    {
+        Run();
         RotateGun();
         Shooting();
     }
