@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // класс для включения анимации бега
 public class Make_run_anim : MonoBehaviour

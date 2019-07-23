@@ -230,13 +230,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: 0
   Bullet: 0
-  Enemy: 0
+  Enemy: 1
   takeable: 0
   Gun: 0
   Spawner: 0
   Gas: 0
   PlayerVision: 0
-  fraction: 1
 --- !u!114 &-4549339899129852086
 MonoBehaviour:
   m_ObjectHideFlags: 0

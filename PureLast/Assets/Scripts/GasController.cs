@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // контроллер волны газа
@@ -27,6 +26,14 @@ public class GasController : MonoBehaviour
         if (other != null)
         {
             other.OxygenDamage(Damage);
+        }
+    }
+
+    IEnumerator DamageObjects()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

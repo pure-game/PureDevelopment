@@ -378,12 +378,6 @@ MonoBehaviour:
     FarClipPlane: 5000
     Dutch: 0
   m_ComponentOwner: {fileID: 1548097572}
---- !u!1 &172415514 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6094887954376283049, guid: 85f1af9df7d6c0145aac34844f6b3c13,
-    type: 3}
-  m_PrefabInstance: {fileID: 4439174853238394527}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &239786536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,12 +1030,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -59669287067526697, guid: ad18e61b584354b4fbed3dc9d21fdccb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ad18e61b584354b4fbed3dc9d21fdccb, type: 3}
---- !u!1 &586829658 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6094887954376283049, guid: 51c77c19fd860314e96a883beab3351e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1182938783}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &598722892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1109,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598722892}
   m_CullTransparentMesh: 0
+--- !u!224 &610298927 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4849617497318452574, guid: 51c77c19fd860314e96a883beab3351e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1182938783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &631394115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,8 +1206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 239786536}
-  healthBar: {fileID: 172415514}
-  oxygenBar: {fileID: 586829658}
+  healthBar: {fileID: 1506033954}
+  oxygenBar: {fileID: 610298927}
 --- !u!114 &640156792 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 921969268, guid: aadb1cd29a5336646ac96361ef22b5b6,
@@ -1614,6 +1608,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 442f99e5cefbcda45a229ee6f0024ba8, type: 3}
+--- !u!224 &1506033954 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4849617497318452574, guid: 85f1af9df7d6c0145aac34844f6b3c13,
+    type: 3}
+  m_PrefabInstance: {fileID: 4439174853238394527}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1548097571
 GameObject:
   m_ObjectHideFlags: 3
@@ -2672,6 +2672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 0.627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257116491073046570, guid: 319021d8e5a9fd348a329668a0123abd,
+        type: 3}
+      propertyPath: Damage
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 319021d8e5a9fd348a329668a0123abd, type: 3}

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // контроллер пули
 public class BulletScript : MonoBehaviour
@@ -14,10 +12,15 @@ public class BulletScript : MonoBehaviour
         if (collider2D.isTrigger || collider2D.gameObject == null)
             return;
         Entity other = collider2D.GetComponent<Entity>();
-        if (other.Bullet)
-            return;
-        if (spawnedByPlayer && other.Enemy || !spawnedByPlayer && other.Player)
-            collider2D.GetComponent<ObjectStats>().Damaged(damage);
+        if (other != null)
+        {
+            if (other.Bullet || spawnedByPlayer && other.Player || !spawnedByPlayer && other.Enemy)
+                return;
+            if (spawnedByPlayer && other.Enemy || !spawnedByPlayer && other.Player)
+            {
+                collider2D.GetComponent<ObjectStats>().Damaged(damage);
+            }
+        }
         // разворот пули для нормального проигрывания анимации
         if (gameObject.GetComponent<Rigidbody2D>().velocity.x < 0)
             transform.Rotate(Vector3.up * 180);

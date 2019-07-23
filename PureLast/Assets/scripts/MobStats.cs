@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // Контроллер здоровья объектов
 public class MobStats : ObjectStats
@@ -17,10 +15,11 @@ public class MobStats : ObjectStats
     // получение урона
     public override void Damaged(float damage)
     {
+        Debug.Log("dd");
         curHealth -= damage;
         if (curHealth <= 0)
         {
-
+            Death();
         }
     }
     
