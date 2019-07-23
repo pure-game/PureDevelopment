@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] public float oxygen;
     [SerializeField] public Transform O2Bar;
     [SerializeField] private GameObject Gas;
+    [SerializeField] public Text currentRecord;
 
 
     Transform gunTransform = null;
@@ -55,6 +57,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         FlipSprite();
+    }
+
+    private void FixedUpdate()
+    {
+        Run();
+        RotateGun();
+        Shooting();
+        Distance();
 
         if (health <= 0)
         {
@@ -70,13 +80,6 @@ public class Player : MonoBehaviour
             }
         }
 
-    }
-
-    private void FixedUpdate()
-    {
-        Run();
-        RotateGun();
-        Shooting();
     }
 
     public void SwapGun()
@@ -122,6 +125,7 @@ public class Player : MonoBehaviour
         int swap = (int)transform.localScale.x;
         gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, new Vector3(h, v, 0));
     }
+
     public void Run()
     {
         float controlThrowVertical = CrossPlatformInputManager.GetAxis("Vertical");
@@ -137,6 +141,7 @@ public class Player : MonoBehaviour
         rigidbody2D.velocity = playerVelocity;
         
     }
+
     public void FlipSprite()
     {
         bool playerHasHorisontalSpeed = Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
@@ -156,30 +161,36 @@ public class Player : MonoBehaviour
             takeButton.SetActive(true); // показываем кнопку взятия
             takeableItem.Add(other.gameObject); // записываем в takeableItem объект с которым столкнулись
         }
-
-        if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Bullet == true)
+        else
         {
-            if(health <= 0)
+            if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Bullet == true)
             {
-                Application.LoadLevel("PROCEDURE");
+                if (health <= 0)
+                {
+                    Application.LoadLevel("PROCEDURE");
+                }
+                else
+                {
+                    health -= other.gameObject.GetComponent<BulletScript>().Damage;
+                    healthBar.GetChild(1).localScale -= new Vector3((1 / GlobalHp) * other.gameObject.GetComponent<BulletScript>().Damage, 0);
+                }
             }
             else
             {
-                health -= other.gameObject.GetComponent<BulletScript>().Damage;
-                healthBar.GetChild(1).localScale -= new Vector3((1 / GlobalHp) * other.gameObject.GetComponent<BulletScript>().Damage, 0);
-            }
-        }
-        if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Gas == true)
-        {
-            if (oxygen >= 0 && O2Bar.GetChild(1).localScale.x >= 0)
-            {
-                oxygen -= other.gameObject.GetComponent<GasController>().O2Damage;
-                O2Bar.GetChild(1).localScale -= new Vector3((1 / GlobalOxygen) * other.gameObject.GetComponent<GasController>().O2Damage, 0);
+                if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Gas == true)
+                {
+                    if (oxygen >= 0 && O2Bar.GetChild(1).localScale.x >= 0)
+                    {
+                        print(other.gameObject);
+                        oxygen -= other.gameObject.GetComponent<GasController>().O2Damage;
+                        O2Bar.GetChild(1).localScale -= new Vector3((1 / GlobalOxygen) * other.gameObject.GetComponent<GasController>().O2Damage, 0);
+                    }
+                }
             }
         }
     }
 
-public void OnTriggerExit2D(Collider2D other)
+    public void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().takeable == true)
         {
@@ -249,5 +260,12 @@ public void OnTriggerExit2D(Collider2D other)
         }        
         Destroy(takeableItem[0]);
     }
+    
+    public void Distance()
+    {       
+        int r = (int)gameObject.transform.position.x;
+        currentRecord.text = r.ToString();
+    }
+
 
 }
