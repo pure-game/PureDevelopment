@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7829464445030778679}
+  - component: {fileID: 7677832671139115958}
   - component: {fileID: 4511723310587789486}
   - component: {fileID: -7132606073649912786}
   - component: {fileID: -7644344631021344102}
   - component: {fileID: -9006539869201933063}
-  - component: {fileID: 56194046343466846}
   - component: {fileID: -4673004104277629433}
   - component: {fileID: 1233173406673851924}
   - component: {fileID: 1752635883966244575}
@@ -37,10 +37,23 @@ Transform:
   m_LocalPosition: {x: 4.44, y: 3.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4982463355753059943}
+  - {fileID: 5527362280335432892}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7677832671139115958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5190575207994677821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe8a60f5e2bd5d4faf31004c828b481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!212 &4511723310587789486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -146,19 +159,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &56194046343466846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5190575207994677821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736ce03110e7eb7479bb2d0f3123154a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heathPoint: 100
 --- !u!58 &-4673004104277629433
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -230,10 +230,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: 0
   Bullet: 0
-  Enemy: 0
+  Enemy: 1
   takeable: 0
   Gun: 0
-  fraction: 1
+  Spawner: 0
+  Gas: 0
+  PlayerVision: 0
 --- !u!114 &-4549339899129852086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 442f99e5cefbcda45a229ee6f0024ba8, type: 3}
---- !u!4 &4982463355753059943 stripped
+--- !u!4 &5527362280335432892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 689163663755872984, guid: 442f99e5cefbcda45a229ee6f0024ba8,
     type: 3}

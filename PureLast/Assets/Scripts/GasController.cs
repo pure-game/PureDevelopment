@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// контроллер волны газа
 public class GasController : MonoBehaviour
 {
     [SerializeField] float startVelocity;
     [SerializeField] public float Damage;
-    [SerializeField] public float O2Damage;
 
+    // время начала игры
     int startTime = 0;
     Rigidbody2D rigidbody2D;
-    // Start is called before the first frame update
+    
     void Start()
     {
         startTime = DateTime.Now.Millisecond;
@@ -19,9 +19,21 @@ public class GasController : MonoBehaviour
         rigidbody2D.velocity = new Vector2(startVelocity, 0);
     }
 
-    // Update is called once per frame
-    void Update()
+    // Наносим урон всем объектам, попадающим под действие газа
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        ObjectStats other = collision.GetComponent<ObjectStats>();
+        if (other != null)
+        {
+            other.OxygenDamage(Damage);
+        }
+    }
+
+    IEnumerator DamageObjects()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

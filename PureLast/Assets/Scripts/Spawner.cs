@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// Спавн моба на точке спавна
 public class Spawner : MonoBehaviour
 {
 
-    public void OnBecameVisable()
+    [SerializeField] GameObject spawnObject;
+
+    void Start()
     {
-            GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/Cop")) as GameObject;
-            enemy.transform.position = gameObject.transform.position;
-            Destroy(gameObject);
+        GameObject enemy = Instantiate(spawnObject) as GameObject;
+        enemy.transform.position = gameObject.transform.position;
+        Destroy(gameObject);
     }
 
 }

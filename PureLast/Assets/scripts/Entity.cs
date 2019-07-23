@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
@@ -13,5 +11,4 @@ public class Entity : MonoBehaviour
     public bool Spawner = false;
     public bool Gas = false;
     public bool PlayerVision = false;
-    public int fraction = 0;
 }

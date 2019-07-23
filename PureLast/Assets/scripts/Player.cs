@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
+// контроллер игрока
 public class Player : MonoBehaviour
 {
     [SerializeField] float runSpeed = 5f;
@@ -13,31 +10,20 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject moveJoystick;
     [SerializeField] private GameObject rotationJoystick;
     [SerializeField] public float horizontalVelocity;
-    [SerializeField] public float health;
-    [SerializeField] public Transform healthBar;
-    [SerializeField] public float oxygen;
-    [SerializeField] public Transform O2Bar;
-    [SerializeField] private GameObject Gas;
-    [SerializeField] public Text currentRecord;
 
 
     Transform gunTransform = null;
-
     Rigidbody2D rigidbody2D;
+    Animator gunAnimator = null;
     Transform hand;
     public static List<GameObject> takeableItem = new List<GameObject>();
     public GunControl gunControl;
     List<Item> items;
 
-    private float GlobalHp;
-    private float GlobalOxygen;
-
-    // Start is called before the first frame update
     void Start()
     {
-        GlobalHp = health;
-        GlobalOxygen = oxygen;
         rigidbody2D = GetComponent<Rigidbody2D>();
+
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).name == "Hand")
@@ -48,6 +34,8 @@ public class Player : MonoBehaviour
             else
                 gunTransform = null;
         }
+        if (gunTransform != null)
+            gunAnimator = gunTransform.GetComponent<Animator>();
         takeButton.SetActive(false);
         gunControl = GameObject.Find("Guns").GetComponent<GunControl>(); // получаем инвентарь со сцены
         SwapGun();
@@ -64,56 +52,43 @@ public class Player : MonoBehaviour
         Run();
         RotateGun();
         Shooting();
-        Distance();
-
-        if (health <= 0)
-        {
-            Application.LoadLevel("PROCEDURE");
-
-        }
-        else
-        {
-            if (oxygen <= 0)
-            {
-                health -= Gas.GetComponent<GasController>().Damage;
-                healthBar.GetChild(1).localScale -= new Vector3((1 / GlobalHp) * Gas.GetComponent<GasController>().Damage, 0);
-            }
-        }
-
     }
 
+    // смена оружия на резервное
     public void SwapGun()
     {
-
-            if (gunTransform != null)
-                Destroy(gunTransform.gameObject);
-            if (GunControl.Items[0].id == 0)
-            {
-                gunTransform = null;
-                return;
-            }
-            GameObject gun = Instantiate(Resources.Load<GameObject>(GunControl.Items[0].prefabPath), hand.position, hand.rotation, transform) as GameObject;
-            gunTransform = gun.transform;
-
+        if (gunTransform != null)
+            Destroy(gunTransform.gameObject);
+        if (GunControl.Items[0].id == 0)
+        {
+            gunTransform = null;
+            gunAnimator = null;
+            return;
+        }
+        GameObject gun = Instantiate(Resources.Load<GameObject>(GunControl.Items[0].prefabPath), hand.position, hand.rotation, transform) as GameObject;
+        gunTransform = gun.transform;
+        if (gunTransform != null)
+            gunAnimator = gunTransform.GetComponent<Animator>();
     }
 
+    // стрельба
     public void Shooting()
     {
         if (gunTransform == null)
             return;
 
-        Animator animation = gunTransform.GetComponent<Animator>();
-        animation.speed = gunTransform.GetComponent<PlasmGun>().bulletPerSecond;
+        gunAnimator.speed = gunTransform.GetComponent<PlasmGun>().bulletPerSecond;
         if (Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal) > Mathf.Epsilon || Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Vertical) > Mathf.Epsilon)
         {
-            animation.Play("Shoot");
+            gunAnimator.Play("Shoot");
         }
         else
         {
-            animation.Play("Idle");
+            gunAnimator.Play("Idle");
         }
     }
 
+    // поворот пушки вокруг оси
     public void RotateGun()
     {
         if (gunTransform == null)
@@ -126,6 +101,7 @@ public class Player : MonoBehaviour
         gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, new Vector3(h, v, 0));
     }
 
+    // перемещение персонажа
     public void Run()
     {
         float controlThrowVertical = CrossPlatformInputManager.GetAxis("Vertical");
@@ -142,13 +118,16 @@ public class Player : MonoBehaviour
         
     }
 
+    // разворот персонажа при движении в другую сторону
     public void FlipSprite()
     {
         bool playerHasHorisontalSpeed = Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
+        // если стрельбы нет, то смотрим, куда бежим
         if (playerHasHorisontalSpeed && Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal) < Mathf.Epsilon)
         {
             transform.localScale = new Vector2(Mathf.Sign(rigidbody2D.velocity.x), 1f);
         }
+        // если стреляем, то смотрим, куда стреляем
         if (Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal) > Mathf.Epsilon) {
             transform.localScale = new Vector2(Mathf.Sign(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal), 1f);
         }
@@ -160,33 +139,6 @@ public class Player : MonoBehaviour
         {
             takeButton.SetActive(true); // показываем кнопку взятия
             takeableItem.Add(other.gameObject); // записываем в takeableItem объект с которым столкнулись
-        }
-        else
-        {
-            if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Bullet == true)
-            {
-                if (health <= 0)
-                {
-                    Application.LoadLevel("PROCEDURE");
-                }
-                else
-                {
-                    health -= other.gameObject.GetComponent<BulletScript>().Damage;
-                    healthBar.GetChild(1).localScale -= new Vector3((1 / GlobalHp) * other.gameObject.GetComponent<BulletScript>().Damage, 0);
-                }
-            }
-            else
-            {
-                if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Gas == true)
-                {
-                    if (oxygen >= 0 && O2Bar.GetChild(1).localScale.x >= 0)
-                    {
-                        print(other.gameObject);
-                        oxygen -= other.gameObject.GetComponent<GasController>().O2Damage;
-                        O2Bar.GetChild(1).localScale -= new Vector3((1 / GlobalOxygen) * other.gameObject.GetComponent<GasController>().O2Damage, 0);
-                    }
-                }
-            }
         }
     }
 
@@ -230,42 +182,8 @@ public class Player : MonoBehaviour
             
             gunControl.Display();
             SwapGun();
-
-
-            /*  bool itemTaked = false;
-              for (int i = 0; i < items.Count; i++)
-              {
-                  if (items[i] == null)
-                  {
-                      items[i] = (Item)takeableItem.GetComponent<Item>().Clone();
-                      items[i].countItem++;//стакаем
-                      inventory.Display(); // отрисовываем элементы инвентаря
-                      itemTaked = true;
-                      break;
-                  }
-                  if (items[i].id == takeableItem.GetComponent<Item>().id && items[i].stackable == true)
-                  {
-                      items[i].countItem++; //стакаем
-                      inventory.Display();
-                      itemTaked = true;
-                      break;
-                  }
-              }
-              if (!itemTaked)
-              {
-                  items[items.Count - 1] = (Item)takeableItem.GetComponent<Item>().Clone();
-                  items[items.Count - 1].countItem = 1;//стакаем
-                  inventory.Display(); // отрисовываем элементы инвентаря
-              }*/
         }        
         Destroy(takeableItem[0]);
     }
-    
-    public void Distance()
-    {       
-        int r = (int)gameObject.transform.position.x;
-        currentRecord.text = r.ToString();
-    }
-
 
 }
