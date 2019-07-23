@@ -12,6 +12,12 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject moveJoystick;
     [SerializeField] private GameObject rotationJoystick;
     [SerializeField] public float horizontalVelocity;
+    [SerializeField] public float health;
+    [SerializeField] public Transform healthBar;
+    [SerializeField] public float oxygen;
+    [SerializeField] public Transform O2Bar;
+    [SerializeField] private GameObject Gas;
+
 
     Transform gunTransform = null;
 
@@ -21,9 +27,14 @@ public class Player : MonoBehaviour
     public GunControl gunControl;
     List<Item> items;
 
+    private float GlobalHp;
+    private float GlobalOxygen;
+
     // Start is called before the first frame update
     void Start()
     {
+        GlobalHp = health;
+        GlobalOxygen = oxygen;
         rigidbody2D = GetComponent<Rigidbody2D>();
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -44,6 +55,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         FlipSprite();
+
+        if (oxygen <= 0)
+        {
+            health -= Gas.GetComponent<GasController>().Damage;
+            healthBar.GetChild(1).localScale -= new Vector3((1/GlobalHp) * Gas.GetComponent<GasController>().Damage, 0);
+        }
+
     }
 
     private void FixedUpdate()
@@ -130,9 +148,32 @@ public class Player : MonoBehaviour
             takeButton.SetActive(true); // показываем кнопку взятия
             takeableItem.Add(other.gameObject); // записываем в takeableItem объект с которым столкнулись
         }
+
+        if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Bullet == true)
+        {
+            if(health <= 0)
+            {
+                Application.LoadLevel("PROCEDURE");
+
+            }
+            else
+            {
+                health -= other.gameObject.GetComponent<BulletScript>().Damage;
+                healthBar.GetChild(1).localScale -= new Vector3((1 / GlobalHp) * other.gameObject.GetComponent<BulletScript>().Damage, 0);
+            }
+        }
+        if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Gas == true)
+        {
+            if (oxygen >= 0)
+            {
+                print("dgfg");
+                oxygen -= other.gameObject.GetComponent<GasController>().O2Damage;
+                O2Bar.GetChild(1).localScale -= new Vector3((1 / GlobalOxygen) * other.gameObject.GetComponent<GasController>().O2Damage, 0);
+            }
+        }
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+public void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().takeable == true)
         {
@@ -172,6 +213,7 @@ public class Player : MonoBehaviour
             
             gunControl.Display();
             SwapGun();
+
 
             /*  bool itemTaked = false;
               for (int i = 0; i < items.Count; i++)

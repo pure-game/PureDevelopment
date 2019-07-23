@@ -6,6 +6,8 @@ using UnityEngine;
 public class GasController : MonoBehaviour
 {
     [SerializeField] float startVelocity;
+    [SerializeField] public float Damage;
+    [SerializeField] public float O2Damage;
 
     int startTime = 0;
     Rigidbody2D rigidbody2D;

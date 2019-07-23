@@ -10,5 +10,7 @@ public class Entity : MonoBehaviour
     public bool Enemy = false;
     public bool takeable = false;
     public bool Gun = false;
+    public bool Spawner = false;
+    public bool Gas = false;
     public int fraction = 0;
 }
