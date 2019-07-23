@@ -156,11 +156,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9436a4a202bd3da40bb2067318087961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 5
+  runSpeed: 7
   takeButton: {fileID: 0}
   moveJoystick: {fileID: 0}
   rotationJoystick: {fileID: 0}
-  horizontalVelocity: 0
+  horizontalVelocity: 6
+  health: 10000
+  healthBar: {fileID: 0}
+  oxygen: 100
+  O2Bar: {fileID: 0}
+  Gas: {fileID: 0}
   gunControl: {fileID: 0}
 --- !u!114 &8968412790796288126
 MonoBehaviour:
@@ -180,6 +185,7 @@ MonoBehaviour:
   takeable: 0
   Gun: 0
   Spawner: 0
+  Gas: 0
   fraction: 0
 --- !u!114 &-7278860353130476601
 MonoBehaviour:

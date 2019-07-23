@@ -56,10 +56,18 @@ public class Player : MonoBehaviour
     {
         FlipSprite();
 
-        if (oxygen <= 0)
+        if (health <= 0)
         {
-            health -= Gas.GetComponent<GasController>().Damage;
-            healthBar.GetChild(1).localScale -= new Vector3((1/GlobalHp) * Gas.GetComponent<GasController>().Damage, 0);
+            Application.LoadLevel("PROCEDURE");
+
+        }
+        else
+        {
+            if (oxygen <= 0)
+            {
+                health -= Gas.GetComponent<GasController>().Damage;
+                healthBar.GetChild(1).localScale -= new Vector3((1 / GlobalHp) * Gas.GetComponent<GasController>().Damage, 0);
+            }
         }
 
     }
@@ -154,7 +162,6 @@ public class Player : MonoBehaviour
             if(health <= 0)
             {
                 Application.LoadLevel("PROCEDURE");
-
             }
             else
             {
@@ -164,9 +171,8 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Gas == true)
         {
-            if (oxygen >= 0)
+            if (oxygen >= 0 && O2Bar.GetChild(1).localScale.x >= 0)
             {
-                print("dgfg");
                 oxygen -= other.gameObject.GetComponent<GasController>().O2Damage;
                 O2Bar.GetChild(1).localScale -= new Vector3((1 / GlobalOxygen) * other.gameObject.GetComponent<GasController>().O2Damage, 0);
             }
