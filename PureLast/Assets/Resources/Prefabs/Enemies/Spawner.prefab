@@ -116,6 +116,8 @@ MonoBehaviour:
   takeable: 0
   Gun: 0
   Spawner: 1
+  Gas: 0
+  PlayerVision: 0
   fraction: 0
 --- !u!114 &5440394134396606534
 MonoBehaviour:
@@ -129,3 +131,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a4617cb7d91684c8f857e034519143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnObject: {fileID: 5190575207994677821, guid: a9e1dc4326a70434d9dbc915a862e1ab,
+    type: 3}

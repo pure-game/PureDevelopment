@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// система смены оружия на резервное
 public class GunControl : MonoBehaviour, IPointerClickHandler
 {
 
@@ -12,7 +13,6 @@ public class GunControl : MonoBehaviour, IPointerClickHandler
 
     public static List<Item> Items { get => items; set => items = value; }
 
-    // Start is called before the first frame update
     void Start()
     {
         Items = new List<Item>();
@@ -21,12 +21,6 @@ public class GunControl : MonoBehaviour, IPointerClickHandler
             Items.Add(new Item());
         }
         player = GameObject.Find("Player");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Display()

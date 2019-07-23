@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// контроллер пули
 public class BulletScript : MonoBehaviour
 {
-    [SerializeField] float damage = 10;
+    [SerializeField] readonly public float damage = 10;
 
-    int parentFraction;
-
-    public float Damage { get => damage; set => damage = value; }
-    public int ParentFraction { get => parentFraction; set => parentFraction = value; }
+    public bool spawnedByPlayer = false;
 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
         if (collider2D.isTrigger || collider2D.gameObject == null)
             return;
-        if (collider2D.gameObject.GetComponent<Entity>() == null || (collider2D.gameObject.GetComponent<Entity>().fraction != ParentFraction
-            && collider2D.gameObject.GetComponent<Entity>().Bullet == false))
-        {
-            if (collider2D.gameObject.GetComponent<HpScript>() != null) {
-                collider2D.gameObject.GetComponent<HpScript>().Damaged(damage);
-            }
-            if (gameObject.GetComponent<Rigidbody2D>().velocity.x < 0)
-                transform.Rotate(Vector3.up * 180);
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            gameObject.GetComponent<Animator>().Play("BulletDestroy");
-        }      
+        Entity other = collider2D.GetComponent<Entity>();
+        if (other.Bullet)
+            return;
+        if (spawnedByPlayer && other.Enemy || !spawnedByPlayer && other.Player)
+            collider2D.GetComponent<ObjectStats>().Damaged(damage);
+        // разворот пули для нормального проигрывания анимации
+        if (gameObject.GetComponent<Rigidbody2D>().velocity.x < 0)
+            transform.Rotate(Vector3.up * 180);
+        // проигрываем анимацию уничтожения пули, у которой на конце стоит триггер вызова Destroy()
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        gameObject.GetComponent<Animator>().Play("BulletDestroy");
     }
+
+    // уничтожение пули после анимации
     public void Destroy()
     {
         Destroy(gameObject);
