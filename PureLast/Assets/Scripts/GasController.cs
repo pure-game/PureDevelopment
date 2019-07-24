@@ -22,6 +22,8 @@ public class GasController : MonoBehaviour
     // Наносим урон всем объектам, попадающим под действие газа
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.isTrigger)
+            return;
         ObjectStats other = collision.GetComponent<ObjectStats>();
         if (other != null)
         {

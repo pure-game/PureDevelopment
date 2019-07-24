@@ -52,7 +52,7 @@ public class PlayerStats : ObjectStats
         //
         //
         //
-        SceneManager.LoadScene("PROCEDURE", LoadSceneMode.Additive);
+        SceneManager.LoadScene("PROCEDURE", LoadSceneMode.Single);
     }
 
 }

@@ -9,11 +9,10 @@ public class PlasmGun : MonoBehaviour
     [SerializeField] public float bulletPerSecond;
 
     Transform barrel;
-    bool ownedByPlayer = false;
+    public bool ownedByPlayer = false;
 
     void Start()
     {
-        ownedByPlayer = gameObject.GetComponentInParent<Entity>().Player;
         barrel = transform.Find("Barrel");
     }
 

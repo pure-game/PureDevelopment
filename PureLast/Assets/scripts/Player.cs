@@ -35,7 +35,10 @@ public class Player : MonoBehaviour
                 gunTransform = null;
         }
         if (gunTransform != null)
+        {
             gunAnimator = gunTransform.GetComponent<Animator>();
+            gunTransform.GetComponent<PlasmGun>().ownedByPlayer = true;
+        }
         takeButton.SetActive(false);
         gunControl = GameObject.Find("Guns").GetComponent<GunControl>(); // получаем инвентарь со сцены
         SwapGun();
@@ -68,7 +71,10 @@ public class Player : MonoBehaviour
         GameObject gun = Instantiate(Resources.Load<GameObject>(GunControl.Items[0].prefabPath), hand.position, hand.rotation, transform) as GameObject;
         gunTransform = gun.transform;
         if (gunTransform != null)
+        {
             gunAnimator = gunTransform.GetComponent<Animator>();
+            gunTransform.GetComponent<PlasmGun>().ownedByPlayer = true;
+        }
     }
 
     // стрельба
