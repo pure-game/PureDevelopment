@@ -4,12 +4,15 @@
 public class MobStats : ObjectStats
 {
     [SerializeField] float maxHealth;
+    [SerializeField] Transform HealthBar;
 
     float curHealth;
+    float HpHealthbarIndex;
 
     void Start()
     {
         curHealth = maxHealth;
+        HpHealthbarIndex = maxHealth / 10000;
     }
 
     // получение урона
@@ -19,6 +22,10 @@ public class MobStats : ObjectStats
         if (curHealth <= 0)
         {
             Death();
+        }
+        else
+        {
+            HealthBarController(damage);
         }
     }
     
@@ -35,5 +42,11 @@ public class MobStats : ObjectStats
     public override void OxygenDamage(float damage)
     {
         Damaged(damage);
+    }
+
+    public void HealthBarController(float damage)
+    {
+        print(HpHealthbarIndex * damage + " " + HealthBar.localScale);
+        HealthBar.localScale -= new Vector3(HpHealthbarIndex * damage, 0);
     }
 }

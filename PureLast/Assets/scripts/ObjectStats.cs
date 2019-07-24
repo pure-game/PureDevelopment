@@ -8,4 +8,5 @@ public abstract class ObjectStats : MonoBehaviour
     public abstract void Damaged(float damage);
     // вызывается при смерти персонажа
     public abstract void Death();
+    
 }

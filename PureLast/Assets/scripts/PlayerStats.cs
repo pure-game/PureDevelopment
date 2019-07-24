@@ -54,5 +54,4 @@ public class PlayerStats : ObjectStats
         //
         SceneManager.LoadScene("PROCEDURE", LoadSceneMode.Single);
     }
-
 }
