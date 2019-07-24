@@ -120,7 +120,7 @@ MonoBehaviour:
   bullet_prefab: {fileID: 4344203414170746043, guid: 8461f790e0ec8cb4b8e9a3817dddfc89,
     type: 3}
   plasmSpeed: 20
-  bulletPerSecond: 3
+  bulletPerSecond: 2
 --- !u!114 &-256392653427970826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +138,9 @@ MonoBehaviour:
   Enemy: 0
   takeable: 1
   Gun: 1
+  Spawner: 0
+  Gas: 0
+  PlayerVision: 0
   fraction: 0
 --- !u!114 &5736484199885080610
 MonoBehaviour:
