@@ -15,7 +15,6 @@ public class MobStats : ObjectStats
     // получение урона
     public override void Damaged(float damage)
     {
-        Debug.Log("dd");
         curHealth -= damage;
         if (curHealth <= 0)
         {
