@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 // контроллер волны газа
@@ -11,12 +12,14 @@ public class GasController : MonoBehaviour
     // время начала игры
     int startTime = 0;
     Rigidbody2D rigidbody2D;
+    List<ObjectStats> objects = new List<ObjectStats>();
     
     void Start()
     {
         startTime = DateTime.Now.Millisecond;
         rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.velocity = new Vector2(startVelocity, 0);
+        StartCoroutine(DamageObjects());
     }
 
     // Наносим урон всем объектам, попадающим под действие газа
@@ -27,7 +30,18 @@ public class GasController : MonoBehaviour
         ObjectStats other = collision.GetComponent<ObjectStats>();
         if (other != null)
         {
-            other.OxygenDamage(Damage);
+            objects.Add(other);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.isTrigger)
+            return;
+        ObjectStats other = collision.GetComponent<ObjectStats>();
+        if (other != null)
+        {
+            objects.Remove(other);
         }
     }
 
@@ -35,6 +49,11 @@ public class GasController : MonoBehaviour
     {
         while (true)
         {
+            for (int i = 0; i < objects.Count; i++)
+            {
+                
+                objects[i].OxygenDamage(Damage);
+            }
             yield return new WaitForSeconds(0.5f);
         }
     }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 // скрипт пушки(любой)
-public class PlasmGun : MonoBehaviour
+public class GunScript : MonoBehaviour
 {
 
     [SerializeField] GameObject bullet_prefab;
@@ -9,11 +9,25 @@ public class PlasmGun : MonoBehaviour
     [SerializeField] public float bulletPerSecond;
 
     Transform barrel;
+    Animator animator;
     public bool ownedByPlayer = false;
 
     void Start()
     {
+        Debug.Log(gameObject + " start");
         barrel = transform.Find("Barrel");
+        animator = gameObject.GetComponent<Animator>();
+        animator.speed = bulletPerSecond;
+    }
+
+    public void StartShooting()
+    {
+        animator.enabled = true;
+    }
+
+    public void StopShooting()
+    {
+        animator.enabled = false;
     }
 
     public void Shoot()

@@ -11,6 +11,7 @@ public class ChasePlayer : MonoBehaviour
 
     Rigidbody2D rigidbody2D;
     Transform gunTransform;
+    GunScript gunScript;
     GameObject player = null;
     Vector3 lastPlayerPosition;
     bool playerVisibility = false;
@@ -31,6 +32,7 @@ public class ChasePlayer : MonoBehaviour
             else
                 gunTransform = null;
         }
+        gunScript = gunTransform.GetComponent<GunScript>();
         StartCoroutine(SlowUpdate());
     }
 
@@ -49,10 +51,10 @@ public class ChasePlayer : MonoBehaviour
     {
         while (true)
         {
+            yield return new WaitForSeconds(0.5f);
             CheckPlayerVisibility();
             FollowPlayer();
             Shooting();
-            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -101,6 +103,7 @@ public class ChasePlayer : MonoBehaviour
         }
         else
         {
+            Debug.Log(hit.collider.gameObject);
             if (playerVisibility)
                 lastSeen = botMemory;
             playerVisibility = false;
@@ -109,15 +112,13 @@ public class ChasePlayer : MonoBehaviour
 
     public void Shooting()
     {
-        Animator animation = gunTransform.GetComponent<Animator>();
-        animation.speed = 1.5f;
         if (playerVisibility)
         {
-            animation.Play("Shoot");
+            gunScript.StartShooting();
         }
         else
         {
-            animation.Play("Idle");
+            gunScript.StopShooting();
         }
     }
 

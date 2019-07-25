@@ -9,12 +9,11 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject takeButton;
     [SerializeField] private GameObject moveJoystick;
     [SerializeField] private GameObject rotationJoystick;
-    [SerializeField] public float horizontalVelocity;
 
 
     Transform gunTransform = null;
     Rigidbody2D rigidbody2D;
-    Animator gunAnimator = null;
+    GunScript gunScript = null;
     Transform hand;
     public static List<GameObject> takeableItem = new List<GameObject>();
     public GunControl gunControl;
@@ -36,8 +35,8 @@ public class Player : MonoBehaviour
         }
         if (gunTransform != null)
         {
-            gunAnimator = gunTransform.GetComponent<Animator>();
-            gunTransform.GetComponent<PlasmGun>().ownedByPlayer = true;
+            gunScript = gunTransform.GetComponent<GunScript>();
+            gunScript.ownedByPlayer = true;
         }
         takeButton.SetActive(false);
         gunControl = GameObject.Find("Guns").GetComponent<GunControl>(); // получаем инвентарь со сцены
@@ -65,15 +64,15 @@ public class Player : MonoBehaviour
         if (GunControl.Items[0].id == 0)
         {
             gunTransform = null;
-            gunAnimator = null;
+            gunScript = null;
             return;
         }
         GameObject gun = Instantiate(Resources.Load<GameObject>(GunControl.Items[0].prefabPath), hand.position, hand.rotation, transform) as GameObject;
         gunTransform = gun.transform;
         if (gunTransform != null)
         {
-            gunAnimator = gunTransform.GetComponent<Animator>();
-            gunTransform.GetComponent<PlasmGun>().ownedByPlayer = true;
+            gunScript = gunTransform.GetComponent<GunScript>();
+            gunScript.ownedByPlayer = true;
         }
     }
 
@@ -82,15 +81,13 @@ public class Player : MonoBehaviour
     {
         if (gunTransform == null)
             return;
-
-        gunAnimator.speed = gunTransform.GetComponent<PlasmGun>().bulletPerSecond;
         if (Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal) > Mathf.Epsilon || Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Vertical) > Mathf.Epsilon)
         {
-            gunAnimator.Play("Shoot");
+            gunScript.StartShooting();
         }
         else
         {
-            gunAnimator.Play("Idle");
+            gunScript.StopShooting();
         }
     }
 
@@ -111,15 +108,15 @@ public class Player : MonoBehaviour
     public void Run()
     {
         float controlThrowVertical = CrossPlatformInputManager.GetAxis("Vertical");
-        Vector2 playerVelocity = new Vector2(horizontalVelocity, controlThrowVertical * runSpeed);
+        float controlThrowHorizontal = CrossPlatformInputManager.GetAxis("Horizontal");
 
-        if(Mathf.Abs(moveJoystick.GetComponent<FloatingJoystick>().Vertical) > Mathf.Epsilon)
+        if(Mathf.Abs(moveJoystick.GetComponent<FloatingJoystick>().Vertical) > Mathf.Epsilon && Mathf.Abs(moveJoystick.GetComponent<FloatingJoystick>().Horizontal) > Mathf.Epsilon)
         {
-            float v = moveJoystick.GetComponent<FloatingJoystick>().Vertical;
-            playerVelocity = new Vector2(horizontalVelocity, v * runSpeed);
-            print(v);
+            controlThrowVertical= moveJoystick.GetComponent<FloatingJoystick>().Vertical;
+            controlThrowHorizontal = moveJoystick.GetComponent<FloatingJoystick>().Horizontal;           
         }
 
+        Vector2 playerVelocity = new Vector2(controlThrowHorizontal * runSpeed, controlThrowVertical * runSpeed);
         rigidbody2D.velocity = playerVelocity;
         
     }

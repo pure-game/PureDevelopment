@@ -7,12 +7,13 @@ public class MobStats : ObjectStats
     [SerializeField] Transform HealthBar;
 
     float curHealth;
-    float HpHealthbarIndex;
+    Vector2 HpHealthbarIndex;
 
     void Start()
     {
         curHealth = maxHealth;
-        HpHealthbarIndex = maxHealth / 10000;
+        HpHealthbarIndex = HealthBar.localScale;
+        HpHealthbarIndex.x /= maxHealth;
     }
 
     // получение урона
@@ -47,6 +48,6 @@ public class MobStats : ObjectStats
     public void HealthBarController(float damage)
     {
         print(HpHealthbarIndex * damage + " " + HealthBar.localScale);
-        HealthBar.localScale -= new Vector3(HpHealthbarIndex * damage, 0);
+        HealthBar.localScale = new Vector2(curHealth * HpHealthbarIndex.x, HpHealthbarIndex.y);
     }
 }
