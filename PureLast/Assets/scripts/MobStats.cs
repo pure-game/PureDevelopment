@@ -44,6 +44,7 @@ public class MobStats : ObjectStats
         Damaged(damage);
     }
 
+    // контроль за панелью жизней
     public void HealthBarController(float damage)
     {
         print(HpHealthbarIndex * damage + " " + HealthBar.localScale);
