@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 59673fbb026d6254db6fafdbee64761a, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a594d5eaa6b814d489372adb6a37111f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  spawnedByPlayer: 1
 --- !u!70 &8847460471723500942
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -153,7 +153,9 @@ MonoBehaviour:
   Enemy: 0
   takeable: 0
   Gun: 0
-  fraction: 0
+  Spawner: 0
+  Gas: 0
+  Destroyable: 0
 --- !u!95 &-5337912072507504298
 Animator:
   serializedVersion: 3

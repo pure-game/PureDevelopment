@@ -10,5 +10,5 @@ public class Entity : MonoBehaviour
     public bool Gun = false;
     public bool Spawner = false;
     public bool Gas = false;
-    public bool PlayerVision = false;
+    public bool Destroyable = false;
 }

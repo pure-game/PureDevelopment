@@ -28,6 +28,10 @@ public class BulletScript : MonoBehaviour
             {
                 collider2D.GetComponent<ObjectStats>().Damaged(damage);
             }
+            if (spawnedByPlayer && other.Destroyable)
+            {
+                collider2D.GetComponent<Breakable>().Damaged(damage);
+            }
         }
         // разворот пули для нормального проигрывания анимации
         if (gameObject.GetComponent<Rigidbody2D>().velocity.x < 0)
