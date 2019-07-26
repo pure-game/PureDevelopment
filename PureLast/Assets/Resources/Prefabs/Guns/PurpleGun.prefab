@@ -94,7 +94,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315884484964187863}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 683f65d0e6a782c43ad63c33f20068cf, type: 2}
   m_CullingMode: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
     type: 3}
   plasmSpeed: 16
   bulletPerSecond: 1.5
+  ownedByPlayer: 0
 --- !u!114 &-7745289362202103556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +139,9 @@ MonoBehaviour:
   Enemy: 0
   takeable: 1
   Gun: 1
-  fraction: 0
+  Spawner: 0
+  Gas: 0
+  Destroyable: 0
 --- !u!114 &-3116209906261949737
 MonoBehaviour:
   m_ObjectHideFlags: 0
