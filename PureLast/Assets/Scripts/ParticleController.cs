@@ -24,6 +24,8 @@ public class ParticleController : MonoBehaviour
     {
         kostyl.enabled = false;
         spriteRenderer.enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
         particleSystem.Play();
         yield return new WaitForSeconds(particleSystem.main.startLifetime.constantMax);
         Destroy(gameObject);
