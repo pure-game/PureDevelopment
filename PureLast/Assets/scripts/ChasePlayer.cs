@@ -103,7 +103,6 @@ public class ChasePlayer : MonoBehaviour
         }
         else
         {
-            Debug.Log(hit.collider.gameObject);
             if (playerVisibility)
                 lastSeen = botMemory;
             playerVisibility = false;

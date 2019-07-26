@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -12,16 +13,19 @@ public class Player : MonoBehaviour
 
 
     Transform gunTransform = null;
+    Collider2D collider;
     Rigidbody2D rigidbody2D;
     GunScript gunScript = null;
     Transform hand;
     public static List<GameObject> takeableItem = new List<GameObject>();
     public GunControl gunControl;
     List<Item> items;
+    bool isSpeedBonusOn = false;
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -51,6 +55,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isSpeedBonusOn)
+            return;
         Run();
         RotateGun();
         Shooting();
@@ -142,7 +148,7 @@ public class Player : MonoBehaviour
         {
             takeButton.SetActive(true); // показываем кнопку взятия
             takeableItem.Add(other.gameObject); // записываем в takeableItem объект с которым столкнулись
-        }
+        }       
     }
 
     public void OnTriggerExit2D(Collider2D other)
@@ -187,6 +193,22 @@ public class Player : MonoBehaviour
             SwapGun();
         }        
         Destroy(takeableItem[0]);
+    }
+
+    public void ActivateSpeedBonus(float speed, float time)
+    {
+        isSpeedBonusOn = true;
+        collider.enabled = false;
+        rigidbody2D.velocity = new Vector2(speed, 0);
+        StartCoroutine(DeactivateSpeedBonus(time));
+    }
+
+    IEnumerator DeactivateSpeedBonus(float time)
+    {
+        yield return new WaitForSeconds(time);
+        isSpeedBonusOn = false;
+        collider.enabled = true;
+        rigidbody2D.velocity = new Vector2(0, 0);
     }
 
 }

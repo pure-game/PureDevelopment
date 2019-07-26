@@ -14,7 +14,6 @@ public class GunScript : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(gameObject + " start");
         barrel = transform.Find("Barrel");
         animator = gameObject.GetComponent<Animator>();
         animator.speed = bulletPerSecond;

@@ -11,4 +11,5 @@ public class Entity : MonoBehaviour
     public bool Spawner = false;
     public bool Gas = false;
     public bool Destroyable = false;
+    public bool SpeedBonus = false;
 }
