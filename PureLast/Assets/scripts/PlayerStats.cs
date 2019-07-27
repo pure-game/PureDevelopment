@@ -11,7 +11,7 @@ public class PlayerStats : ObjectStats
     static public float maxOxygen;
     static public float curHealth;
     static public float curOxygen;
-    static public float curScore = 0;
+    static public int curScore = 0;
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class PlayerStats : ObjectStats
 
     private void Update()
     {
-        curScore = transform.position.x;
+        curScore = (int)transform.position.x;
     }
 
     // отнимаем кислород
@@ -52,6 +52,7 @@ public class PlayerStats : ObjectStats
         //
         //
         //
+        GameController.Highscore = curScore;
         SceneManager.LoadScene("PROCEDURE", LoadSceneMode.Single);
     }
 }

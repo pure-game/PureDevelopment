@@ -47,7 +47,6 @@ public class Player : MonoBehaviour
         SwapGun();
     }
 
-    // Update is called once per frame
     void Update()
     {
         FlipSprite();
