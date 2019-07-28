@@ -1,12 +1,10 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-// класс, который отвечает за бонус ускорения.
-public class SpeedBonus : MonoBehaviour
+public class GunBoost : MonoBehaviour
 {
-
-    [SerializeField] float speed;
-    [SerializeField] float length;
+    [SerializeField] float time;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,9 +13,8 @@ public class SpeedBonus : MonoBehaviour
         Player player = other.gameObject.GetComponent<Player>();
         if (player != null)
         {
-            player.ActivateSpeedBonus(speed, length / speed);
+            player.ActivateBoost(time);
             Destroy(gameObject);
         }
     }
-
 }

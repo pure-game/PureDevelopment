@@ -121,6 +121,7 @@ MonoBehaviour:
     type: 3}
   plasmSpeed: 20
   bulletPerSecond: 2
+  boostAngle: 90
   ownedByPlayer: 0
 --- !u!114 &-256392653427970826
 MonoBehaviour:
@@ -141,7 +142,8 @@ MonoBehaviour:
   Gun: 1
   Spawner: 0
   Gas: 0
-  PlayerVision: 0
+  Destroyable: 0
+  SpeedBonus: 0
 --- !u!114 &5736484199885080610
 MonoBehaviour:
   m_ObjectHideFlags: 0

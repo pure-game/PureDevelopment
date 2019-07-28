@@ -616,6 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 382799368}
+  gas: {fileID: 7889696724889803632}
 --- !u!1 &266872486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2175,75 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6237780799240661457}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2757942268021575169
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4761517997639426509, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_Name
+      value: GunBoostBonus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725119355930519665, guid: 4e777a0d90c0e484e9e78a386efac7a1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e777a0d90c0e484e9e78a386efac7a1, type: 3}
 --- !u!1001 &3140347751900659509
 PrefabInstance:
   m_ObjectHideFlags: 0

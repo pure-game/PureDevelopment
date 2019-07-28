@@ -11,6 +11,7 @@ public class GasController : MonoBehaviour
 
     // время начала игры
     int startTime = 0;
+    bool isSpeedBonus = false;
     Rigidbody2D rigidbody2D;
     List<ObjectStats> objects = new List<ObjectStats>();
     
@@ -20,6 +21,12 @@ public class GasController : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.velocity = new Vector2(startVelocity, 0);
         StartCoroutine(DamageObjects());
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isSpeedBonus)
+            rigidbody2D.velocity = new Vector2(startVelocity, 0);
     }
 
     // Наносим урон всем объектам, попадающим под действие газа
@@ -57,4 +64,16 @@ public class GasController : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
+
+    public void ActivateSpeedBonus(float Speed)
+    {
+        isSpeedBonus = true;
+        rigidbody2D.velocity = new Vector2(Speed, 0);
+    }
+
+    public void DeactivateSpeedBonus()
+    {
+        isSpeedBonus = false;
+    }
+
 }

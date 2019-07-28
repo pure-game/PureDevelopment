@@ -53,6 +53,7 @@ public class PlayerStats : ObjectStats
         //
         //
         GameController.Highscore = curScore;
+        GameController.Save();
         SceneManager.LoadScene("PROCEDURE", LoadSceneMode.Single);
     }
 }

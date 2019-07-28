@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     Collider2D collider;
     Rigidbody2D rigidbody2D;
     GunScript gunScript = null;
+    GasController gasController;
     Transform hand;
     public static List<GameObject> takeableItem = new List<GameObject>();
     public GunControl gunControl;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
+        gasController = MainController.Gas.GetComponent<GasController>();
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -199,6 +201,7 @@ public class Player : MonoBehaviour
         isSpeedBonusOn = true;
         collider.enabled = false;
         rigidbody2D.velocity = new Vector2(speed, 0);
+        gasController.ActivateSpeedBonus(speed);
         StartCoroutine(DeactivateSpeedBonus(time));
     }
 
@@ -208,6 +211,19 @@ public class Player : MonoBehaviour
         isSpeedBonusOn = false;
         collider.enabled = true;
         rigidbody2D.velocity = new Vector2(0, 0);
+        gasController.DeactivateSpeedBonus();
+    }
+
+    public void ActivateBoost(float time)
+    {
+        gunScript.ActivateBoost();
+        StartCoroutine(DeactivateBoost(time));
+    }
+
+    IEnumerator DeactivateBoost(float time)
+    {
+        yield return new WaitForSeconds(time);
+        gunScript.DeactivateBoost();
     }
 
 }

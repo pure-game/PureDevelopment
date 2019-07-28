@@ -5,6 +5,8 @@ using UnityEngine;
 // контроллер всей игры
 public class GameController : MonoBehaviour
 {
+    readonly static string keyMoney = "MONEY";
+    readonly static string keyHighscore = "HIGHSCORE";
 
     private static int _money = 0;
     private static int _highscore = 0;
@@ -29,7 +31,14 @@ public class GameController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         // подгрузака данных из памяти
+        _money = PlayerPrefs.GetInt(keyMoney, 0);
+        _highscore = PlayerPrefs.GetInt(keyHighscore, 0);
     }
 
+    public static void Save()
+    {
+        PlayerPrefs.SetInt(keyMoney, _money);
+        PlayerPrefs.SetInt(keyHighscore, _highscore);
+    }
 
 }

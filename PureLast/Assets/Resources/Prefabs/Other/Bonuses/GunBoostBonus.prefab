@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5606410735459875626
+--- !u!1 &4761517997639426509
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7113879877170355958}
-  - component: {fileID: 1090109167025385126}
-  - component: {fileID: -2695842772546454936}
-  - component: {fileID: 7741478047418790294}
-  - component: {fileID: -4061829441266203684}
-  - component: {fileID: 5161463497824553640}
+  - component: {fileID: 8725119355930519665}
+  - component: {fileID: 8759707267138346671}
+  - component: {fileID: 1041870927521321416}
+  - component: {fileID: -8006359820657865305}
   m_Layer: 0
-  m_Name: SpeedBonus
+  m_Name: GunBoostBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7113879877170355958
+--- !u!4 &8725119355930519665
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5606410735459875626}
+  m_GameObject: {fileID: 4761517997639426509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.54, y: -2.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1090109167025385126
+--- !u!212 &8759707267138346671
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5606410735459875626}
+  m_GameObject: {fileID: 4761517997639426509}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -83,29 +81,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!111 &-2695842772546454936
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5606410735459875626}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 2b898622109bdff49bd5b3d2b10a874b, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 2b898622109bdff49bd5b3d2b10a874b, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!58 &7741478047418790294
+--- !u!58 &1041870927521321416
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5606410735459875626}
+  m_GameObject: {fileID: 4761517997639426509}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -115,38 +97,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &-4061829441266203684
+--- !u!114 &-8006359820657865305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5606410735459875626}
+  m_GameObject: {fileID: 4761517997639426509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd05ca1a93cd3d44955dc1b12137c7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cdbe9bec5ae33f4abd4324eddf91ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: 0
-  Bullet: 0
-  Enemy: 0
-  takeable: 0
-  Gun: 0
-  Spawner: 0
-  Gas: 0
-  Destroyable: 0
-  SpeedBonus: 1
---- !u!114 &5161463497824553640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5606410735459875626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6331865e357464d45b93ca3d4e470870, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100
-  length: 1000
+  time: 10
