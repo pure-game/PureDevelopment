@@ -38,9 +38,11 @@ public class GunScript : MonoBehaviour
         bullet.GetComponent<BulletScript>().spawnedByPlayer = ownedByPlayer; 
         bullet.transform.position = barrel.transform.position;
         bullet.GetComponent<Rigidbody2D>().velocity = transform.right * Mathf.Sign(transform.lossyScale.x) * plasmSpeed;
+        // работает, если активирован буст пушки
         if (boosted)
         {
             Vector3 startR = transform.rotation.eulerAngles;
+            Debug.Log(startR + " " + transform.right);
             startR.z += boostAngle;
             GameObject bullet2 = Instantiate(bullet_prefab, transform.position, Quaternion.Euler(startR)) as GameObject;
             bullet2.GetComponent<BulletScript>().spawnedByPlayer = ownedByPlayer;
