@@ -12,6 +12,7 @@ public class PlayerStats : ObjectStats
     static public float curHealth;
     static public float curOxygen;
     static public int curScore = 0;
+    public bool isShieldOn = false;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class PlayerStats : ObjectStats
     // отнимаем кислород
     public override void OxygenDamage(float damage)
     {
+        if (isShieldOn)
+            return;
         curOxygen -= damage;
         if (curOxygen <= 0)
         {
@@ -38,6 +41,8 @@ public class PlayerStats : ObjectStats
     // отнимаем жизни
     public override void Damaged(float damage)
     {
+        if (isShieldOn)
+            return;
         curHealth -= damage;
         if (curHealth <= 0)
         {

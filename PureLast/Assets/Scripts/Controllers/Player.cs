@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rigidbody2D;
     GunScript gunScript = null;
     GasController gasController;
+    PlayerStats playerStats;
     Transform hand;
     public static List<GameObject> takeableItem = new List<GameObject>();
     public GunControl gunControl;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
+        playerStats = GetComponent<PlayerStats>();
         gasController = MainController.Gas.GetComponent<GasController>();
 
         for (int i = 0; i < transform.childCount; i++)
@@ -224,6 +226,28 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         gunScript.DeactivateBoost();
+    }
+
+    public void ActivateShield(float time)
+    {
+        playerStats.isShieldOn = true;
+        StartCoroutine(DeactivateShield(time));
+    }
+
+    IEnumerator DeactivateShield(float time)
+    {
+        yield return new WaitForSeconds(time);
+        playerStats.isShieldOn = false;
+    }
+
+    public void InSlowPuddle(float slowMode)
+    {
+        runSpeed *= slowMode;
+    }
+
+    public void OutSlowPuddle(float slowMode)
+    {
+        runSpeed /= slowMode;
     }
 
 }

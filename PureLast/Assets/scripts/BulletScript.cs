@@ -24,13 +24,9 @@ public class BulletScript : MonoBehaviour
             {
                 return;
             }
-            if (spawnedByPlayer && other.Enemy || !spawnedByPlayer && other.Player)
+            if (spawnedByPlayer && other.Enemy || !spawnedByPlayer && other.Player || other.Destroyable)
             {
                 collider2D.GetComponent<ObjectStats>().Damaged(damage);
-            }
-            if (spawnedByPlayer && other.Destroyable)
-            {
-                collider2D.GetComponent<Breakable>().Damaged(damage);
             }
         }
         // разворот пули для нормального проигрывания анимации

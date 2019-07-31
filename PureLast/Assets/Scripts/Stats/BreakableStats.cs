@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breakable : ObjectStats
+public class BreakableStats : ObjectStats
 {
     [SerializeField] public int HitsToDestroy;
 
@@ -15,7 +15,7 @@ public class Breakable : ObjectStats
 
     public override void OxygenDamage(float damage)
     {
-
+        Damaged(damage);
     }
 
     public override void Damaged(float damage)
