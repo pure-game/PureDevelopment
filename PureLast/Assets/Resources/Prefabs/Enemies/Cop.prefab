@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 7533066943766142568}
   - component: {fileID: -4549339899129852086}
   - component: {fileID: -703640123415161514}
+  - component: {fileID: -6452031502666777138}
   m_Layer: 8
   m_Name: Cop
   m_TagString: Untagged
@@ -381,9 +382,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f3dc8decc20bf439f431c044052998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 2
   botMemory: 5
-  idlePerimeter: 5
+  lastPlayerPosition: {x: 0, y: 0, z: 0}
+  playerVisibility: 0
+  lastSeen: 0
 --- !u!61 &1752635883966244575
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -456,7 +458,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyDistance: 100
-  player: {fileID: 3140347752077598019, guid: aadb1cd29a5336646ac96361ef22b5b6, type: 3}
+--- !u!114 &-6452031502666777138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5190575207994677821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd4bb652ac9e454cb96d97639e4a58a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVelocity: 5
 --- !u!1 &7812780604548068169
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 921969268}
   - component: {fileID: 8968412790796288126}
   - component: {fileID: -7278860353130476601}
+  - component: {fileID: 382799369}
+  - component: {fileID: 3091307440150849188}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -158,7 +160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 7
   takeButton: {fileID: 0}
-  moveJoystick: {fileID: 0}
   rotationJoystick: {fileID: 0}
   gunControl: {fileID: 0}
 --- !u!114 &8968412790796288126
@@ -181,6 +182,7 @@ MonoBehaviour:
   Spawner: 0
   Gas: 0
   Destroyable: 0
+  SpeedBonus: 0
 --- !u!114 &-7278860353130476601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +195,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd6e36799236484e9f8f6f51babaadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &382799369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3140347752077598022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736ce03110e7eb7479bb2d0f3123154a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10000
+  oxygen: 10000
+  isShieldOn: 0
+--- !u!114 &3091307440150849188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3140347752077598022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e67d8e6043f562498bfd14a55ca7cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVelocity: 7
+  moveJoystick: {fileID: 0}
+  rotationJoystick: {fileID: 0}
 --- !u!1 &6599319062204414429
 GameObject:
   m_ObjectHideFlags: 0

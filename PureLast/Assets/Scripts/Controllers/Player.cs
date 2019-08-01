@@ -8,17 +8,16 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float runSpeed = 5f;
     [SerializeField] GameObject takeButton;
-    [SerializeField] private GameObject moveJoystick;
     [SerializeField] private GameObject rotationJoystick;
 
 
     Transform gunTransform = null;
     Collider2D collider;
-    Rigidbody2D rigidbody2D;
     GunScript gunScript = null;
     GasController gasController;
     PlayerStats playerStats;
     Transform hand;
+    PlayerMovementController movementController;
     public static List<GameObject> takeableItem = new List<GameObject>();
     public GunControl gunControl;
     List<Item> items;
@@ -26,9 +25,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         playerStats = GetComponent<PlayerStats>();
+        movementController = GetComponent<PlayerMovementController>();
         gasController = MainController.Gas.GetComponent<GasController>();
 
         for (int i = 0; i < transform.childCount; i++)
@@ -51,16 +50,10 @@ public class Player : MonoBehaviour
         SwapGun();
     }
 
-    void Update()
-    {
-        FlipSprite();
-    }
-
     private void FixedUpdate()
     {
         if (isSpeedBonusOn)
             return;
-        Run();
         RotateGun();
         Shooting();
     }
@@ -111,38 +104,6 @@ public class Player : MonoBehaviour
 
         int swap = (int)transform.localScale.x;
         gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, new Vector3(h, v, 0));
-    }
-
-    // перемещение персонажа
-    public void Run()
-    {
-        float controlThrowVertical = CrossPlatformInputManager.GetAxis("Vertical");
-        float controlThrowHorizontal = CrossPlatformInputManager.GetAxis("Horizontal");
-
-        if(Mathf.Abs(moveJoystick.GetComponent<FloatingJoystick>().Vertical) > Mathf.Epsilon && Mathf.Abs(moveJoystick.GetComponent<FloatingJoystick>().Horizontal) > Mathf.Epsilon)
-        {
-            controlThrowVertical= moveJoystick.GetComponent<FloatingJoystick>().Vertical;
-            controlThrowHorizontal = moveJoystick.GetComponent<FloatingJoystick>().Horizontal;           
-        }
-
-        Vector2 playerVelocity = new Vector2(controlThrowHorizontal * runSpeed, controlThrowVertical * runSpeed);
-        rigidbody2D.velocity = playerVelocity;
-        
-    }
-
-    // разворот персонажа при движении в другую сторону
-    public void FlipSprite()
-    {
-        bool playerHasHorisontalSpeed = Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
-        // если стрельбы нет, то смотрим, куда бежим
-        if (playerHasHorisontalSpeed && Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal) < Mathf.Epsilon)
-        {
-            transform.localScale = new Vector2(Mathf.Sign(rigidbody2D.velocity.x), 1f);
-        }
-        // если стреляем, то смотрим, куда стреляем
-        if (Mathf.Abs(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal) > Mathf.Epsilon) {
-            transform.localScale = new Vector2(Mathf.Sign(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal), 1f);
-        }
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -202,7 +163,7 @@ public class Player : MonoBehaviour
     {
         isSpeedBonusOn = true;
         collider.enabled = false;
-        rigidbody2D.velocity = new Vector2(speed, 0);
+        movementController.setVelocity(speed);
         gasController.ActivateSpeedBonus(speed);
         StartCoroutine(DeactivateSpeedBonus(time));
     }
@@ -212,7 +173,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(time);
         isSpeedBonusOn = false;
         collider.enabled = true;
-        rigidbody2D.velocity = new Vector2(0, 0);
+        movementController.resetVelocity();
         gasController.DeactivateSpeedBonus();
     }
 

@@ -5,25 +5,19 @@ using UnityEngine;
 public class ChasePlayer : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] float chaseSpeed;
     [SerializeField] float botMemory = 5f;
-    [SerializeField] float idlePerimeter = 5f;
 
-    Rigidbody2D rigidbody2D;
     Transform gunTransform;
     GunScript gunScript;
-    GameObject player = null;
-    Vector3 lastPlayerPosition;
-    bool playerVisibility = false;
-    bool patrol = false;
-    float lastSeen = 0;
-    float curPerimeter = 0;
-    int playerInCollidersCount = 0;
-    int curDirection = 0;
+    GameObject player = MainController.Player;
+    public Vector3 lastPlayerPosition;
+    public bool playerVisibility = false;
+    bool isPlayerInCollider = false;
+    int countOfCollidersWithPlayer = 0;
+    public float lastSeen = 0;
 
     private void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
         for (int i = 0; i < transform.childCount; i++)
         {
             gunTransform = transform.GetChild(i);
@@ -42,7 +36,6 @@ public class ChasePlayer : MonoBehaviour
             lastSeen -= Time.deltaTime;
         else
             lastSeen = 0;
-        FlipSprite();
         RotateGun();
     }
 
@@ -53,7 +46,6 @@ public class ChasePlayer : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             CheckPlayerVisibility();
-            FollowPlayer();
             Shooting();
         }
     }
@@ -64,8 +56,8 @@ public class ChasePlayer : MonoBehaviour
             return;
         if (collider2D.gameObject.GetComponent<Entity>().Player)
         {
-            playerInCollidersCount++;
-            player = collider2D.gameObject;
+            countOfCollidersWithPlayer++;
+            isPlayerInCollider = true;
         }
     }
 
@@ -75,18 +67,18 @@ public class ChasePlayer : MonoBehaviour
             return;
         if (collider2D.gameObject.GetComponent<Entity>().Player)
         {
-            playerInCollidersCount--;
-            if (playerInCollidersCount == 0)
+            countOfCollidersWithPlayer--;
+            if (countOfCollidersWithPlayer == 0)
             {
                 playerVisibility = false;
-                player = null;
+                isPlayerInCollider = false;
             }
         }
     }
 
     void CheckPlayerVisibility()
     {
-        if (player == null)
+        if (!isPlayerInCollider)
             return;
 
         Vector2 direction = player.transform.position - transform.position;
@@ -132,62 +124,6 @@ public class ChasePlayer : MonoBehaviour
         {
             gunTransform.rotation = transform.rotation;
         }
-    }
-
-    void FollowPlayer()
-    { 
-        if (playerVisibility)
-        {
-            patrol = false;
-            Vector2 dir = player.transform.position - transform.position;
-            rigidbody2D.velocity = dir.normalized * chaseSpeed;
-            return;
-        }
-        if (!playerVisibility && player != null && lastSeen > 0)
-        {
-            patrol = false;
-            Vector2 dir = lastPlayerPosition - transform.position;
-            rigidbody2D.velocity = dir.normalized * chaseSpeed;
-            return;
-        }
-        if (!patrol)
-        {
-            curDirection = 0;
-            rigidbody2D.velocity = getRotatedVelocity(curDirection);
-        }
-        patrol = true;
-        if (curPerimeter > idlePerimeter || rigidbody2D.velocity.magnitude < Mathf.Epsilon)
-        {
-            curPerimeter = 0;
-            curDirection++;
-            curDirection %= 4;
-            rigidbody2D.velocity = getRotatedVelocity(curDirection);
-            
-        }
-        else
-        {
-            curPerimeter += rigidbody2D.velocity.magnitude * Time.deltaTime;
-        }
-    }
-
-    public void FlipSprite()
-    {
-        bool horisontalSpeed = Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
-        if (horisontalSpeed)
-        {
-            transform.localScale = new Vector2(Mathf.Sign(rigidbody2D.velocity.x), 1f);
-        }
-    }
-
-    Vector2 getRotatedVelocity(int rot)
-    {
-        if (rot == 0)
-            return new Vector2(0, chaseSpeed);
-        if (rot == 1)
-            return new Vector2(chaseSpeed, 0);
-        if (rot == 2)
-            return new Vector2(0, -chaseSpeed);
-        return new Vector2(-chaseSpeed, 0);
     }
 
 }

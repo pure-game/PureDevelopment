@@ -13,10 +13,7 @@ public class BreakableStats : ObjectStats
         CurrentHitsToDestroy = HitsToDestroy;
     }
 
-    public override void OxygenDamage(float damage)
-    {
-        Damaged(damage);
-    }
+    public override void OxygenDamage(float damage) { }
 
     public override void Damaged(float damage)
     {
