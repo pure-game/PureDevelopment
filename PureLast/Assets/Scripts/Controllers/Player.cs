@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     public static List<GameObject> takeableItem = new List<GameObject>();
     public GunControl gunControl;
     List<Item> items;
-    bool isSpeedBonusOn = false;
 
     void Start()
     {
@@ -52,8 +51,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isSpeedBonusOn)
-            return;
         RotateGun();
         Shooting();
     }
@@ -161,9 +158,9 @@ public class Player : MonoBehaviour
 
     public void ActivateSpeedBonus(float speed, float time)
     {
-        isSpeedBonusOn = true;
+        movementController.offControl();
         collider.enabled = false;
-        movementController.setVelocity(speed);
+        movementController.setVelocity(new Vector2(speed, 0));
         gasController.ActivateSpeedBonus(speed);
         StartCoroutine(DeactivateSpeedBonus(time));
     }
@@ -171,7 +168,7 @@ public class Player : MonoBehaviour
     IEnumerator DeactivateSpeedBonus(float time)
     {
         yield return new WaitForSeconds(time);
-        isSpeedBonusOn = false;
+        movementController.onControl();
         collider.enabled = true;
         movementController.resetVelocity();
         gasController.DeactivateSpeedBonus();

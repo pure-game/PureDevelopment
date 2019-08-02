@@ -9,25 +9,29 @@ public class MovementController : MonoBehaviour
     [SerializeField] protected float movementVelocity;
 
     protected Rigidbody2D rigidbody2D;
+    protected Animator animator;
     protected float defaultVelocity = 0f;
     protected Vector2 defaultScale = new Vector2(0, 0);
+    protected bool controlOn = true;
 
     protected virtual void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         defaultVelocity = movementVelocity;
         defaultScale = transform.localScale;
     }
 
     protected virtual void FixedUpdate()
     {
-        Move();
+        if (controlOn)
+            Move();
         FlipSprite();
+        MakeAnim();
     }
 
     // мтеод для описания самого движения
     protected virtual void Move() {}
-
     // разворот спрайта
     protected virtual void FlipSprite()
     {
@@ -39,20 +43,45 @@ public class MovementController : MonoBehaviour
             transform.localScale = new Vector2(-Mathf.Sign(rigidbody2D.velocity.x) * defaultScale.x, defaultScale.y);
         }
     }
+    // применение необходимой анимации
+    protected virtual void MakeAnim()
+    {
+        bool isRunningX = Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
+        bool isRunningY = Mathf.Abs(rigidbody2D.velocity.y) > Mathf.Epsilon;
 
+        if (isRunningX || isRunningY)
+        {
+            animator.SetBool("Running", true);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
+        }
+    }
+    // метод для изменения скорости
     public virtual void changeVelocity(float multiplier)
     {
         movementVelocity *= multiplier;
     }
-
-    public virtual void setVelocity(float velocity)
+    // метод для домножения скорости
+    public virtual void setVelocity(Vector2 velocity)
     {
-        movementVelocity = velocity;
+        movementVelocity = velocity.magnitude;
+        rigidbody2D.velocity = velocity;
     }
-
+    // сброс скорости до изначальной
     public virtual void resetVelocity()
     {
         movementVelocity = defaultVelocity;
+    }
+    // отключение/включение контроля над движением персонажа
+    public virtual void offControl()
+    {
+        controlOn = false;
+    }
+    public virtual void onControl()
+    {
+        controlOn = true;
     }
 
 }

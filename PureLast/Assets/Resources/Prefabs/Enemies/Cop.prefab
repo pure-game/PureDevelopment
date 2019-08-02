@@ -209,7 +209,6 @@ GameObject:
   - component: {fileID: 1233173406673851924}
   - component: {fileID: 1752635883966244575}
   - component: {fileID: 7533066943766142568}
-  - component: {fileID: -4549339899129852086}
   - component: {fileID: -703640123415161514}
   - component: {fileID: -6452031502666777138}
   m_Layer: 8
@@ -433,18 +432,6 @@ MonoBehaviour:
   Gas: 0
   Destroyable: 0
   SpeedBonus: 0
---- !u!114 &-4549339899129852086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5190575207994677821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd6e36799236484e9f8f6f51babaadc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-703640123415161514
 MonoBehaviour:
   m_ObjectHideFlags: 0
