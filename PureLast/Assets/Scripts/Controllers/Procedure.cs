@@ -9,7 +9,7 @@ public class Procedure : MonoBehaviour
     [SerializeField] int sectionsCount;
     [SerializeField] int sectionWidth;
     [SerializeField] Transform player;
-    [SerializeField] GameObject section;
+    [SerializeField] List <GameObject> sections;
 
     Queue<GameObject> sectionsQueue = new Queue<GameObject>();
     float distance = 0f;
@@ -37,7 +37,7 @@ public class Procedure : MonoBehaviour
 
     void spawnNewSection()
     {
-        GameObject sec = Instantiate(section, spawnPosition, Quaternion.identity, transform) as GameObject;
+        GameObject sec = Instantiate(sections[Random.Range(0, sections.Count)], spawnPosition, Quaternion.identity, transform) as GameObject;
         sectionsQueue.Enqueue(sec);
         spawnPosition.x += sectionWidth;
     }
