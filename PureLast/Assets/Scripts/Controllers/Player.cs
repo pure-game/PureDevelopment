@@ -29,15 +29,17 @@ public class Player : MonoBehaviour
         movementController = GetComponent<PlayerMovementController>();
         gasController = MainController.Gas.GetComponent<GasController>();
 
+        Transform child;
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).name == "Hand")
-                hand = transform.GetChild(i);
-            gunTransform = transform.GetChild(i);
-            if (gunTransform.GetComponent<Entity>() != null && gunTransform.GetComponent<Entity>().Gun && gunTransform.gameObject.activeSelf)
-                break;
-            else
-                gunTransform = null;
+            child = transform.GetChild(i);
+            if (child.name == "Hand")
+                hand = child;
+            if (child.GetComponent<Entity>() != null && child.GetComponent<Entity>().Gun)
+            {
+                Debug.Log("hhh");
+                gunTransform = child;
+            }
         }
         if (gunTransform != null)
         {
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
         }
         takeButton.SetActive(false);
         gunControl = GameObject.Find("Guns").GetComponent<GunControl>(); // получаем инвентарь со сцены
-        SwapGun();
+        //SwapGun();
     }
 
     private void FixedUpdate()
@@ -95,7 +97,6 @@ public class Player : MonoBehaviour
     {
         if (gunTransform == null)
             return;
-
         float v = rotationJoystick.GetComponent<FloatingJoystick>().Vertical;
         float h = rotationJoystick.GetComponent<FloatingJoystick>().Horizontal;
 
