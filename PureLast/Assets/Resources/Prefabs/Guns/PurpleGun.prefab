@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -7745289362202103556}
   - component: {fileID: -3116209906261949737}
   - component: {fileID: -6120733849986822032}
+  - component: {fileID: -7472870217875479044}
   m_Layer: 8
   m_Name: PurpleGun
   m_TagString: Untagged
@@ -121,6 +122,7 @@ MonoBehaviour:
     type: 3}
   plasmSpeed: 16
   bulletPerSecond: 1.5
+  boostAngle: 5
   ownedByPlayer: 0
 --- !u!114 &-7745289362202103556
 MonoBehaviour:
@@ -142,6 +144,7 @@ MonoBehaviour:
   Spawner: 0
   Gas: 0
   Destroyable: 0
+  SpeedBonus: 0
 --- !u!114 &-3116209906261949737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +179,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0.5625, y: 0.25}
   m_Size: {x: 2, y: 0.68}
   m_Direction: 1
+--- !u!114 &-7472870217875479044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315884484964187863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6ef7e7eed84b24e959fa90994a380a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Owned: 0
+  Price: 50
+  PrefabPath: Prefabs/Guns/PurpleGun
+  IconPath: Icons/purplegun
+  Damage: 10
+  BulletPerMinute: 20
 --- !u!1 &5510253428136459906
 GameObject:
   m_ObjectHideFlags: 0

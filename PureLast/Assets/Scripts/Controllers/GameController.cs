@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour
     private static int _money = 0;
     private static int _highscore = 0;
 
+    [SerializeField] private List<GunStats> _gunStatsList = new List<GunStats>();
+    public static List<GunStats> gunStatsList;
+    
     public static int Money { get => _money; set => _money = value; }
     public static int Highscore
     {

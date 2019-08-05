@@ -375,7 +375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158092803}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.34600258, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1548097572}
@@ -667,6 +667,8 @@ MonoBehaviour:
   sections:
   - {fileID: 4930632078950865986, guid: fee034ab4d49e424b8be940e0e2169d8, type: 3}
   - {fileID: 4930632078950865986, guid: 856f0c398cd8906478d9bf1a18dfc37f, type: 3}
+  - {fileID: 4930632078950865986, guid: ab3e560173c58274da2179be4bc08479, type: 3}
+  - {fileID: 4930632078950865986, guid: 49e79261c29cd1d46859d5a9efe79a11, type: 3}
 --- !u!224 &352894606 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 880509022229216348, guid: ad18e61b584354b4fbed3dc9d21fdccb,
@@ -1659,15 +1661,15 @@ MonoBehaviour:
   m_YDamping: 1
   m_ZDamping: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.5192224
+  m_ScreenY: 0.5
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.115625
   m_DeadZoneHeight: 1
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.301
+  m_SoftZoneWidth: 0.9125
   m_SoftZoneHeight: 1
-  m_BiasX: -0.000000643071
+  m_BiasX: -0.00000011219698
   m_BiasY: 0
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2
@@ -2443,6 +2445,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458109459449725402, guid: aadb1cd29a5336646ac96361ef22b5b6,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5438732947898844465, guid: aadb1cd29a5336646ac96361ef22b5b6,
         type: 3}
