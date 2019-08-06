@@ -12,10 +12,9 @@ public class GameController : MonoBehaviour
     private static int _money = 0;
     private static int _highscore = 0;
 
-    public static int currentMoney;
-
     [SerializeField] private List<GunStats> _gunStatsList = new List<GunStats>();
     public static List<GunStats> gunStatsList;
+    public static SceneSwitcher sceneSwitcher = null;
     
     public static int Money { get => _money; set => _money = value; }
     public static int Highscore
@@ -39,7 +38,8 @@ public class GameController : MonoBehaviour
         // подгрузака данных из памяти
         _money = PlayerPrefs.GetInt(keyMoney, 0);
         _highscore = PlayerPrefs.GetInt(keyHighscore, 0);
-        currentMoney = 0;
+
+        sceneSwitcher = GetComponent<SceneSwitcher>();
     }
 
     public static void Save()
@@ -51,7 +51,6 @@ public class GameController : MonoBehaviour
     public static void AddMoney(int Value)
     {
         _money += Value;
-        currentMoney += Value;
         Save();
         print("Added " + Value + " Current " + _money);
     }

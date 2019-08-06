@@ -47,7 +47,6 @@ public class MobStats : ObjectStats
 
     public void HealthBarController(float damage)
     {
-        print(HpHealthbarIndex * damage + " " + HealthBar.localScale);
         HealthBar.localScale = new Vector2(curHealth * HpHealthbarIndex.x, HpHealthbarIndex.y);
     }
 }

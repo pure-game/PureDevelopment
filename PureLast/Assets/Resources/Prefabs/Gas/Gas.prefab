@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7889696724889803637}
   - component: {fileID: 7889696724889803633}
   m_Layer: 0
-  m_Name: walls_2
+  m_Name: Gas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingOrder: 4
   m_Sprite: {fileID: 2029603016695656400, guid: 398790fba0ab9ae4b8f91ec1f68105b1,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.627451}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38cca0c5c033b649ada77708570184a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startVelocity: 3
-  Damage: 1000
+  startVelocity: 0.2
+  Damage: 100
 --- !u!61 &7889696724889803638
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,7 +143,8 @@ MonoBehaviour:
   Gun: 0
   Spawner: 0
   Gas: 1
-  PlayerVision: 0
+  Destroyable: 0
+  SpeedBonus: 0
 --- !u!50 &7889696724889803633
 Rigidbody2D:
   serializedVersion: 4

@@ -10,16 +10,17 @@ public class StatsController : MonoBehaviour
     [SerializeField] Transform healthBar;
     [SerializeField] Transform oxygenBar;
 
+    static int currentMoney = 0;
     Text score;
     Text money;
 
     void Start()
     {
-        print("shgf");
         money = moneyText.GetComponent<Text>();
         score = scoreText.GetComponent<Text>();
         score.text = "0";
         money.text = "0";
+        currentMoney = 0;
     }
 
     void Update()
@@ -28,6 +29,12 @@ public class StatsController : MonoBehaviour
         healthBar.localScale = new Vector2(PlayerStats.curHealth / PlayerStats.maxHealth, 1);
         oxygenBar.localScale = new Vector2(PlayerStats.curOxygen / PlayerStats.maxOxygen, 1);
         score.text = ((int)PlayerStats.curScore).ToString();
-        money.text = GameController.currentMoney.ToString();
+        money.text = currentMoney.ToString();
+    }
+
+    public static void AddMoney(int Value)
+    {
+        currentMoney += Value;
+        GameController.AddMoney(Value);
     }
 }

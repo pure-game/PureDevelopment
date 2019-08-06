@@ -12,6 +12,7 @@ public class MainController : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("main");
         Player = player;
         Gas = gas;
     }

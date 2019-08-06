@@ -52,13 +52,8 @@ public class PlayerStats : ObjectStats
 
     public override void Death()
     {
-        // перезапуск игры
-        // заменить на функцию старта новой игры глобального менеджера игры
-        //
-        //
-        //
         GameController.Highscore = curScore;
         GameController.Save();
-        SceneManager.LoadScene("PROCEDURE", LoadSceneMode.Single);
+        GameController.sceneSwitcher.LoadStartGame();
     }
 }

@@ -88,7 +88,7 @@ public class ChasePlayer : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, layerMask);
         Debug.DrawRay(transform.position, direction * 10, Color.yellow, 1f, false);
 
-        if (hit.collider.gameObject.tag == "Player")
+        if (hit.collider.GetComponent<Player>() != null)
         {
             lastPlayerPosition = hit.collider.transform.position;
             playerVisibility = true;

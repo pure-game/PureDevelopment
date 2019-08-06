@@ -7,8 +7,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
     [SerializeField] float runSpeed = 5f;
-    [SerializeField] GameObject takeButton;
     [SerializeField] private GameObject rotationJoystick;
+    [SerializeField] float aimAngle = 15f;
 
 
     Transform gunTransform = null;
@@ -18,12 +18,10 @@ public class Player : MonoBehaviour
     PlayerStats playerStats;
     Transform hand;
     PlayerMovementController movementController;
-    public static List<GameObject> takeableItem = new List<GameObject>();
-    public GunControl gunControl;
-    List<Item> items;
 
     void Start()
     {
+        Debug.Log("player");
         collider = GetComponent<Collider2D>();
         playerStats = GetComponent<PlayerStats>();
         movementController = GetComponent<PlayerMovementController>();
@@ -46,35 +44,12 @@ public class Player : MonoBehaviour
             gunScript = gunTransform.GetComponent<GunScript>();
             gunScript.ownedByPlayer = true;
         }
-        takeButton.SetActive(false);
-        gunControl = GameObject.Find("Guns").GetComponent<GunControl>(); // получаем инвентарь со сцены
-        //SwapGun();
     }
 
     private void FixedUpdate()
     {
         RotateGun();
         Shooting();
-    }
-
-    // смена оружия на резервное
-    public void SwapGun()
-    {
-        if (gunTransform != null)
-            Destroy(gunTransform.gameObject);
-        if (GunControl.Items[0].id == 0)
-        {
-            gunTransform = null;
-            gunScript = null;
-            return;
-        }
-        GameObject gun = Instantiate(Resources.Load<GameObject>(GunControl.Items[0].prefabPath), hand.position, hand.rotation, transform) as GameObject;
-        gunTransform = gun.transform;
-        if (gunTransform != null)
-        {
-            gunScript = gunTransform.GetComponent<GunScript>();
-            gunScript.ownedByPlayer = true;
-        }
     }
 
     // стрельба
@@ -97,64 +72,25 @@ public class Player : MonoBehaviour
     {
         if (gunTransform == null)
             return;
-        float v = rotationJoystick.GetComponent<FloatingJoystick>().Vertical;
-        float h = rotationJoystick.GetComponent<FloatingJoystick>().Horizontal;
-
+        Vector2 joystickDirection = new Vector2(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal, rotationJoystick.GetComponent<FloatingJoystick>().Vertical);
         int swap = (int)transform.localScale.x;
-        gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, new Vector3(h, v, 0));
-    }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().takeable == true)
+        if (gunScript.Target != null)
         {
-            takeButton.SetActive(true); // показываем кнопку взятия
-            takeableItem.Add(other.gameObject); // записываем в takeableItem объект с которым столкнулись
-        }       
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().takeable == true)
-        {
-            takeableItem.Remove(other.gameObject);
-            if (takeableItem.Count == 0)
+            if (Mathf.Abs(Vector2.Angle(joystickDirection, gunScript.Target.position - gunTransform.position)) < aimAngle)
             {
-                takeButton.SetActive(false);
-            }
-        }
-    }
-
-    public void TakeItem()
-    {
-        if (takeableItem[0].GetComponent<Entity>() != null && takeableItem[0].GetComponent<Entity>().Gun)
-        {
-            items = GunControl.Items;
-            if(items[0].id == 0)
-            {
-                items[0] = takeableItem[0].GetComponent<Item>();
-
+                gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, gunScript.Target.position - gunTransform.position);
             }
             else
             {
-                if(items[1].id == 0)
-                {
-                    items[1] = takeableItem[0].GetComponent<Item>();
-
-                }
-                else
-                {
-                    GameObject droped = Instantiate(Resources.Load<GameObject>(items[0].prefabPath)) as GameObject;
-                    droped.transform.position = gameObject.transform.position;
-                    items[0] = takeableItem[0].GetComponent<Item>();
-
-                }
+                gunScript.Target = null;
+                gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, joystickDirection);
             }
-            
-            gunControl.Display();
-            SwapGun();
-        }        
-        Destroy(takeableItem[0]);
+        }
+        else
+        {
+            gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, joystickDirection);
+        }
     }
 
     public void ActivateSpeedBonus(float speed, float time)

@@ -8,11 +8,11 @@ public class CollectMoney : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.GetComponent<Entity>() != null && other.gameObject.GetComponent<Entity>().Player == true)
+        if(other.gameObject.GetComponent<Player>() != null)
         {
             print(other.gameObject);
             Destroy(gameObject);
-            GameController.AddMoney(Cost);
+            StatsController.AddMoney(Cost);
         }
     }
 }
