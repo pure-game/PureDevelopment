@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // контроллер всей игры
 public class GameController : MonoBehaviour
@@ -10,6 +11,8 @@ public class GameController : MonoBehaviour
 
     private static int _money = 0;
     private static int _highscore = 0;
+
+    public static int currentMoney;
 
     [SerializeField] private List<GunStats> _gunStatsList = new List<GunStats>();
     public static List<GunStats> gunStatsList;
@@ -36,12 +39,21 @@ public class GameController : MonoBehaviour
         // подгрузака данных из памяти
         _money = PlayerPrefs.GetInt(keyMoney, 0);
         _highscore = PlayerPrefs.GetInt(keyHighscore, 0);
+        currentMoney = 0;
     }
 
     public static void Save()
     {
         PlayerPrefs.SetInt(keyMoney, _money);
         PlayerPrefs.SetInt(keyHighscore, _highscore);
+    }
+
+    public static void AddMoney(int Value)
+    {
+        _money += Value;
+        currentMoney += Value;
+        Save();
+        print("Added " + Value + " Current " + _money);
     }
 
 }
