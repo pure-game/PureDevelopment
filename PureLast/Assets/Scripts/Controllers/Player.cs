@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject rotationJoystick;
     [SerializeField] float aimAngle = 15f;
 
+    public static int CurrentMoneyBoostValue;
 
     Transform gunTransform = null;
     Collider2D collider;
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("player");
+        CurrentMoneyBoostValue = 1;
         collider = GetComponent<Collider2D>();
         playerStats = GetComponent<PlayerStats>();
         movementController = GetComponent<PlayerMovementController>();
@@ -133,6 +134,20 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         playerStats.isShieldOn = false;
+    }
+
+    public void ActivateMoneyBoost(float time, int MoneyBoostValue)
+    {
+        CurrentMoneyBoostValue = MoneyBoostValue;
+        playerStats.isMoneyBoost = true;
+        StartCoroutine(DeactivateMoneyBoost(time));
+    }
+
+    IEnumerator DeactivateMoneyBoost(float time)
+    {
+        yield return new WaitForSeconds(time);
+        playerStats.isMoneyBoost = false;
+        CurrentMoneyBoostValue = 1;
     }
 
     public void InSlowPuddle(float slowMode)

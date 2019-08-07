@@ -13,6 +13,7 @@ public class PlayerStats : ObjectStats
     static public float curOxygen;
     static public int curScore = 0;
     public bool isShieldOn = false;
+    public bool isMoneyBoost = false;
 
     void Start()
     {

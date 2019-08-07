@@ -12,7 +12,7 @@ public class CollectMoney : MonoBehaviour
         {
             print(other.gameObject);
             Destroy(gameObject);
-            StatsController.AddMoney(Cost);
+            StatsController.AddMoney(Cost * Player.CurrentMoneyBoostValue);
         }
     }
 }
