@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 // Контроллер здоровья объектов
 public class MobStats : ObjectStats
@@ -9,11 +10,18 @@ public class MobStats : ObjectStats
     float curHealth;
     Vector2 HpHealthbarIndex;
 
+    private ParticleSystem particleSystem;
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
         curHealth = maxHealth;
         HpHealthbarIndex = HealthBar.localScale;
         HpHealthbarIndex.x /= maxHealth;
+
+        particleSystem = GetComponentInChildren<ParticleSystem>();
+        Debug.Log(particleSystem);
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // получение урона
@@ -36,6 +44,16 @@ public class MobStats : ObjectStats
         // прописать дроп
         //
         //
+        StartCoroutine(PlayParticle());
+    }
+
+    public IEnumerator PlayParticle()
+    {
+        spriteRenderer.enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+        particleSystem.Play();
+        yield return new WaitForSeconds(particleSystem.main.duration);
         Destroy(gameObject);
     }
 
