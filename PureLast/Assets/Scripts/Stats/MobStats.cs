@@ -50,9 +50,19 @@ public class MobStats : ObjectStats
     public IEnumerator PlayParticle()
     {
         spriteRenderer.enabled = false;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<ChasePlayer>().enabled = false;
+        GetComponent<MobsMovementController>().enabled = false;
+
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            if (gameObject.transform.GetChild(i).GetComponent<ParticleSystem>() != null) continue;
+            gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        
 
         particleSystem.Play();
+        GameObject coin = Instantiate(Resources.Load("Prefabs/Other/Coins/Coin"), transform.position, Quaternion.identity) as GameObject;
         yield return new WaitForSeconds(particleSystem.main.duration);
         Destroy(gameObject);
     }
