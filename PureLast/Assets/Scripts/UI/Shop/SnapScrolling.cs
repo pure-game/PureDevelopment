@@ -37,6 +37,7 @@ public class SnapScrolling : MonoBehaviour
         for (int i = 0; i < GameController.gunStatsList.Count; i++)
         {
             instPans[i] = Instantiate(ScrollGunPanel, transform, false);
+            instPans[i].GetComponent<ScrollGunItem>().ItemFilling(i);
             if (i == 0) continue;
             instPans[i].transform.localPosition = new Vector2(instPans[i-1].transform.localPosition.x + 
                 ScrollGunPanel.GetComponent<RectTransform>().sizeDelta.x + PanelsOffset, instPans[i].transform.localPosition.y);

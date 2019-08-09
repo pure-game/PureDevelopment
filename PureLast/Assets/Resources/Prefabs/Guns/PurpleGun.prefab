@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1345312762964923391}
   - component: {fileID: -7745289362202103556}
   - component: {fileID: -3116209906261949737}
-  - component: {fileID: -6120733849986822032}
   - component: {fileID: -7472870217875479044}
   m_Layer: 8
   m_Name: PurpleGun
@@ -124,6 +123,7 @@ MonoBehaviour:
   bulletPerSecond: 1.5
   boostAngle: 5
   ownedByPlayer: 0
+  Target: {fileID: 0}
 --- !u!114 &-7745289362202103556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,22 +163,6 @@ MonoBehaviour:
   iconPath: Icons/purplegun
   stackable: 0
   itemName: 
---- !u!70 &-6120733849986822032
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315884484964187863}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.5625, y: 0.25}
-  m_Size: {x: 2, y: 0.68}
-  m_Direction: 1
 --- !u!114 &-7472870217875479044
 MonoBehaviour:
   m_ObjectHideFlags: 0
