@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
         _money = PlayerPrefs.GetInt(keyMoney, 0);
         _highscore = PlayerPrefs.GetInt(keyHighscore, 0);
 
+        gunStatsList = _gunStatsList;
         sceneSwitcher = GetComponent<SceneSwitcher>();
     }
 
