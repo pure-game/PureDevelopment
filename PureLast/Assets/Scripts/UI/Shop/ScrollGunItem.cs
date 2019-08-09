@@ -10,8 +10,7 @@ public class ScrollGunItem : MonoBehaviour
     Text bpm;
     Text price;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gunImage = transform.Find("GunImage").GetComponent<Image>();
         damage = transform.Find("Damage").GetComponent<Text>();
@@ -22,7 +21,6 @@ public class ScrollGunItem : MonoBehaviour
 
     public void ItemFilling(int Index)
     {
-        Debug.Log(Index);
-        gunImage = Resources.Load(GameController.gunStatsList[Index].IconPath) as Image;
+        gunImage.sprite = Resources.Load<Sprite>(GameController.gunStatsList[Index].IconPath);
     }
 }
