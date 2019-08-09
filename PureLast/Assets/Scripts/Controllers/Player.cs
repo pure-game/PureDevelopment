@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(GameController.gunStatsList[0]);
         CurrentMoneyBoostValue = 1;
         collider = GetComponent<Collider2D>();
         playerStats = GetComponent<PlayerStats>();

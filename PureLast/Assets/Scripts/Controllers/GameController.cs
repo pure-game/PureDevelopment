@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
         // подгрузака данных из памяти
         _money = PlayerPrefs.GetInt(keyMoney, 0);
         _highscore = PlayerPrefs.GetInt(keyHighscore, 0);
+        gunStatsList = _gunStatsList;
 
         sceneSwitcher = GetComponent<SceneSwitcher>();
     }

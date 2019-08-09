@@ -71,7 +71,7 @@ public class GunScript : MonoBehaviour
     {
         if (Target != null)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Target.position - transform.position, Mathf.Infinity, layerMask);
+            RaycastHit2D hit = Physics2D.Raycast(barrel.position, Target.position - transform.position, Mathf.Infinity, layerMask);
             Debug.DrawRay(transform.position, (Target.position - transform.position) * 10, Color.yellow, 1f, false);
             if (hit.collider.transform != Target)
             {
@@ -82,7 +82,7 @@ public class GunScript : MonoBehaviour
         float distance = 100000;
         for (int i = 0; i < targets.Count; i++)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, targets[i].position - transform.position, Mathf.Infinity, layerMask);
+            RaycastHit2D hit = Physics2D.Raycast(barrel.position, targets[i].position - transform.position, Mathf.Infinity, layerMask);
             Debug.DrawRay(transform.position, (transform.position - targets[i].position) * 10, Color.yellow, 1f, false);
             if (hit.collider.transform == targets[i] && hit.distance < distance)
             {
