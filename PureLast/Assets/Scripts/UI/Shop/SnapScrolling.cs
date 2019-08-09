@@ -30,11 +30,11 @@ public class SnapScrolling : MonoBehaviour
 
     void Start()
     {
-        panelsScale = new Vector2[PanelsCount];
+        panelsScale = new Vector2[GameController.gunStatsList.Count];
         contentRect = GetComponent<RectTransform>();
-        PanelsPositions = new Vector2[PanelsCount];
-        instPans = new GameObject[PanelsCount];
-        for (int i = 0; i < PanelsCount; i++)
+        PanelsPositions = new Vector2[GameController.gunStatsList.Count];
+        instPans = new GameObject[GameController.gunStatsList.Count];
+        for (int i = 0; i < GameController.gunStatsList.Count; i++)
         {
             instPans[i] = Instantiate(ScrollGunPanel, transform, false);
             if (i == 0) continue;
@@ -54,7 +54,7 @@ public class SnapScrolling : MonoBehaviour
     private void FindNearAndSnap()
     {
         float nearPosition = float.MaxValue;
-        for (int i = 0; i < PanelsCount; i++)
+        for (int i = 0; i < GameController.gunStatsList.Count; i++)
         {
             float distance = Mathf.Abs(contentRect.anchoredPosition.x - PanelsPositions[i].x);
             if (distance < nearPosition)
