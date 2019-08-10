@@ -123,7 +123,7 @@ MonoBehaviour:
   bulletPerSecond: 2
   boostAngle: 5
   ownedByPlayer: 0
-  Target: {fileID: 0}
+  barrel: {fileID: 6026670589460642923}
 --- !u!114 &-256392653427970826
 MonoBehaviour:
   m_ObjectHideFlags: 0

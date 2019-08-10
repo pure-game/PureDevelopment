@@ -20,7 +20,6 @@ public class MobStats : ObjectStats
         HpHealthbarIndex.x /= maxHealth;
 
         particleSystem = GetComponentInChildren<ParticleSystem>();
-        Debug.Log(particleSystem);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

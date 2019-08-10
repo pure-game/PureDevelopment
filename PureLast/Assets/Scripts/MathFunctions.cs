@@ -2,7 +2,7 @@
 
 public static class MathFunctions
 {
-    public static Vector2 RotateVector(float angle, Vector2 v)
+    public static Vector3 RotateVector(float angle, Vector2 v)
     {
         angle = Mathf.Deg2Rad * angle;
         float cs = Mathf.Cos(angle);

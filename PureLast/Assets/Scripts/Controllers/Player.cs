@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float runSpeed = 5f;
     [SerializeField] private GameObject rotationJoystick;
-    [SerializeField] float aimAngle = 15f;
+    [SerializeField] float aimAngle = 16f;
 
     public static int CurrentMoneyBoostValue;
 
@@ -17,35 +17,29 @@ public class Player : MonoBehaviour
     GunScript gunScript = null;
     GasController gasController;
     PlayerStats playerStats;
+    FindTargetsScript findTargetsScript;
     Transform hand;
     PlayerMovementController movementController;
 
     void Start()
     {
-        Debug.Log(GameController.gunStatsList[0]);
         CurrentMoneyBoostValue = 1;
         collider = GetComponent<Collider2D>();
         playerStats = GetComponent<PlayerStats>();
         movementController = GetComponent<PlayerMovementController>();
         gasController = MainController.Gas.GetComponent<GasController>();
 
-        Transform child;
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            child = transform.GetChild(i);
-            if (child.name == "Hand")
-                hand = child;
-            if (child.GetComponent<Entity>() != null && child.GetComponent<Entity>().Gun)
-            {
-                Debug.Log("hhh");
-                gunTransform = child;
-            }
-        }
-        if (gunTransform != null)
-        {
-            gunScript = gunTransform.GetComponent<GunScript>();
-            gunScript.ownedByPlayer = true;
-        }
+        hand = transform.Find("Hand");
+        findTargetsScript = hand.GetComponent<FindTargetsScript>();
+        SpawnGun();
+        findTargetsScript.barrel = gunScript.barrel.localPosition;
+    }
+
+    void SpawnGun()
+    {
+        gunTransform = (Instantiate(Resources.Load(GameController.gunStatsList[GameController.EquipedGun].PrefabPath), hand.position, Quaternion.identity, transform) as GameObject).transform;
+        gunScript = gunTransform.GetComponent<GunScript>();
+        gunScript.ownedByPlayer = true;
     }
 
     private void FixedUpdate()
@@ -77,22 +71,15 @@ public class Player : MonoBehaviour
         Vector2 joystickDirection = new Vector2(rotationJoystick.GetComponent<FloatingJoystick>().Horizontal, rotationJoystick.GetComponent<FloatingJoystick>().Vertical);
         int swap = (int)transform.localScale.x;
 
-        if (gunScript.Target != null)
+        if (findTargetsScript.Target != null)
         {
-            if (Mathf.Abs(Vector2.Angle(joystickDirection, gunScript.Target.position - gunTransform.position)) < aimAngle)
-            {
-                gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, gunScript.Target.position - gunTransform.position);
-            }
-            else
-            {
-                gunScript.Target = null;
-                gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, joystickDirection);
-            }
+            gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, findTargetsScript.Target.position - gunTransform.position);
         }
         else
         {
             gunTransform.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, joystickDirection);
         }
+        hand.transform.rotation = Quaternion.FromToRotation(Vector3.right * swap, joystickDirection);
     }
 
     public void ActivateSpeedBonus(float speed, float time)

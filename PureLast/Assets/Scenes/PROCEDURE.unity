@@ -546,12 +546,7 @@ MonoBehaviour:
   sectionWidth: 12
   player: {fileID: 921969273}
   sections:
-  - {fileID: 4930632078950865986, guid: fee034ab4d49e424b8be940e0e2169d8, type: 3}
-  - {fileID: 4930632078950865986, guid: 856f0c398cd8906478d9bf1a18dfc37f, type: 3}
-  - {fileID: 4930632078950865986, guid: ab3e560173c58274da2179be4bc08479, type: 3}
-  - {fileID: 4930632078950865986, guid: 49e79261c29cd1d46859d5a9efe79a11, type: 3}
-  - {fileID: 4930632078950865986, guid: 25c690025d03a6d4c8bd123142dcd0ab, type: 3}
-  - {fileID: 4930632078950865986, guid: c1843ef379e1907458981c2d069bcfe1, type: 3}
+  - {fileID: 5209587900937596914, guid: 01be1de1b0ba9d347bc6a216a1e1c891, type: 3}
 --- !u!1 &382799368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3140347752077598022, guid: aadb1cd29a5336646ac96361ef22b5b6,

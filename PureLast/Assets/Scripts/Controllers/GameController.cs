@@ -8,9 +8,11 @@ public class GameController : MonoBehaviour
 {
     readonly static string keyMoney = "MONEY";
     readonly static string keyHighscore = "HIGHSCORE";
+    readonly static string keyEquipedGun = "EQUIPEDGUN";
 
     private static int _money = 0;
     private static int _highscore = 0;
+    private static int _equipedGun = 1;
 
     [SerializeField] private List<GunStats> _gunStatsList = new List<GunStats>();
     public static List<GunStats> gunStatsList;
@@ -31,6 +33,19 @@ public class GameController : MonoBehaviour
             _highscore = value;
         }
     }
+    public static int EquipedGun
+    {
+        get
+        {
+            return _equipedGun;
+        }
+
+        set
+        {
+            _equipedGun = value;
+            PlayerPrefs.SetInt(keyEquipedGun, _equipedGun);
+        }
+    }
 
     void Start()
     {
@@ -38,6 +53,7 @@ public class GameController : MonoBehaviour
         // подгрузака данных из памяти
         _money = PlayerPrefs.GetInt(keyMoney, 0);
         _highscore = PlayerPrefs.GetInt(keyHighscore, 0);
+        //EquipedGun = PlayerPrefs.GetInt(keyEquipedGun, 0);
         gunStatsList = _gunStatsList;
 
         gunStatsList = _gunStatsList;
