@@ -16,11 +16,13 @@ public class ScrollGunItem : MonoBehaviour
         damage = transform.Find("Damage").GetComponent<Text>();
         bpm = transform.Find("Bpm").GetComponent<Text>();
         price = transform.Find("Price").GetComponent<Text>();
-        price.text = "ddd";
     }
 
     public void ItemFilling(int Index)
     {
         gunImage.sprite = Resources.Load<Sprite>(GameController.gunStatsList[Index].IconPath);
+        damage.text = GameController.gunStatsList[Index].Damage.ToString();
+        bpm.text = GameController.gunStatsList[Index].BulletPerMinute.ToString();
+        price.text = GameController.gunStatsList[Index].Price.ToString() + " Coins";
     }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5736484199885080610}
   - component: {fileID: -5370434165318375596}
   m_Layer: 8
-  m_Name: PlasmGun
+  m_Name: Bazooka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -3599277511510555924, guid: 3c2e08a9794e78e4e95ac117cf117fdf,
+  m_Sprite: {fileID: -1405999767005050232, guid: dace7592fa76a3b4ca9fa0a28ab6ce8f,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
   id: 2
   countItem: 0
   prefabPath: Prefabs/Guns/PlasmGun
-  iconPath: Icons/Guns/PlasmGunIcon
+  iconPath: Icons/plasmgun
   stackable: 0
   itemName: 
 --- !u!114 &-5370434165318375596
@@ -178,7 +178,7 @@ MonoBehaviour:
   Owned: 0
   Price: 100
   PrefabPath: Prefabs/Guns/PlasmGun
-  IconPath: Icons/Guns/PlasmGunIcon
+  IconPath: Icons/plasmgun
   Damage: 25
   BulletPerMinute: 30
 --- !u!1 &3603664928561575387

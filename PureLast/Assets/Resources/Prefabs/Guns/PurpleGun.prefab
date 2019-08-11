@@ -160,7 +160,7 @@ MonoBehaviour:
   id: 3
   countItem: 0
   prefabPath: Prefabs/Guns/PurpleGun
-  iconPath: Icons/purplegun
+  iconPath: Icons/Guns/PurpleGunIcon
   stackable: 0
   itemName: 
 --- !u!114 &-7472870217875479044
@@ -178,7 +178,7 @@ MonoBehaviour:
   Owned: 0
   Price: 50
   PrefabPath: Prefabs/Guns/PurpleGun
-  IconPath: Icons/purplegun
+  IconPath: Icons/Guns/PurpleGunIcon
   Damage: 10
   BulletPerMinute: 20
 --- !u!1 &5510253428136459906
