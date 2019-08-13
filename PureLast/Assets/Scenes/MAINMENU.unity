@@ -200,6 +200,7 @@ MonoBehaviour:
   _gunStatsList:
   - {fileID: -5370434165318375596, guid: 442f99e5cefbcda45a229ee6f0024ba8, type: 3}
   - {fileID: -7472870217875479044, guid: 0b631b5118049a54a96dbb5ae9b317ef, type: 3}
+  - {fileID: -5370434165318375596, guid: 50a9f139d27eeee4694583c31790b4aa, type: 3}
 --- !u!114 &151131738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,8 +928,8 @@ MonoBehaviour:
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
-  m_ScreenX: 0.193
-  m_ScreenY: 0.4928334
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.115625
   m_DeadZoneHeight: 1
@@ -936,7 +937,7 @@ MonoBehaviour:
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.9125
   m_SoftZoneHeight: 1
-  m_BiasX: -0.0000001308965
+  m_BiasX: -0.000000149596
   m_BiasY: 0
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2
