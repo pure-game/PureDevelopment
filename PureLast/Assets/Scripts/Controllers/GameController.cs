@@ -55,8 +55,6 @@ public class GameController : MonoBehaviour
         _highscore = PlayerPrefs.GetInt(keyHighscore, 0);
         //EquipedGun = PlayerPrefs.GetInt(keyEquipedGun, 0);
         gunStatsList = _gunStatsList;
-
-        gunStatsList = _gunStatsList;
         sceneSwitcher = GetComponent<SceneSwitcher>();
     }
 

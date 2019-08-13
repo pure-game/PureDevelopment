@@ -176,9 +176,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owned: 0
-  Price: 100
+  Price: 10
+  GunName: Plasm Gun
   PrefabPath: Prefabs/Guns/PlasmGun
-  IconPath: Icons/Guns/PlasmGunIcon
+  IconPath: Icons/Guns/PlasmGun/PlasmGunIcon
+  BulletIconPath: Icons/Guns/PlasmGun/PlasmGunBulletIcon
+  Description: First gun
   Damage: 25
   BulletPerMinute: 30
 --- !u!1 &3603664928561575387

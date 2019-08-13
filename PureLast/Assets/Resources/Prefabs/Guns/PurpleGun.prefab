@@ -176,9 +176,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owned: 0
-  Price: 50
+  Price: 5
+  GunName: Purple Gun
   PrefabPath: Prefabs/Guns/PurpleGun
-  IconPath: Icons/Guns/PurpleGunIcon
+  IconPath: Icons/Guns/PurpleGun/PurpleGunIcon
+  BulletIconPath: Icons/Guns/PurpleGun/PurpleGunBulletIcon
+  Description: Second gun
   Damage: 10
   BulletPerMinute: 20
 --- !u!1 &5510253428136459906

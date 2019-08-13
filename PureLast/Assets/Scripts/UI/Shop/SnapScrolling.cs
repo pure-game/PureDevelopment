@@ -15,7 +15,7 @@ public class SnapScrolling : MonoBehaviour
     [Range(0f, 20f)]
     [SerializeField] float scaleSpeed;
 
-    private GameObject[] instPans;
+    public static GameObject[] instPans;
     private Vector2[] PanelsPositions;
     private Vector2[] panelsScale;
     private Vector2 contentVector;

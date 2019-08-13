@@ -6,11 +6,9 @@ using UnityEngine.UI;
 public class MoneyDisplay : MonoBehaviour
 {
 
-    [SerializeField] Text coinsUIText;
-
     // Start is called before the first frame update
-    void Start()
+    void FixedUpdate()
     {
-        coinsUIText.text = GameController.Money.ToString();
+        gameObject.GetComponent<Text>().text = GameController.Money.ToString();
     }
 }
