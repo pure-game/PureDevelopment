@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 5837c5597ba04c243b2b998cbb334a99
+guid: bbc58e4b843e27948b81c4c84b818b4c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -603555710546071976
-    second: SniperRiffle_0
+      213: -298318412626601697
+    second: ShotGunBulletDestruct_0
   - first:
-      213: 6232471185024327654
-    second: SniperRiffle_1
+      213: 269879285047328070
+    second: ShotGunBulletDestruct_1
   - first:
-      213: 5217389448977881245
-    second: SniperRiffle_2
-  - first:
-      213: 6162110754503749240
-    second: SniperRiffle_3
+      213: 3842276624869955724
+    second: ShotGunBulletDestruct_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -107,85 +104,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SniperRiffle_0
+      name: ShotGunBulletDestruct_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 160
-        height: 160
-      alignment: 9
-      pivot: {x: 0.36, y: 0.4}
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b126e9e5dbcda7f4ea70b5da8659e287
-      internalID: -603555710546071976
+      spriteID: 3891e5fa6d21dcc43b0e96a7002678ba
+      internalID: -298318412626601697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SniperRiffle_1
+      name: ShotGunBulletDestruct_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
-        width: 160
-        height: 160
-      alignment: 9
-      pivot: {x: 0.36, y: 0.4}
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d1a8e4ebf3639b48aeebe39582418b0
-      internalID: 6232471185024327654
+      spriteID: db6f451649dad174ab49ab1650335d5d
+      internalID: 269879285047328070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SniperRiffle_2
+      name: ShotGunBulletDestruct_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 160
-      alignment: 9
-      pivot: {x: 0.36, y: 0.4}
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc0188a12f7637243b29e8068184573f
-      internalID: 5217389448977881245
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SniperRiffle_3
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 160
-        height: 160
-      alignment: 9
-      pivot: {x: 0.36, y: 0.4}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9100ec90eb67f840b321a7cd029499e
-      internalID: 6162110754503749240
+      spriteID: adb97b7b29288be49824fde869b20aeb
+      internalID: 3842276624869955724
       vertices: []
       indices: 
       edges: []
@@ -193,7 +169,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0a959e99dc62c124f9c17b456ac2946c
+    spriteID: 29a71c3e33e7d7242b8151f2794ac055
     internalID: 0
     vertices: []
     indices: 

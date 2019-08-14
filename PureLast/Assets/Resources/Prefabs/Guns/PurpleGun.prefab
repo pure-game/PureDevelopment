@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet_prefab: {fileID: 2332747961598095080, guid: 4d0baaa0a575eb0438d305ceb6a41830,
     type: 3}
-  plasmSpeed: 16
+  plasmSpeed: 30
   bulletPerSecond: 1.5
   boostAngle: 5
   ownedByPlayer: 0

@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Follow: {fileID: 921969273}
   m_Lens:
     FieldOfView: 20.26
-    OrthographicSize: 5.94
+    OrthographicSize: 7
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -423,7 +423,7 @@ Camera:
   far clip plane: 5000
   field of view: 20.26
   orthographic: 1
-  orthographic size: 5.94
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -552,6 +552,9 @@ MonoBehaviour:
   - {fileID: 4930632078950865986, guid: 49e79261c29cd1d46859d5a9efe79a11, type: 3}
   - {fileID: 4930632078950865986, guid: 25c690025d03a6d4c8bd123142dcd0ab, type: 3}
   - {fileID: 4930632078950865986, guid: c1843ef379e1907458981c2d069bcfe1, type: 3}
+  - {fileID: 4930632078950865986, guid: d1b7dcbbaf66ea0459a6a4642881da8f, type: 3}
+  - {fileID: 4930632078950865986, guid: 42e7a8bd23ef4634db16e9219dda1649, type: 3}
+  - {fileID: 4930632078950865986, guid: 19ca06b3361209142aedb10d40e45587, type: 3}
 --- !u!1 &382799368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3140347752077598022, guid: aadb1cd29a5336646ac96361ef22b5b6,
@@ -1172,12 +1175,12 @@ MonoBehaviour:
   m_ScreenY: 0.5
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.115625
-  m_DeadZoneHeight: 0.237
+  m_DeadZoneHeight: 0.75
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.423
-  m_SoftZoneHeight: 0.631
-  m_BiasX: -0.0000003878301
+  m_SoftZoneWidth: 0.9125
+  m_SoftZoneHeight: 1
+  m_BiasX: -0.00000014959598
   m_BiasY: 0
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2

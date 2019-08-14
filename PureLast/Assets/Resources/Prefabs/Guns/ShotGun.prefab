@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5736484199885080610}
   - component: {fileID: -5370434165318375596}
   m_Layer: 8
-  m_Name: PlasmGun
+  m_Name: ShotGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139836824274786426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.203, y: -0.339, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6026670589460642923}
   m_Father: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -3599277511510555924, guid: 3c2e08a9794e78e4e95ac117cf117fdf,
+  m_Sprite: {fileID: 7631219046128225658, guid: 2c346321856684847b1dcd6bc1cb5342,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 139836824274786426}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bed396d1741ec7e4aa3ec35e75bad995, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6a0bbfdc66b5d144f995165267bf5443, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -117,10 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e9681c5196ea429fb1ef52e141156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet_prefab: {fileID: 4344203414170746043, guid: 8461f790e0ec8cb4b8e9a3817dddfc89,
+  bullet_prefab: {fileID: 2332747961598095080, guid: 92674411630779649a08c54bec772fb2,
     type: 3}
   plasmSpeed: 30
-  bulletPerSecond: 2
+  bulletPerSecond: 0.7
   boostAngle: 5
   ownedByPlayer: 0
   barrel: {fileID: 6026670589460642923}
@@ -176,14 +176,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owned: 1
-  Price: 10
-  GunName: Plasm Gun
-  PrefabPath: Prefabs/Guns/PlasmGun
-  IconPath: Icons/Guns/PlasmGun/PlasmGunIcon
-  BulletIconPath: Icons/Guns/PlasmGun/PlasmGunBulletIcon
-  Description: First gun
-  Damage: 25
-  BulletPerMinute: 30
+  Price: 50
+  GunName: Shot Gun
+  PrefabPath: Prefabs/Guns/ShotGun
+  IconPath: Icons/Guns/ShotGun/ShotGunIcon
+  BulletIconPath: Icons/Guns/ShotGun/ShotGunBulletIcon
+  Description: ShotGun
+  Damage: 200
+  BulletPerMinute: 1
 --- !u!1 &3603664928561575387
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3603664928561575387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.159, y: 0.359, z: 0}
+  m_LocalPosition: {x: 0.553, y: 0.028, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 689163663755872984}
