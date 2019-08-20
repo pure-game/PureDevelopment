@@ -15,7 +15,9 @@ public class Procedure : MonoBehaviour
 
     Queue<GameObject> sectionsQueue = new Queue<GameObject>();
 
-    public static List<GameObject> mobsPhotographed;
+    //массив сфотографированных мобов
+    public static Dictionary<string, int> mobsPhotographed;
+    //массив мобов, находящихся на экране
     public static List<GameObject> mobsCurrentInCamera;
 
     float distance = 0f;
@@ -30,7 +32,8 @@ public class Procedure : MonoBehaviour
         distance = Mathf.Abs(spawnPosition.x - player.position.x);
         distanceToSpawn = sectionWidth / 2;
         //создание массива сфотографированных объектов
-        mobsPhotographed = new List<GameObject>();
+        mobsPhotographed = new Dictionary<string, int>();
+        //создание массива мобов, находящихся на экране
         mobsCurrentInCamera = new List<GameObject>();
     }
 
@@ -51,18 +54,27 @@ public class Procedure : MonoBehaviour
         spawnPosition.x += sectionWidth;
     }
 
+    //метод нажатия на кнопку фото
     public void CameraShot()
     {
         for (int i = 0; i < mobsCurrentInCamera.Count; i++)
         {
-            mobsPhotographed.Add(mobsCurrentInCamera[i]);
+            if (mobsPhotographed.ContainsKey(mobsCurrentInCamera[i].name))
+            {
+                mobsPhotographed[mobsCurrentInCamera[i].name]++;
+            }
+            else
+            {
+                mobsPhotographed[mobsCurrentInCamera[i].name] = 1;
+            }
             mobsCurrentInCamera.RemoveAt(i);
         }
+        //Вспышка
         Splash.enabled = true;
         Splash.GetComponent<Animation>().Play();
-        for (int i = 0; i < mobsPhotographed.Count; i++)
+        foreach (var item in mobsPhotographed)
         {
-            print(mobsPhotographed[i]);
+            print(item);
         }
     }
 
