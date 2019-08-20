@@ -10,7 +10,6 @@ public class CollectMoney : MonoBehaviour
     {
         if(other.gameObject.GetComponent<Player>() != null)
         {
-            print(other.gameObject);
             Destroy(gameObject);
             StatsController.AddMoney(Cost * Player.CurrentMoneyBoostValue);
         }
