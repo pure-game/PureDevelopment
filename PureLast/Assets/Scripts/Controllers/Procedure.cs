@@ -12,6 +12,7 @@ public class Procedure : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] List <GameObject> sections;
     [SerializeField] Image Splash;
+    [SerializeField] GameObject StartSection;
 
     Queue<GameObject> sectionsQueue = new Queue<GameObject>();
 
@@ -27,7 +28,7 @@ public class Procedure : MonoBehaviour
     {
         for (int i = 0; i < sectionsCount; i++)
         {
-            spawnNewSection();
+            spawnStartSections();
         }
         distance = Mathf.Abs(spawnPosition.x - player.position.x);
         distanceToSpawn = sectionWidth / 2;
@@ -50,6 +51,13 @@ public class Procedure : MonoBehaviour
     void spawnNewSection()
     {
         GameObject sec = Instantiate(sections[Random.Range(0, sections.Count)], spawnPosition, Quaternion.identity, transform) as GameObject;
+        sectionsQueue.Enqueue(sec);
+        spawnPosition.x += sectionWidth;
+    }
+
+    void spawnStartSections()
+    {
+        GameObject sec = Instantiate(StartSection, spawnPosition, Quaternion.identity, transform) as GameObject;
         sectionsQueue.Enqueue(sec);
         spawnPosition.x += sectionWidth;
     }
