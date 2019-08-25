@@ -8,6 +8,11 @@ public class Pause : MonoBehaviour
     [SerializeField] Animation PauseUpMove;
     [SerializeField] Animation PauseDownMove;
 
+    void Start()
+    {
+        Time.timeScale = 1;
+    }
+
     public void PauseGame()
     {
         menuPause.GetComponent<Animator>().Play("PauseUpMove");
