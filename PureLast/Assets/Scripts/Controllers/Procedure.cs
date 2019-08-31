@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class Procedure : MonoBehaviour
     [SerializeField] List <GameObject> sections;
     [SerializeField] Image Splash;
     [SerializeField] GameObject StartSection;
+    [SerializeField] GameObject bestRecordLine;
 
     Queue<GameObject> sectionsQueue = new Queue<GameObject>();
 
@@ -36,6 +38,13 @@ public class Procedure : MonoBehaviour
         mobsPhotographed = new Dictionary<string, int>();
         //создание массива мобов, находящихся на экране
         mobsCurrentInCamera = new List<GameObject>();
+        SpawnBestScoreLine();
+    }
+
+    private void SpawnBestScoreLine()
+    {
+        bestRecordLine.GetComponentInChildren<TextMesh>().text = GameController.Highscore.ToString();
+        Instantiate(bestRecordLine, new Vector3(GameController.Highscore, 0, 0), Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -50,7 +59,7 @@ public class Procedure : MonoBehaviour
 
     void spawnNewSection()
     {
-        GameObject sec = Instantiate(sections[Random.Range(0, sections.Count)], spawnPosition, Quaternion.identity, transform) as GameObject;
+        GameObject sec = Instantiate(sections[UnityEngine.Random.Range(0, sections.Count)], spawnPosition, Quaternion.identity, transform) as GameObject;
         sectionsQueue.Enqueue(sec);
         spawnPosition.x += sectionWidth;
     }
