@@ -55,6 +55,6 @@ public class PlayerStats : ObjectStats
     {
         GameController.Highscore = curScore;
         GameController.Save();
-        GameController.sceneSwitcher.LoadStartGame();
+        GameOver.Death();
     }
 }
