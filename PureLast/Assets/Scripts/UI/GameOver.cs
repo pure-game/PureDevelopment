@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] GameObject Blur;
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] GameObject Player;
+    [SerializeField] GameObject PhotoPanel;
 
     [SerializeField] Text CurrentRecordText;
     [SerializeField] Text CurrentMoneyText;
@@ -16,11 +17,21 @@ public class GameOver : MonoBehaviour
     int CurrentRecord;
     int CollectedMoney;
 
-    static bool isDeath = false;
+    public static bool isDeath = false;
+
+    void Start()
+    {
+        GameOverPanel.GetComponent<Animator>().Play("GameOverIdle");
+        Blur.SetActive(false);
+    }
 
     void Update()
     {
-        if (isDeath) DeathAndSave();
+        if (isDeath)
+        {
+            DeathAndSave();
+            isDeath = false;
+        }
     }
 
     public void DeathAndSave()
@@ -30,7 +41,7 @@ public class GameOver : MonoBehaviour
         CurrentRecord = (int)Player.transform.position.x;
         CurrentRecordText.text = CurrentRecord.ToString();
 
-        GameOverPanel.GetComponent<Animation>().Play();
+        GameOverPanel.GetComponent<Animator>().Play("GameOverAnimation");
 
     }
 
@@ -38,4 +49,5 @@ public class GameOver : MonoBehaviour
     {
         isDeath = true;
     }
+
 }
