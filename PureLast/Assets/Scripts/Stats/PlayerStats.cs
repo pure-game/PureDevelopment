@@ -56,5 +56,7 @@ public class PlayerStats : ObjectStats
         GameController.Highscore = curScore;
         GameController.Save();
         GameOver.Death();
+        //это метод смерти
+        PhotografedContentManager.isDeath = true;
     }
 }

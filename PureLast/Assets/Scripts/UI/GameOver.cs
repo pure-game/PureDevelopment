@@ -10,6 +10,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject PhotoPanel;
+    [SerializeField] Text TotalMoneyForPhoto;
 
     [SerializeField] Text CurrentRecordText;
     [SerializeField] Text CurrentMoneyText;
@@ -42,6 +43,13 @@ public class GameOver : MonoBehaviour
         CurrentRecordText.text = CurrentRecord.ToString();
 
         GameOverPanel.GetComponent<Animator>().Play("GameOverAnimation");
+
+        Destroy(Player);
+
+        TotalMoneyForPhoto.text = PhotografedContentManager.TotalMoneyForPhoto.ToString();
+        GameController.AddMoney(PhotografedContentManager.TotalMoneyForPhoto);
+
+        CurrentMoneyText.text = StatsController.currentMoney.ToString();
 
     }
 

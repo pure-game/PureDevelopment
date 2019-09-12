@@ -42,7 +42,6 @@ public class Laser : MonoBehaviour
         if (hit.collider != null)
         {
             end = hit.point;
-            print(hit.point);
             scale.x = hit.distance;
             player = hit.collider.GetComponent<PlayerStats>();
         }

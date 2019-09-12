@@ -10,7 +10,7 @@ public class StatsController : MonoBehaviour
     [SerializeField] Transform healthBar;
     [SerializeField] Transform oxygenBar;
 
-    static int currentMoney = 0;
+    public static int currentMoney = 0;
     Text score;
     Text money;
 

@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour
     private static int _highscore = 0;
     private static int _equipedGun = 0;
 
+    //словарь с названием моба - ценой за его фото
+    public static Dictionary<string, int> PhotoPrices = new Dictionary<string, int>();
+
     [SerializeField] private List<GunStats> _gunStatsList = new List<GunStats>();
     public static List<GunStats> gunStatsList;
     public static SceneSwitcher sceneSwitcher = null;
@@ -56,7 +59,9 @@ public class GameController : MonoBehaviour
         //EquipedGun = PlayerPrefs.GetInt(keyEquipedGun, 0);
         gunStatsList = _gunStatsList;
         sceneSwitcher = GetComponent<SceneSwitcher>();
-        print(Highscore);
+        //метод заполняющий словарь с ценами за фото мобов
+        AddPriceList();
+        
     }
 
     public static void Save()
@@ -70,6 +75,12 @@ public class GameController : MonoBehaviour
         _money += Value;
         Save();
         print("Added " + Value + " Current " + _money);
+    }
+
+    public static void AddPriceList()
+    {
+        PhotoPrices.Add("Cop(Clone)", 50);
+        PhotoPrices.Add("Cop 1(Clone)", 100);
     }
 
 }
