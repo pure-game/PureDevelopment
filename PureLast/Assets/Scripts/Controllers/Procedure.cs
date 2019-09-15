@@ -47,12 +47,18 @@ public class Procedure : MonoBehaviour
         Instantiate(bestRecordLine, new Vector3(GameController.Highscore, 0, 0), Quaternion.identity);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (player == null)
+            return;
+        // Спавн секций
         if (distance - Mathf.Abs(spawnPosition.x - player.position.x) > distanceToSpawn)
         {
             spawnNewSection();
+        }
+        // Удаление секций по окончанию прохождения ими газа
+        if (sectionsQueue.Peek().transform.position.x < MainController.Gas.transform.position.x - MainController.Gas.transform.localScale.x / 2)
+        {
             Destroy(sectionsQueue.Dequeue());
         }
     }
@@ -84,15 +90,13 @@ public class Procedure : MonoBehaviour
             {
                 mobsPhotographed[mobsCurrentInCamera[i].name] = 1;
             }
-            mobsCurrentInCamera.RemoveAt(i);
+            //  Добавляем деньги за фото
+            GameController.AddMoney(GameController.PhotoPrices[mobsCurrentInCamera[i].name]);
         }
+        mobsCurrentInCamera.Clear();
         //Вспышка
         Splash.enabled = true;
         Splash.GetComponent<Animation>().Play();
-        foreach (var item in mobsPhotographed)
-        {
-            print(item);
-        }
     }
 
 }

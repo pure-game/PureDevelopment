@@ -48,15 +48,22 @@ public class PlayerStats : ObjectStats
         if (curHealth <= 0)
         {
             Death();
+            // чтобы не умерать много раз
+            isShieldOn = true;
         }
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("Score Update");
+        GameController.Highscore = curScore;
+        GameController.Save();
     }
 
     public override void Death()
     {
+        Debug.Log("Score Update");
         GameController.Highscore = curScore;
-        GameController.Save();
-        GameOver.Death();
-        //это метод смерти
-        PhotografedContentManager.isDeath = true;
+        GameController.EndGame();
     }
 }

@@ -17,7 +17,7 @@ public class DestroyUselessObject : MonoBehaviour
 
     IEnumerator CheckIfUseless()
     {
-        while (true)
+        while (true && player != null)
         {
             yield return new WaitForSeconds(2f);
             if ((transform.position - player.position).sqrMagnitude > destroyDistance)
