@@ -66,21 +66,32 @@ public class GameController : MonoBehaviour
 
     public static void Save()
     {
+        Debug.Log("Score Saved");
         PlayerPrefs.SetInt(keyMoney, _money);
         PlayerPrefs.SetInt(keyHighscore, _highscore);
+    }
+
+    public static void EndGame()
+    {
+        Save();
+        MainController.GameOverObject.DeathAndSave();
     }
 
     public static void AddMoney(int Value)
     {
         _money += Value;
-        Save();
-        print("Added " + Value + " Current " + _money);
     }
 
     public static void AddPriceList()
     {
         PhotoPrices.Add("Cop(Clone)", 50);
         PhotoPrices.Add("Cop 1(Clone)", 100);
+    }
+
+    private void OnDisable()
+    {
+        // Saved
+        Save();
     }
 
 }

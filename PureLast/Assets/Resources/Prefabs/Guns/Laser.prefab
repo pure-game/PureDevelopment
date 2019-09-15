@@ -96,9 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 100
-  rotationVelocty: 0
+  rotationVeloctyInDegrees: 0
   tip: {fileID: 8887563175375527436}
   laserPlasma: {fileID: 370719801152536435}
+  DPS: 900
+  damageDeltaTime: 0.2
 --- !u!1 &7024377958960141676
 GameObject:
   m_ObjectHideFlags: 0
