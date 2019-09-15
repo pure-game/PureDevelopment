@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     //словарь с названием моба - ценой за его фото
     public static Dictionary<string, int> PhotoPrices = new Dictionary<string, int>();
 
+    public static HashSet<string> Beasts = new HashSet<string>();
+
     [SerializeField] private List<GunStats> _gunStatsList = new List<GunStats>();
     public static List<GunStats> gunStatsList;
     public static SceneSwitcher sceneSwitcher = null;
