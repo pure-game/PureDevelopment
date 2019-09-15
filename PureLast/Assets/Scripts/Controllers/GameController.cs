@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     private static int _highscore = 0;
     private static int _equipedGun = 0;
 
+    public static bool isGamePaused;
+
     //словарь с названием моба - ценой за его фото
     public static Dictionary<string, int> PhotoPrices = new Dictionary<string, int>();
 
@@ -52,6 +54,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        isGamePaused = false;
         DontDestroyOnLoad(gameObject);
         // подгрузака данных из памяти
         _money = PlayerPrefs.GetInt(keyMoney, 0);

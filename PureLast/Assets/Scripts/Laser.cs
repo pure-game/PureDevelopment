@@ -26,7 +26,7 @@ public class Laser : MonoBehaviour
     void Update()
     {
         CheckObstacles();
-        if (rotationVeloctyInDegrees != 0)
+        if (rotationVeloctyInDegrees != 0 && !GameController.isGamePaused && GasController.isGameStarted)
         {
             var oldRot = transform.rotation;
             transform.Rotate(rotationAngle);

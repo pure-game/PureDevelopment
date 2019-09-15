@@ -8,6 +8,7 @@ public class StartMenuAnimations : MonoBehaviour
 
     public void OnStartButtonClick()
     {
+        GasController.isGameStarted = true;
         leftPanel.GetComponent<Animation>().Play();
         GetComponent<Animation>().Play();
     }

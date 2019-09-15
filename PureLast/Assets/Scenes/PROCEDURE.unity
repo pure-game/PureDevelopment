@@ -418,7 +418,6 @@ GameObject:
   - component: {fileID: 179219302}
   - component: {fileID: 179219301}
   - component: {fileID: 179219300}
-  - component: {fileID: 179219303}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -469,23 +468,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &179219303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179219299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9b89fa16ec05a14398e4f7e01858577, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuPause: {fileID: 1558089140}
-  Blur: {fileID: 491622395}
-  PauseButton: {fileID: 1612891923}
-  PauseUpMove: {fileID: 0}
-  PauseDownMove: {fileID: 0}
 --- !u!1 &216537232
 GameObject:
   m_ObjectHideFlags: 0
@@ -3399,6 +3381,7 @@ GameObject:
   - component: {fileID: 1558089144}
   - component: {fileID: 1558089143}
   - component: {fileID: 1558089142}
+  - component: {fileID: 1558089145}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -3485,6 +3468,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558089140}
   m_CullTransparentMesh: 0
+--- !u!114 &1558089145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558089140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b89fa16ec05a14398e4f7e01858577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPause: {fileID: 1558089140}
+  Blur: {fileID: 491622395}
+  PauseButton: {fileID: 1612891923}
 --- !u!1 &1560258281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3860,8 +3858,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179219303}
-        m_MethodName: PauseGame
+      - m_Target: {fileID: 1558089145}
+        m_MethodName: StartPauseAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5624,7 +5622,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179219303}
+      - m_Target: {fileID: 1558089145}
         m_MethodName: UnPauseGame
         m_Mode: 1
         m_Arguments:

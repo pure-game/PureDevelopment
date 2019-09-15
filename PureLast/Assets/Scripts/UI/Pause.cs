@@ -8,33 +8,36 @@ public class Pause : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject Blur;
     [SerializeField] GameObject PauseButton;
-    [SerializeField] Animation PauseUpMove;
-    [SerializeField] Animation PauseDownMove;
 
     void Start()
     {
         Time.timeScale = 1;
     }
 
-    public void PauseGame()
+    public void StartPauseAnimation()
     {
-        Blur.SetActive(true);
-        PauseButton.GetComponent<Button>().enabled = false;
         menuPause.GetComponent<Animator>().Play("PauseUpMove");
-        StartCoroutine(PauseTime());
     }
-    public void UnPauseGame()
+    public void StartUnPauseAnimation()
     {
-        Blur.SetActive(false);
-        PauseButton.GetComponent<Button>().enabled = true;
         Time.timeScale = 1;
         menuPause.GetComponent<Animator>().Play("PauseDownMove");
     }
 
-    IEnumerator PauseTime()
+
+    public void PauseGame()
     {
-        yield return new WaitForSeconds(1);
+        GameController.isGamePaused = true;
+        Blur.SetActive(true);
+        PauseButton.GetComponent<Button>().enabled = false;
         Time.timeScale = 0;
+
+    }
+    public void UnPauseGame()
+    {
+        GameController.isGamePaused = false;
+        Blur.SetActive(false);
+        PauseButton.GetComponent<Button>().enabled = true;
     }
 
 }

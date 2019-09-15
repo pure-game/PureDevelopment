@@ -11,21 +11,24 @@ public class GasController : MonoBehaviour
 
     // время начала игры
     int startTime = 0;
+
     bool isSpeedBonus = false;
+    public static bool isGameStarted;
+
     Rigidbody2D rigidbody2D;
     List<ObjectStats> objects = new List<ObjectStats>();
     
     void Start()
     {
+        isGameStarted = false;
         startTime = DateTime.Now.Millisecond;
         rigidbody2D = GetComponent<Rigidbody2D>();
-        rigidbody2D.velocity = new Vector2(startVelocity, 0);
         StartCoroutine(DamageObjects());
     }
 
     private void FixedUpdate()
     {
-        if (!isSpeedBonus)
+        if (!isSpeedBonus && isGameStarted)
             rigidbody2D.velocity = new Vector2(startVelocity, 0);
     }
 
@@ -57,8 +60,7 @@ public class GasController : MonoBehaviour
         while (true)
         {
             for (int i = 0; i < objects.Count; i++)
-            {
-                
+            {             
                 objects[i].OxygenDamage(Damage);
             }
             yield return new WaitForSeconds(0.5f);
