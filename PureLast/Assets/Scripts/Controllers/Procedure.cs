@@ -21,7 +21,7 @@ public class Procedure : MonoBehaviour
     //массив сфотографированных мобов
     public static Dictionary<string, int> mobsPhotographed;
     //массив мобов, находящихся на экране
-    public static List<GameObject> mobsCurrentInCamera;
+    public static List<Beast> mobsCurrentInCamera;
 
     float distance = 0f;
     float distanceToSpawn = 0f;
@@ -37,7 +37,7 @@ public class Procedure : MonoBehaviour
         //создание массива сфотографированных объектов
         mobsPhotographed = new Dictionary<string, int>();
         //создание массива мобов, находящихся на экране
-        mobsCurrentInCamera = new List<GameObject>();
+        mobsCurrentInCamera = new List<Beast>();
         SpawnBestScoreLine();
     }
 
@@ -82,16 +82,22 @@ public class Procedure : MonoBehaviour
     {
         for (int i = 0; i < mobsCurrentInCamera.Count; i++)
         {
-            if (mobsPhotographed.ContainsKey(mobsCurrentInCamera[i].name))
+            if (mobsPhotographed.ContainsKey(mobsCurrentInCamera[i].BeastName))
             {
-                mobsPhotographed[mobsCurrentInCamera[i].name]++;
+                mobsPhotographed[mobsCurrentInCamera[i].BeastName]++;
+                //добавление в бестиарий(Даник, НУЖОН сейв!)
+                if (!GameController.Beasts.Contains(mobsCurrentInCamera[i]))
+                    GameController.Beasts.Add(mobsCurrentInCamera[i]);
             }
             else
             {
-                mobsPhotographed[mobsCurrentInCamera[i].name] = 1;
+                mobsPhotographed[mobsCurrentInCamera[i].BeastName] = 1;
+                //добавление в бестиарий(Даник, НУЖОН сейв!)
+                if (!GameController.Beasts.Contains(mobsCurrentInCamera[i]))
+                    GameController.Beasts.Add(mobsCurrentInCamera[i]);
             }
             //  Добавляем деньги за фото
-            GameController.AddMoney(GameController.PhotoPrices[mobsCurrentInCamera[i].name]);
+            GameController.AddMoney(GameController.PhotoPrices[mobsCurrentInCamera[i].BeastName]);
         }
         mobsCurrentInCamera.Clear();
         //Вспышка

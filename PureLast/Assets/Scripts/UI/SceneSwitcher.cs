@@ -15,4 +15,8 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("SHOP", LoadSceneMode.Single);
     }
+    public void LoadBeasts()
+    {
+        SceneManager.LoadScene("BEASTS", LoadSceneMode.Single);
+    }
 }

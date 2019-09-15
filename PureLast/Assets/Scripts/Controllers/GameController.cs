@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     //словарь с названием моба - ценой за его фото
     public static Dictionary<string, int> PhotoPrices = new Dictionary<string, int>();
 
-    public static HashSet<string> Beasts = new HashSet<string>();
+    public static HashSet<Beast> Beasts = new HashSet<Beast>();
 
     [SerializeField] private List<GunStats> _gunStatsList = new List<GunStats>();
     public static List<GunStats> gunStatsList;
@@ -89,8 +89,8 @@ public class GameController : MonoBehaviour
 
     public static void AddPriceList()
     {
-        PhotoPrices.Add("Cop(Clone)", 50);
-        PhotoPrices.Add("Cop 1(Clone)", 100);
+        PhotoPrices.Add("Cop", 50);
+        PhotoPrices.Add("SuperCop", 100);
     }
 
     private void OnDisable()
