@@ -735,7 +735,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.055232625}
+  m_AnchoredPosition: {x: 0, y: 3.5673175}
   m_SizeDelta: {x: 0, y: 1079.7}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &652716435
@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 727294292}
   - component: {fileID: 727294291}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BeastImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,7 +1010,7 @@ Animator:
   m_GameObject: {fileID: 727294289}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4a204a3b98792d4f942e8907a3f8203, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1780,7 +1780,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 286716645}
   m_HandleRect: {fileID: 286716644}
   m_Direction: 2
-  m_Value: 0.99669605
+  m_Value: 0.78639096
   m_Size: 0.9845328
   m_NumberOfSteps: 0
   m_OnValueChanged:

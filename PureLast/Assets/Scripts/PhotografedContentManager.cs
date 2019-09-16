@@ -8,7 +8,12 @@ public class PhotografedContentManager : MonoBehaviour
 
     [SerializeField] GameObject PanelAndPrice;
 
-    public static int TotalMoneyForPhoto = 0;
+    public static int TotalMoneyForPhoto;
+
+    private void Start()
+    {
+        TotalMoneyForPhoto = 0;
+    }
 
     public void AddContent()
     {
@@ -18,6 +23,7 @@ public class PhotografedContentManager : MonoBehaviour
             panelAndPrice.GetComponentInChildren<Text>().text = item.Key.ToString() + " " + item.Value.ToString() + " x "
                 + GameController.PhotoPrices[item.Key].ToString() + " = " + item.Value * GameController.PhotoPrices[item.Key];
             TotalMoneyForPhoto += item.Value * GameController.PhotoPrices[item.Key];
+            print("SHTHRTHRt" + TotalMoneyForPhoto);
         }
     }
 

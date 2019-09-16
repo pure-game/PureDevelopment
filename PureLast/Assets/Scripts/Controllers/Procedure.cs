@@ -85,17 +85,16 @@ public class Procedure : MonoBehaviour
             if (mobsPhotographed.ContainsKey(mobsCurrentInCamera[i].BeastName))
             {
                 mobsPhotographed[mobsCurrentInCamera[i].BeastName]++;
-                //добавление в бестиарий(Даник, НУЖОН сейв!)
-                if (!GameController.Beasts.Contains(mobsCurrentInCamera[i]))
-                    GameController.Beasts.Add(mobsCurrentInCamera[i]);
             }
             else
             {
                 mobsPhotographed[mobsCurrentInCamera[i].BeastName] = 1;
-                //добавление в бестиарий(Даник, НУЖОН сейв!)
-                if (!GameController.Beasts.Contains(mobsCurrentInCamera[i]))
-                    GameController.Beasts.Add(mobsCurrentInCamera[i]);
             }
+
+            //добавление в бестиарий(Даник, НУЖОН сейв!)
+            if (!GameController.Beasts.ContainsKey(mobsCurrentInCamera[i].BeastName))
+                GameController.Beasts[mobsCurrentInCamera[i].BeastName] = mobsCurrentInCamera[i];
+
             //  Добавляем деньги за фото
             GameController.AddMoney(GameController.PhotoPrices[mobsCurrentInCamera[i].BeastName]);
         }

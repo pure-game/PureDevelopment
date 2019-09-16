@@ -28,6 +28,8 @@ public class GameOver : MonoBehaviour
     {
         Blur.SetActive(true);
 
+        PhotoPanel.AddContent();
+
         CurrentRecordText.text = PlayerStats.curScore.ToString();
         TotalMoneyForPhoto.text = PhotografedContentManager.TotalMoneyForPhoto.ToString();
         CurrentMoneyText.text = StatsController.currentMoney.ToString();
@@ -36,7 +38,6 @@ public class GameOver : MonoBehaviour
 
         Destroy(Player);
 
-        PhotoPanel.AddContent();
     }
 
 }

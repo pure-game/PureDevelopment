@@ -13,8 +13,7 @@ public class BeastAddManager : MonoBehaviour
         foreach (var item in GameController.Beasts)
         {
             GameObject beastPanel = Instantiate(BeastPanel, transform) as GameObject;
-            //КОСТЫЛЛЬ
-            beastPanel.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.BeastIconPath);
+            beastPanel.GetComponent<BeastPanelController>().currentBeast = item.Value;
         }
     }
 }
