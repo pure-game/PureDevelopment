@@ -20,10 +20,9 @@ public class PhotografedContentManager : MonoBehaviour
         foreach (var item in Procedure.mobsPhotographed)
         {
             GameObject panelAndPrice = Instantiate(PanelAndPrice, transform) as GameObject;
-            panelAndPrice.GetComponentInChildren<Text>().text = item.Key.ToString() + " " + item.Value.ToString() + " x "
+            panelAndPrice.GetComponentInChildren<Text>().text = item.Key.ToString() + " : " + item.Value.ToString() + " x "
                 + GameController.PhotoPrices[item.Key].ToString() + " = " + item.Value * GameController.PhotoPrices[item.Key];
             TotalMoneyForPhoto += item.Value * GameController.PhotoPrices[item.Key];
-            print("SHTHRTHRt" + TotalMoneyForPhoto);
         }
     }
 
